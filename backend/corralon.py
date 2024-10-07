@@ -15,7 +15,7 @@ base = {
     "database": "corralon"
 }
 
-@aplicacion.router("/api/agregar_usuario", methods=["POST"])
+@aplicacion.route("/api/agregar_usuario", methods=["POST"])
 def agregar_usuario():
     data = request.get_json()
     usuario = data.get("usuario")

@@ -15,24 +15,54 @@ base = {
     "database": "corralon"
 }
 
-@aplicacion.route("/api/agregar_usuario", methods=["POST"])
+
+#--------------se agrega empleado ---------------------
+
+@aplicacion.route("/api/agregar_empleado", methods=["POST"])
 def agregar_usuario():
     data = request.get_json()
+    nombre = data.get("nombre")
+    apellido = data.get("apellido")
+    dni = data.get("dni")
+    fecha_nacimiento = data.get("fecha_nacimiento")
+    direccion = data.get("direccion")
+    mail = data.get("mail")
+    telefono = data.get("telefono")
     usuario = data.get("usuario")
-    clave = data.get("pass")
+    clave = data.get ("clave")
     puesto = data.get("puesto")
 
     con = mysql.connector.connect(**base)
     cursor = con.cursor()
 
-    cursor.execute("INSERT INTO usuarios (usuario,pass,puesto) VALUES(%s,%s,%s)",(usuario,clave,puesto))
+    cursor.execute("INSERT INTO empleados (nombre,apellido,dni,fechaNacimiento,direccion,mail,telefono,usuario,clave,puesto) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(nombre,apellido,dni,fecha_nacimiento,direccion,mail,telefono,usuario,clave,puesto))
     con.commit()
 
     cursor.close()
     con.close()
 
     ultimo_dato = cursor.lastrowid
-    return jsonify({"Mensaje":"Usuario creado", "id": ultimo_dato}), 201
+    return jsonify({"Mensaje":"Empleado creado", "id": ultimo_dato}), 201
+
+#--------------se agrega deposito ---------------------
+@aplicacion.route("/api/agregar_material", methods=["POST"])
+def agregar_material():
+    data = request.get_json()
+    material = data.get("material")
+    cantidad = data.get("cantidad")
+    precio = data.get("precio")
+
+    con = mysql.connector.connect(**base)
+    cursor = con.cursor()
+
+    cursor.execute("INSERT INTO deposito (material,cantidad,precio) VALUES (%s,%s,%s)",(material,cantidad,precio))
+    con.commit()
+    ultimo_dato = cursor.lastrowid
+    return jsonify({"Mensaje":"Material ingresado","id": ultimo_dato}), 201
+
+
+
+
 
 
 

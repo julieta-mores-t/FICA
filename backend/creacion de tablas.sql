@@ -24,6 +24,10 @@ CREATE TABLE empleados (
     clave VARCHAR(255) NOT NULL,            
     puesto ENUM('administrador', 'empleado') NOT NULL 
 );
+#aqui se modifican campos que se crean luego 
+ALTER TABLE empleados
+ADD COLUMN fecha_ingreso DATE,
+ADD COLUMN estado ENUM('alta', 'baja');
 
 
 #creacion de tabla compradores

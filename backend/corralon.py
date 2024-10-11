@@ -2,6 +2,7 @@ from flask import Flask,jsonify,request
 from flask_cors import CORS
 import mysql.connector
 import bcrypt
+from datetime import datetime
 
 aplicacion = Flask(__name__)
 CORS(aplicacion)
@@ -28,13 +29,20 @@ def agregar_usuario():
     nombre = data.get("nombre")
     apellido = data.get("apellido")
     dni = data.get("dni")
-    fecha_nacimiento = data.get("fecha_nacimiento")
+    # convertir fecha
+    fecha_nacimiento_str = data.get("fecha_nacimiento")
+    fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, '%d/%m/%Y').strftime('%Y-%m-%d')
     direccion = data.get("direccion")
     mail = data.get("mail")
     telefono = data.get("telefono")
     usuario = data.get("usuario")
     clave = data.get("clave")  
     puesto = data.get("puesto")
+    
+    fecha_ingreso_str = data.get("fecha_ingreso")
+    fecha_ingreso = datetime.strptime(fecha_ingreso_str, '%d/%m/%Y').strftime('%Y-%m-%d')
+    
+    estado = data.get("estado")
 
     # Hashear la contraseña antes de almacenarla en la base de datos
     clave_en_bytes = clave.encode('utf-8')  # Convertir la clave a bytes
@@ -47,9 +55,9 @@ def agregar_usuario():
 
    
     cursor.execute(
-        "INSERT INTO empleados (nombre, apellido, dni, fechaNacimiento, direccion, mail, telefono, usuario, clave, puesto) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (nombre, apellido, dni, fecha_nacimiento, direccion, mail, telefono, usuario, hash_clave, puesto)
+        "INSERT INTO empleados (nombre, apellido, dni, fechaNacimiento, direccion, mail, telefono, usuario, clave, puesto,fecha_ingreso,estado) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s)",
+        (nombre, apellido, dni, fecha_nacimiento, direccion, mail, telefono, usuario, hash_clave, puesto,fecha_ingreso,estado)
     )
     
     con.commit()
@@ -114,21 +122,27 @@ def obtener_compradores():
     con = mysql.connector.connect(**base)  
     cursor = con.cursor()
 
-    
-    cursor.execute("SELECT nombre,apellido,dni,fecha_nacimiento,direccion,email,telefono FROM compradores")
+    cursor.execute("SELECT * FROM compradores")
     compradores = cursor.fetchall() 
+
+    # Obtener los nombres de las columnas
+    columnas = []
+    for column in cursor.description:
+        columnas.append(column[0])
 
     cursor.close()
     con.close()
 
+    lista_compradores = []
+    for comprador in compradores:
+        comprador_dict = {}
+        for i in range(len(columnas)):
+            comprador_dict[columnas[i]] = comprador[i]
     
-    lista_compradores = [{"nombre": comprador[0], "apellido": comprador[1],"dni": comprador[2],"fecha_nacimiento": comprador[3], "direccion": comprador[4],"email": comprador[4],"telefono": comprador[5]} for comprador in compradores]
+    # Agregar el diccionario a la lista de compradores
+    lista_compradores.append(comprador_dict)
 
     return jsonify(lista_compradores), 200  
-
-
-
-
 
 
 if __name__ == "__main__":

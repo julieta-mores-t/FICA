@@ -18,9 +18,13 @@ base = {
 }
 
 
-#--------------se agrega empleado ---------------------
 
-aplicacion = Flask(__name__)
+
+
+
+
+
+
 
 #--------------- Se agrega empleado ---------------------
 @aplicacion.route("/api/agregar_empleado", methods=["POST"])
@@ -69,6 +73,42 @@ def agregar_usuario():
     ultimo_dato = cursor.lastrowid
     return jsonify({"Mensaje": "Empleado creado", "id": ultimo_dato}), 201
 
+
+# ----------------------obtener todos los empleados ----------------
+
+@aplicacion.route("/api/obtener_empleados", methods=["GET"])
+def obtener_empleados():
+    con = mysql.connector.connect(**base)  
+    cursor = con.cursor()
+
+    cursor.execute("SELECT * FROM empleados")
+    empleados = cursor.fetchall() 
+
+    columnas = []
+    for column in cursor.description:
+        columnas.append(column[0])
+
+    cursor.close()
+    con.close()
+
+    lista_empleados = []
+    for empleado in empleados:
+        empleado_dict = {}
+        for i in range(len(columnas)):
+            empleado_dict[columnas[i]] = empleado[i]
+    
+        # Agregar el diccionario a la lista de compradores
+        lista_empleados.append(empleado_dict)
+
+    return jsonify(lista_empleados), 200  
+
+
+
+
+
+
+
+
 #--------------se agrega deposito ---------------------
 @aplicacion.route("/api/agregar_material", methods=["POST"])
 def agregar_material():
@@ -115,7 +155,7 @@ def agregar_comprador():
     return({"Mensaje": "Comprador agregado","id": ultimo_dato}),201
 
 
-    # ----------------------obtener todos los compradores ----------------
+# ----------------------obtener todos los compradores ----------------
 
 @aplicacion.route("/api/obtener_compradores", methods=["GET"])
 def obtener_compradores():
@@ -125,13 +165,13 @@ def obtener_compradores():
     cursor.execute("SELECT * FROM compradores")
     compradores = cursor.fetchall() 
 
+    cursor.close()
+    con.close()
+
     # Obtener los nombres de las columnas
     columnas = []
     for column in cursor.description:
         columnas.append(column[0])
-
-    cursor.close()
-    con.close()
 
     lista_compradores = []
     for comprador in compradores:
@@ -139,8 +179,8 @@ def obtener_compradores():
         for i in range(len(columnas)):
             comprador_dict[columnas[i]] = comprador[i]
     
-    # Agregar el diccionario a la lista de compradores
-    lista_compradores.append(comprador_dict)
+        # Agregar el diccionario a la lista de compradores
+        lista_compradores.append(comprador_dict)
 
     return jsonify(lista_compradores), 200  
 

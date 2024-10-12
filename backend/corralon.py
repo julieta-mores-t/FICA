@@ -4,6 +4,8 @@ import mysql.connector
 import bcrypt
 from datetime import datetime
 
+
+
 aplicacion = Flask(__name__)
 CORS(aplicacion)
 
@@ -42,11 +44,13 @@ def agregar_usuario():
     usuario = data.get("usuario")
     clave = data.get("clave")  
     puesto = data.get("puesto")
-    
     fecha_ingreso_str = data.get("fecha_ingreso")
     fecha_ingreso = datetime.strptime(fecha_ingreso_str, '%d/%m/%Y').strftime('%Y-%m-%d')
-    
     estado = data.get("estado")
+    
+
+    
+
 
     # Hashear la contraseña antes de almacenarla en la base de datos
     clave_en_bytes = clave.encode('utf-8')  # Convertir la clave a bytes
@@ -74,6 +78,12 @@ def agregar_usuario():
     return jsonify({"Mensaje": "Empleado creado", "id": ultimo_dato}), 201
 
 
+
+
+
+
+
+
 # ----------------------obtener todos los empleados ----------------
 
 @aplicacion.route("/api/obtener_empleados", methods=["GET"])
@@ -81,7 +91,7 @@ def obtener_empleados():
     con = mysql.connector.connect(**base)  
     cursor = con.cursor()
 
-    cursor.execute("SELECT * FROM empleados")
+    cursor.execute("SELECT usuario,clave FROM empleados")
     empleados = cursor.fetchall() 
 
     columnas = []
@@ -109,6 +119,8 @@ def obtener_empleados():
 
 
 
+
+
 #--------------se agrega deposito ---------------------
 @aplicacion.route("/api/agregar_material", methods=["POST"])
 def agregar_material():
@@ -126,6 +138,47 @@ def agregar_material():
     con.close()
     ultimo_dato = cursor.lastrowid
     return jsonify({"Mensaje":"Material ingresado","id": ultimo_dato}), 201
+
+
+
+
+
+
+#--------------se obtienen materiales  ---------------------
+@aplicacion.route("/api/obtener_materiales", methods=["GET"])
+def obtener_materiales():
+    con = mysql.connector.connect(**base)  
+    cursor = con.cursor()
+
+    cursor.execute("SELECT * FROM deposito")
+    materiales = cursor.fetchall() 
+
+    columnas = []
+    for column in cursor.description:
+        columnas.append(column[0])
+
+    cursor.close()
+    con.close()
+
+    lista_materiales = []
+    for material in materiales:
+        material_dict = {}
+        for i in range(len(columnas)):
+            material_dict[columnas[i]] = material[i]
+    
+        # Agregar el diccionario a la lista de compradores
+        lista_materiales.append(material_dict)
+
+    return jsonify(lista_materiales), 200 
+
+
+
+
+
+
+
+
+
 
 
 #---------------se agrega compradores---------------------------
@@ -153,6 +206,13 @@ def agregar_comprador():
 
     ultimo_dato = cursor.lastrowid
     return({"Mensaje": "Comprador agregado","id": ultimo_dato}),201
+
+
+
+
+
+
+
 
 
 # ----------------------obtener todos los compradores ----------------
@@ -183,6 +243,10 @@ def obtener_compradores():
         lista_compradores.append(comprador_dict)
 
     return jsonify(lista_compradores), 200  
+
+
+
+
 
 
 if __name__ == "__main__":

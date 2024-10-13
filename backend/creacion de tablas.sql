@@ -29,6 +29,17 @@ ALTER TABLE empleados
 ADD COLUMN fecha_ingreso DATE,
 ADD COLUMN estado ENUM('alta', 'baja');
 
+ALTER TABLE empleados
+DROP COLUMN foto;
+
+
+
+
+#borrar empleados
+DELETE FROM empleados
+WHERE id IN (1, 2, 5,6,7);
+
+
 
 #creacion de tabla compradores
 CREATE TABLE compradores (

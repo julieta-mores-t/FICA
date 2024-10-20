@@ -23,8 +23,10 @@ agregar empleado
 
 agregar material
 {
-    "material": "Hercal",
-    "cantidad": 300,
-    "precio": 12000
-    
+    "material": "Cemento",
+    "cantidad": 100,
+    "precio": 15000,
+    "precio_venta": 18000,
+    "estado": "alta",
+    "proveedor": "jose"
 }

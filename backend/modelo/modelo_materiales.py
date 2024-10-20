@@ -3,22 +3,100 @@ from utilidades.utilidades import obtener_base
 
 
 def agregar_material(material):
-    
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
     precio = material.get("precio")
-    conexion = obtener_base()  
+    precio_venta = material.get("precio_venta")
+    estado = material.get("estado")
+    proveedor = material.get("proveedor")
+
+    conexion = obtener_base()
     cursor = conexion.cursor()
+
+    # Verificar que el proveedor existe en la tabla proveedores
+    cursor.execute("SELECT id FROM proveedores WHERE nombre = %s", (proveedor,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        proveedor_id = resultado[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return "Proveedor no encontrado"
+
+    # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
-        "INSERT INTO deposito (material, cantidad, precio) VALUES (%s, %s, %s)",
-        (nombre_material, cantidad, precio)
+        "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor) VALUES (%s, %s, %s, %s, %s, %s)",
+        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id)
     )
     conexion.commit()
-
     ultimo_dato = cursor.lastrowid
-    
     cursor.close()
     conexion.close()
-    
     return ultimo_dato
+
+
+
+
+
+
+def mostrar_material():
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT material,cantidad,precio,precio_venta,nombre as proveedor,estado FROM deposito d JOIN proveedores p ON d.proveedor = p.id;")
+    materiales = cursor.fetchall()
+
+    columnas = [material[0] for material in cursor.description]
+
+    conexion.close()
+    cursor.close()
+
+    lista_materiales = []
+    for mat in materiales:
+        materiales_dict = {columnas[i]:mat[i] for i in range(len(columnas))}
+        lista_materiales.append(materiales_dict)
+
+    return lista_materiales
+
+
+
+
+def editar_material(id, material):
+    nombre_material = material.get("material")
+    cantidad = material.get("cantidad")
+    precio = material.get("precio")
+    precio_venta = material.get("precio_venta")
+    estado = material.get("estado")
+    proveedor = material.get("proveedor")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    # Verificar que el proveedor existe en la tabla proveedores
+    cursor.execute("SELECT id FROM proveedores WHERE nombre = %s", (proveedor,))
+    resultado_proveedor = cursor.fetchone()
+
+    if resultado_proveedor:
+        proveedor_id = resultado_proveedor[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return {"mensaje": "Proveedor no encontrado"}, 404
+
+    # Actualizar el material en la tabla deposito
+    cursor.execute("""
+        UPDATE deposito
+        SET material = %s, cantidad = %s, precio = %s, precio_venta = %s, estado = %s, proveedor = %s
+        WHERE id = %s
+    """, (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id, id))
+
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+
+    return {"mensaje": "Material actualizado con éxito"}, 200
+
+
+
+
 

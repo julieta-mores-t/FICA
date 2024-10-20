@@ -9,6 +9,14 @@ CREATE TABLE deposito(
     precio DECIMAL(10.2)
 );
 
+CREATE TABLE proveedores(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre varchar(50),
+    apellido varchar(50),
+    mail varchar(100),
+    telefono int
+);
+
 
 #creacion de tabla empleado
 CREATE TABLE empleados (
@@ -29,15 +37,46 @@ ALTER TABLE empleados
 ADD COLUMN fecha_ingreso DATE,
 ADD COLUMN estado ENUM('alta', 'baja');
 
+ALTER TABLE deposito
+ADD COLUMN precio_venta int,
+ADD COLUMN estado ENUM('alta', 'baja'),
+ADD COLUMN proveedor varchar(50);
+
 ALTER TABLE empleados
 DROP COLUMN foto;
 
 
+ALTER TABLE deposito
+DROP FOREIGN KEY fk_proveedor;
 
 
-#borrar empleados
-DELETE FROM empleados
-WHERE id IN (1, 2, 5,6,7);
+ALTER TABLE deposito
+ADD CONSTRAINT fk_proveedor
+FOREIGN KEY (proveedor)
+REFERENCES proveedores(id);
+
+ALTER TABLE proveedores MODIFY COLUMN telefono VARCHAR(20);
+
+INSERT INTO deposito (material, cantidad, precio, precio_venta,estado,proveedor)
+VALUES ('caño', 50000, 350,700,"alta",6);
+
+INSERT INTO proveedores (nombre, apellido, mail, telefono)
+VALUES ('daniel', 'montoya', 'dmontolla@gmail.com.ar', "3512365896");
+
+INSERT INTO proveedores (nombre, apellido, mail, telefono) VALUES 
+('jose', 'juarez', 'juares@example.com', '123456789'),
+('Dionicio', 'Perez', 'perez@example.com', '987654321');
+
+
+SHOW COLUMNS FROM deposito;
+SHOW COLUMNS FROM proveedores;
+
+ALTER TABLE deposito MODIFY COLUMN proveedor INT;
+
+
+
+
+
 
 
 
@@ -66,4 +105,18 @@ CREATE TABLE ventas (
     FOREIGN KEY (id_comprador) REFERENCES compradores(id) 
 );
 
+
+
+#consultas
+SELECT nombre From proveedores;
+
+
+
+SELECT 
+    material,cantidad,precio,precio_venta,nombre as proveedor,estado
+FROM 
+    deposito d
+JOIN 
+    proveedores p ON d.proveedor = p.id;
+    
 

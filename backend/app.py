@@ -1,15 +1,19 @@
 from flask import Flask
 from flask_cors import CORS
+from flask_bcrypt import Bcrypt
 from controlador.controlador_empleados import agregar_empleado_endpoint
 from controlador.controlador_empleados import mostrar_empleado_endpoint
 from controlador.controlador_materiales import agregar_material_endpoint
 from controlador.controlador_materiales import mostrar_material_endpoint
 from controlador.controlador_proveedores import mostrar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
+from controlador.controlador_empleados import verificar_contrasena_endpoint
 
 
 aplicacion = Flask(__name__)
+
 CORS(aplicacion)
+bcrypt = Bcrypt(aplicacion)
 # ------------------------------EMPLEADOS-------------------------
 # ------------------------------agregar empleados-------------------------
 
@@ -22,6 +26,13 @@ def agregar_empleado():
 @aplicacion.route("/api/mostrar_usuarios",methods=["GET"])
 def mostrar_usuario():
     return mostrar_empleado_endpoint()
+
+
+
+# Ruta para verificar la contraseña
+@aplicacion.route('/api/verificar_contrasena', methods=['POST'])
+def verificar_contrasena():
+    return verificar_contrasena_endpoint()
 
 
 

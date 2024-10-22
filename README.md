@@ -1,9 +1,13 @@
 # FICA-
 Fideicomiso para la Industria de la Construcción y Afines
 
-primer usuario:
+primer usuario admin:
 "usuario": "prueba",
     "clave": "1234",
+    
+empleado
+"usuario": "prueba3",
+  "clave": "1234",
 
 
 agregar empleado

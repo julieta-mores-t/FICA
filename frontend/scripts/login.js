@@ -1,5 +1,5 @@
 function redirectToLogin() {
-    window.location.href = 'templates/login.html'; // Ajusta la ruta si es necesario
+    window.location.href = 'templates/login.html'; 
 }
 
 document.getElementById("loginForm").addEventListener("submit", async function (event) {

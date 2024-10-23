@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+	font-family: 'Roboto';
+}
+
+.inicio {
+    min-height: 100vh; 
+    background: 
+        linear-gradient(rgba(12, 16, 241, 0.4), rgba(12, 16, 241, 0.4)),
+        url('../img/bg-industria-corralon.jpg');
+    background-repeat: repeat; /* Permite que la imagen se repita */
+    background-size: 200% 200%; /* Aumenta el tamaño del fondo para un desplazamiento más suave */
+    background-blend-mode: overlay; /* Mezcla el gradiente y la imagen */
+    animation: desplazamientoVertical 30s linear infinite; /* Animación continua */
+}
+
+@keyframes desplazamientoVertical {
+    0% {
+        background-position: 0% 0%; /* Comienza en la posición inicial */
+    }
+    50% {
+        background-position: 0% 100%; /* Mueve el fondo hacia abajo */
+    }
+    100% {
+        background-position: 0% 0%; /* Regresa a la posición inicial para un bucle suave */
+    }
+}
+
+
+.titulo {
+    color: white; /* Color del texto */
+    position: absolute; /* Asegura que el título pueda centrarse */
+    top: 50%; /* Centra verticalmente */
+    left: 100%; /* Comienza fuera de la pantalla a la derecha */
+    transform: translate(-50%, -50%); /* Ajusta el centro del título */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    animation: aparecer 1s forwards; /* Llama a la animación */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra de texto para mejorar el contraste */
+    font-size: 3em;
+}
+
+@keyframes aparecer {
+    0% {
+        left: 100%; /* Comienza fuera de la pantalla a la derecha */
+    }
+    100% {
+        left: 50%; /* Termina en el centro horizontal */
+    }
+}

@@ -1,8 +1,12 @@
 from utilidades.utilidades import obtener_base
+from datetime import datetime
 
 
 
 def agregar_material(material):
+    ganancia = material.get("ganancia")
+    fecha_ingreso = material.get("fecha_ingreso")
+    codigo =material.get("codigo")
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
     precio = material.get("precio")
@@ -26,8 +30,8 @@ def agregar_material(material):
 
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
-        "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor) VALUES (%s, %s, %s, %s, %s, %s)",
-        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id)
+        "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor,codigo,fecha_ingreso,ganancia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id,codigo,fecha_ingreso,ganancia)
     )
     conexion.commit()
     ultimo_dato = cursor.lastrowid
@@ -40,23 +44,41 @@ def agregar_material(material):
 
 
 
+
+
 def mostrar_material():
     conexion = obtener_base()
     cursor = conexion.cursor()
-    cursor.execute("SELECT material,cantidad,precio,precio_venta,nombre as proveedor,estado FROM deposito d JOIN proveedores p ON d.proveedor = p.id;")
+    
+    cursor.execute("""
+        SELECT codigo, material, cantidad, precio, precio_venta, nombre AS proveedor, estado, fecha_ingreso, ganancia 
+        FROM deposito d 
+        JOIN proveedores p ON d.proveedor = p.id;
+    """)
+    
     materiales = cursor.fetchall()
 
-    columnas = [material[0] for material in cursor.description]
+    # Obtener nombres de las columnas
+    columnas = [desc[0] for desc in cursor.description]
 
-    conexion.close()
     cursor.close()
+    conexion.close()
 
     lista_materiales = []
     for mat in materiales:
-        materiales_dict = {columnas[i]:mat[i] for i in range(len(columnas))}
+        materiales_dict = {columnas[i]: mat[i] for i in range(len(columnas))}
+        
+        # Formatear la fecha en el formato deseado
+        if 'fecha_ingreso' in materiales_dict:
+            # Convertir a datetime y luego formatear
+            fecha_ingreso_dt = materiales_dict['fecha_ingreso']
+            if isinstance(fecha_ingreso_dt, datetime):
+                materiales_dict['fecha_ingreso'] = fecha_ingreso_dt.strftime('%d/%m/%Y')
+        
         lista_materiales.append(materiales_dict)
 
     return lista_materiales
+
 
 
 

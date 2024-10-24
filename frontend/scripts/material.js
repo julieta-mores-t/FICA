@@ -1,20 +1,30 @@
+// Configurar la fecha de hoy en el campo oculto
+const hoy = new Date();
+const fechaHoy = hoy.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+document.getElementById("fecha_ingreso").value = fechaHoy;
 document.getElementById("formulario").addEventListener("submit", function(event) {
     event.preventDefault();
 
+
     const material = document.getElementById("material").value;
+    const proveedor = document.getElementById("proveedor").value; 
     const cantidad = document.getElementById("cantidad").value;
+    const ganancia = document.getElementById("ganancia").value;
     const precio = document.getElementById("precio").value;
     const precio_venta = document.getElementById("precio_venta").value;
     const estado = document.getElementById("estado").value;
-    const proveedor = document.getElementById("proveedor").value; // Usar el select de proveedores
+    const fecha_ingreso = document.getElementById("fecha_ingreso").value;
 
     const datos = {
+        
         material: material,
+        proveedor: proveedor,
         cantidad: cantidad,
+        ganancia:ganancia,
         precio: precio,
         precio_venta: precio_venta,
         estado: estado,
-        proveedor: proveedor
+        fecha_ingreso: fecha_ingreso
     };
 
     fetch("http://127.0.0.1:5000/api/agregar_material", {
@@ -53,12 +63,16 @@ function cargarMateriales() {
             materiales.forEach(material => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
+                    <td>${material.codigo}</td>
                     <td>${material.material}</td>
+                    <td>${material.proveedor}</td>
                     <td>${material.cantidad}</td>
+                    <td>${material.fecha_ingreso}</td>
+                    <td>${material.ganancia}</td>
                     <td>${material.precio}</td>
                     <td>${material.precio_venta}</td>
                     <td>${material.estado}</td>
-                    <td>${material.proveedor}</td>
+                    
                     <td><button class="editar-btn" data-id="${material.id}">Editar</button></td>
                 `;
                 tbody.appendChild(row);

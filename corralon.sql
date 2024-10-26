@@ -63,10 +63,11 @@ CREATE TABLE `deposito` (
   `codigo` varchar(255) DEFAULT NULL,
   `fecha_ingreso` datetime DEFAULT CURRENT_TIMESTAMP,
   `ganancia` int DEFAULT NULL,
+  `porcentaje_imp` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_proveedor` (`proveedor`),
   CONSTRAINT `fk_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +76,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (26,'clavos cabeza plana',20,100,150,'alta',5,'aaa-001','2024-10-24 14:45:46',1200),(27,'cemento',50,300,600,'alta',6,'aaa-002','2024-10-24 15:17:51',1500),(29,'hierro 8',200,200,200,'alta',1,'aaa-004','2024-10-24 00:00:00',200);
+INSERT INTO `deposito` VALUES (36,'ceramica',50,100,240,'alta',1,'aaa-001','2024-10-26 17:20:22',100,40),(37,'arena',200,200,340,'alta',5,'aaa-002','2024-10-26 17:22:34',100,20);
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +116,60 @@ LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
 INSERT INTO `empleados` VALUES (8,'Gonzalo','Martini','31568987','1987-07-19','valeriano 120','gonza.mart@example.com','3512895654','prueba','$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq','administrador','2021-11-05','alta'),(11,'Gonzalo','Martini','1','1987-07-19','valeriano 120','gonmart@example.com','3512895654','prueba2','$2b$12$tjM8t1HEhIuwmEu6dVGAZObgKVXqkj5kCqgHBZnuuaeakKNRPb78K','administrador','2021-11-05','alta'),(14,'Mariano','Martini','30332145','2000-07-22','Valeriano 120','gonzalez.mart@example.com','351254587','prueba3','$2b$12$e9hdAsLshNQir.q6s450qekFXgeRmgjblu8sk9olhWdugKuqFbkmO','empleado','2020-10-25','alta');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `impuestos`
+--
+
+DROP TABLE IF EXISTS `impuestos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `impuestos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `porcentaje` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `impuestos`
+--
+
+LOCK TABLES `impuestos` WRITE;
+/*!40000 ALTER TABLE `impuestos` DISABLE KEYS */;
+INSERT INTO `impuestos` VALUES (1,'iva21',20),(2,'iva10',20),(3,'imppais',5);
+/*!40000 ALTER TABLE `impuestos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `material_impuesto`
+--
+
+DROP TABLE IF EXISTS `material_impuesto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `material_impuesto` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_material` int DEFAULT NULL,
+  `id_impuesto` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_impuesto` (`id_impuesto`),
+  KEY `fk_material_impuesto_material` (`id_material`),
+  CONSTRAINT `fk_material_impuesto_material` FOREIGN KEY (`id_material`) REFERENCES `deposito` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `material_impuesto_ibfk_2` FOREIGN KEY (`id_impuesto`) REFERENCES `impuestos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material_impuesto`
+--
+
+LOCK TABLES `material_impuesto` WRITE;
+/*!40000 ALTER TABLE `material_impuesto` DISABLE KEYS */;
+INSERT INTO `material_impuesto` VALUES (34,36,1),(35,36,2),(37,37,1);
+/*!40000 ALTER TABLE `material_impuesto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -185,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-24 16:50:43
+-- Dump completed on 2024-10-26 17:29:45

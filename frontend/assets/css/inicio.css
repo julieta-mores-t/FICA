@@ -26,12 +26,15 @@
     margin-top: 10px;
 }
 
+.bg-materiales {
+    background-color: #ff00bf;
+}
 
-.bg-productos {
+.bg-rrhh {
     background-color: #2e003e;
 }
 
-.bg-stock {
+.bg-ventas {
     background-color: #ffdc00;
 }
 

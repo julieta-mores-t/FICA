@@ -35,8 +35,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (verificarResult.exito) {
             // Verificar el puesto del usuario y redirigir a la página correspondiente
             if (usuarioEncontrado.puesto === "administrador") {
-                // Redirigir a la página de materiales.html si el usuario es administrador
-                window.location.href = "materiales.html";
+                // Redirigir a la página de inicio.html si el usuario es administrador
+                window.location.href = "inicio.html";
             } else if (usuarioEncontrado.puesto === "empleado") {
                 // Redirigir a la página de empleado.html si el usuario es empleado
                 window.location.href = "empleado.html";

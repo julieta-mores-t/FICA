@@ -1,108 +1,72 @@
-document.getElementById("formulario").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    cargarProveedores();
+    cargarMateriales();
 
-    const material = document.getElementById("material").value;
-    const cantidad = document.getElementById("cantidad").value;
-    const precio = document.getElementById("precio").value;
-    const precio_venta = document.getElementById("precio_venta").value;
-    const estado = document.getElementById("estado").value;
-    const proveedor = document.getElementById("proveedor").value; // Usar el select de proveedores
+    document.getElementById("formulario").addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    const datos = {
-        material: material,
-        cantidad: cantidad,
-        precio: precio,
-        precio_venta: precio_venta,
-        estado: estado,
-        proveedor: proveedor
-    };
+        const datos = {
+            material: document.getElementById("material").value,
+            cantidad: document.getElementById("cantidad").value,
+            precio: document.getElementById("precio-compra").value,
+            ganancia: document.getElementById("margen-ganancia").value,
+            proveedor: document.getElementById("proveedor").value,
+            estado: document.querySelector('input[name="estado"]:checked').value
+        };
 
-    fetch("http://127.0.0.1:5000/api/agregar_material", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
-    })
-    .then(response => response.json())
-    .then(() => {
-        document.getElementById("formulario").reset(); 
-        cargarMateriales(); 
-    })
-    .catch(error => {
-        console.error('Error al agregar el material:', error);
+        fetch("http://127.0.0.1:5000/api/agregar_material", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datos)
+        })
+        .then(response => response.json())
+        .then(() => {
+            document.getElementById("formulario").reset(); 
+            cargarMateriales(); 
+            bootstrap.Modal.getInstance(document.getElementById('staticBackdrop')).hide();
+        })
+        .catch(error => console.error('Error al agregar el material:', error));
     });
 });
 
-// Función para cargar los materiales y agregarlos a la tabla
+// Cargar materiales
 function cargarMateriales() {
     fetch('http://127.0.0.1:5000/api/mostrar_material')
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
         .then(materiales => {
             const tbody = document.getElementById('materiales-body');
-            if (!tbody) {
-                return;
-            }
-            tbody.innerHTML = ''; 
-
-            materiales.forEach(material => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
+            tbody.innerHTML = materiales.map(material => `
+                <tr>
+                    <td>${material.codigo}</td>
                     <td>${material.material}</td>
+                    <td>${material.proveedor}</td>
                     <td>${material.cantidad}</td>
+                    <td>${material.fecha_ingreso}</td>
+                    <td>${material.ganancia}</td>
                     <td>${material.precio}</td>
                     <td>${material.precio_venta}</td>
-                    <td>${material.estado}</td>
-                    <td>${material.proveedor}</td>
-                    <td><button class="editar-btn" data-id="${material.id}">Editar</button></td>
-                `;
-                tbody.appendChild(row);
-            });
+                    <td><span class="badge ${material.estado === 'alta' ? 'badge-alta' : 'badge-baja'}">${material.estado}</span></td>
+                    <td class="actions">
+                        <a href="#">Editar</a>
+                        <a href="#">Detalle</a>
+                    </td>
+                </tr>
+            `).join('');
         })
-        .catch(error => {
-            console.error('Error al cargar los materiales:', error);
-        });
+        .catch(error => console.error('Error al cargar los materiales:', error));
 }
 
-// Función para cargar los proveedores y agregarlos a la lista desplegable
+// Cargar proveedores
 function cargarProveedores() {
     fetch('http://127.0.0.1:5000/api/mostrar_proveedores')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(proveedores => {
             const proveedorSelect = document.getElementById('proveedor');
-            if (!proveedorSelect) {
-                return;
-            }
-
-            // Limpiar las opciones actuales
-            proveedorSelect.innerHTML = '<option value="">Seleccione un proveedor</option>';
-
-            // Agregar cada proveedor como opción en el select
-            proveedores.forEach(proveedor => {
-                const option = document.createElement('option');
-                option.value = proveedor.nombre; // Usar el nombre como valor
-                option.textContent = proveedor.nombre; // Mostrar el nombre del proveedor
-                proveedorSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error al cargar los proveedores:', error);
+            proveedorSelect.innerHTML = '<option value="">Seleccione un proveedor</option>' + 
+                proveedores.map(proveedor => `<option value="${proveedor.nombre}">${proveedor.nombre}</option>`).join('');
         });
 }
-
-// Cargar los proveedores y materiales cuando el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
-    cargarProveedores(); // Cargar proveedores
-    cargarMateriales(); // Cargar materiales
-});
 

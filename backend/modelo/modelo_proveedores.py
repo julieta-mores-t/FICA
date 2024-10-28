@@ -4,7 +4,7 @@ def mostrar_proveedor():
     conexion = obtener_base()
     cursor = conexion.cursor()
 
-    cursor.execute("SELECT nombre From proveedores;")
+    cursor.execute("SELECT * From proveedores;")
     proveedores = cursor.fetchall()
     
     columnas = [columna[0] for columna in cursor.description]

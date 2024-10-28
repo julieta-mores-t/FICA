@@ -5,7 +5,7 @@ from datetime import datetime
 
 def agregar_material(material):
     ganancia = material.get("ganancia")
-    fecha_ingreso = material.get("fecha_ingreso")
+    
     codigo =material.get("codigo")
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
@@ -30,8 +30,8 @@ def agregar_material(material):
 
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
-        "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor,codigo,fecha_ingreso,ganancia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id,codigo,fecha_ingreso,ganancia)
+        "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor,ganancia) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id,ganancia)
     )
     conexion.commit()
     ultimo_dato = cursor.lastrowid

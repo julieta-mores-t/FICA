@@ -12,7 +12,6 @@
 <body>
 
     <div class="container-fluid">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +37,7 @@
             <h2 class="header-title">PRODUCTOS</h2>
         </div>
 
-        <!-- Tabla de productos -->
+       
         <section class="productos d-flex flex-column">
             <button class="btn btn-agregar align-self-end my-4" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">Agregar producto</button>
@@ -58,114 +57,72 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>AAA-001</td>
-                            <td>CAL</td>
-                            <td>Easy</td>
-                            <td>300</td>
-                            <td>2022-01-24</td>
-                            <td>%100</td>
-                            <td>$15.000</td>
-                            <td>$30.000</td>
-                            <td><span class="badge badge-baja">Baja</span></td>
-                            <td class="actions">
-                                <a href="#">Editar</a>
-                                <a href="#">Detalle</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>AAA-002</td>
-                            <td>CEMENTO</td>
-                            <td>Easy</td>
-                            <td>300</td>
-                            <td>2022-01-24</td>
-                            <td>%50</td>
-                            <td>$12.450</td>
-                            <td>$18.675</td>
-                            <td><span class="badge badge-alta">Alta</span></td>
-                            <td class="actions">
-                                <a href="#">Editar</a>
-                                <a href="#">Detalle</a>
-                            </td>
-                        </tr>
+                    <tbody id="materiales-body">
+                        
                     </tbody>
                 </table>
             </div>
         </section>
 
+        
         <div>
-            <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Agregar Producto</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mt-3">
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                        <h5 class="mb-3">NOMBRE DEL PRODUCTO</label>
+                            <form id="formulario">
+                                <div class="mb-3">
+                                    <label for="material" class="form-label">Nombre del Producto</label>
+                                    <input type="text" class="form-control" id="material" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label">Cantidad del Producto</label>
+                                    <input type="number" class="form-control" id="cantidad" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="proveedor" class="form-label">Proveedor</label>
+                                    <select class="form-select" id="proveedor" required>
+                                        <option value="">Seleccione un proveedor</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio-compra" class="form-label">Precio Compra</label>
+                                    <input type="number" class="form-control" id="precio-compra" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="margen-ganancia" class="form-label">Margen de Ganancia</label>
+                                    <input type="number" class="form-control" id="margen-ganancia" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Estado</label>
+                                    <div>
+                                        <input type="radio" id="alta" name="estado" value="alta" required>
+                                        <label for="alta">alta</label>
                                     </div>
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control mb-3">
+                                    <div>
+                                        <input type="radio" id="baja" name="estado" value="baja">
+                                        <label for="baja">baja</label>
                                     </div>
                                 </div>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                        <h5 class="mb-3">CANTIDAD DEL PRODUCTO</label>
-                                    </div>
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control mb-3">
-                                    </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
-                                <div class="row g-3">
-                                    <div class="col-auto">
-                                        <h5 class="mb-3">PROVEEDORES</label>
-                                    </div>
-                                    <div class="col-auto">
-                                        <select class="form-select seleccionar-proveedor"
-                                            aria-label="Selecciona un proveedor">
-                                            <option selected>Escribe aquí</option>
-                                            <option value="1">Proveedor 1</option>
-                                            <option value="2">Proveedor 2</option>
-                                            <option value="3">Proveedor 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="my-4 d-flex justify-content-between">
-                                    <div class="input-wrapper">
-                                        <label for="precio-compra">Precio compra</label>
-                                        <input type="text" id="precio-compra" placeholder="$ 0">
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="margen-ganancia">Margen de ganancia</label>
-                                        <input type="text" id="margen-ganancia" class="text-center" placeholder="0">
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <label for="precio-venta">Precio de venta</label>
-                                        <input type="text" id="precio-venta" placeholder="$ 0">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer justify-content-center mt-1">
-                                <button class="btn btn-primary btn-guardar" data-bs-dismiss="modal">GUARDAR</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script src="../scripts/productos.js"></script>
+    </div>
+
 </body>
 
 </html>

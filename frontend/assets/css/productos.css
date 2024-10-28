@@ -6,61 +6,88 @@
 	font-family: 'Roboto';
 }
 
-/* Estilo general para el botón */
-.btn {
-    border-radius: 5px;
-}
-
-.btn-primary {
-    background-color: #343aeb; /* Color del botón Agregar */
-    border: none;
-}
-
-.table {
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.table th,
-.table td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.table th {
-    background-color: #380885;
+.table thead th {
+    background-color: #000080;
     color: white;
-}
-
-.badge-alta {
-    background-color: #c8e6c9; /* Verde claro para estado ALTA */
-    color: #388e3c;
-    padding: 5px 10px;
-    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .badge-baja {
-    background-color: #ffccbc; /* Rojo claro para estado BAJA */
-    color: #d32f2f;
-    padding: 5px 10px;
-    border-radius: 5px;
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
-/* Estilo para los botones de acciones */
-.btn-editar {
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 5px;
+.badge-alta {
+    background-color: #d4edda;
+    color: #155724;
 }
 
-.btn-detalle {
-    background-color: #4caf50;
+.table td {
+    vertical-align: middle;
+}
+
+.actions a {
+    color: #000080;
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+.actions a:hover {
+    text-decoration: underline;
+}
+
+.header-title {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.btn-agregar {
+    background-color: #000080;
     color: white;
+    font-weight: bold;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+}
+
+.btn-agregar:hover {
+    background-color: #000070;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+.btn-guardar {
+    background-color: #000070;
+}
+
+.productos .btn-agregar {
+    width: fit-content;
+}
+
+.input-wrapper {
+    text-align: center;
+}
+
+.input-wrapper label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 30px;
+    outline: none;
+    font-weight: 500;
+}
+
+.input-wrapper input:focus {
+    border-color: #000;
+}
+
+.input-wrapper label {
+    font-weight: 500;
 }

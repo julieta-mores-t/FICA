@@ -6,7 +6,6 @@ from datetime import datetime
 def agregar_material(material):
     ganancia = material.get("ganancia")
     
-    codigo =material.get("codigo")
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
     precio = material.get("precio")
@@ -87,9 +86,9 @@ def editar_material(id, material):
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
     precio = material.get("precio")
-    precio_venta = material.get("precio_venta")
     estado = material.get("estado")
     proveedor = material.get("proveedor")
+    ganancia = material.get("ganancia")
 
     conexion = obtener_base()
     cursor = conexion.cursor()
@@ -105,18 +104,19 @@ def editar_material(id, material):
         conexion.close()
         return {"mensaje": "Proveedor no encontrado"}, 404
 
-    # Actualizar el material en la tabla deposito
+    # Actualizar solo las columnas especificadas en la tabla deposito
     cursor.execute("""
         UPDATE deposito
-        SET material = %s, cantidad = %s, precio = %s, precio_venta = %s, estado = %s, proveedor = %s
+        SET material = %s, cantidad = %s, precio = %s, estado = %s, proveedor = %s, ganancia = %s
         WHERE id = %s
-    """, (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id, id))
+    """, (nombre_material, cantidad, precio, estado, proveedor_id, ganancia, id))
 
     conexion.commit()
     cursor.close()
     conexion.close()
 
     return {"mensaje": "Material actualizado con éxito"}, 200
+
 
 
 

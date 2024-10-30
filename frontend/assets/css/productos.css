@@ -6,6 +6,82 @@
 	font-family: 'Roboto';
 }
 
+
+.logo-usuario {
+    width: 48px;
+    margin-right: 20px;
+}
+
+.logo {
+    width: 48px;
+    margin-left: 20px;
+}
+
+
+/* Estilos para el navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #fff;
+}
+
+
+/* Estilos para el contenedor de usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Imagen de usuario */
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Contenedor de detalles del usuario */
+.user-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    
+}
+
+/* Nombre de usuario */
+.user-name {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+/* Correo de usuario */
+.user-email {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+/* Botón de salir */
+#btn-salir {
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #d9534f; /* Color rojo */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px ;
+}
+
+#btn-salir:hover {
+    background-color: #c9302c;
+}
 .table thead th {
     background-color: #000080;
     color: white;
@@ -13,14 +89,16 @@
     text-transform: uppercase;
 }
 
-.badge-baja {
+td .badge-baja {
     background-color: #f8d7da;
     color: #721c24;
+    padding: 10px 25px;
 }
 
-.badge-alta {
+td .badge-alta {
     background-color: #d4edda;
     color: #155724;
+    padding: 10px 25px;
 }
 
 .table td {
@@ -28,7 +106,7 @@
 }
 
 .actions a {
-    color: #000080;
+    color: rgb(59, 184, 233);
     margin-right: 8px;
     text-decoration: none;
 }
@@ -42,7 +120,20 @@
     color: #2c3e50;
 }
 
-.btn-agregar {
+.col-auto h5 {
+    font-size: 1rem;
+}
+
+.modal-footer .btn-guardar {
+    background-color: #000070;
+}
+
+.modal-footer .btn-guardar:hover {
+    background-color: #000070;
+}
+
+.productos .btn-agregar {
+    width: fit-content;
     background-color: #000080;
     color: white;
     font-weight: bold;
@@ -51,18 +142,6 @@
 
 .btn-agregar:hover {
     background-color: #000070;
-}
-
-h5 {
-    font-size: 1rem;
-}
-
-.btn-guardar {
-    background-color: #000070;
-}
-
-.productos .btn-agregar {
-    width: fit-content;
 }
 
 .input-wrapper {

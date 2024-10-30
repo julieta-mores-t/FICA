@@ -5,6 +5,82 @@
     padding: 0;
     font-family: 'Roboto';
 }
+.logo-usuario {
+    width: 48px;
+    margin-right: 20px;
+}
+
+.logo {
+    width: 48px;
+    margin-left: 20px;
+}
+
+
+/* Estilos para el navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #fff;
+}
+
+
+/* Estilos para el contenedor de usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Imagen de usuario */
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Contenedor de detalles del usuario */
+.user-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    
+}
+
+/* Nombre de usuario */
+.user-name {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+/* Correo de usuario */
+.user-email {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+/* Botón de salir */
+#btn-salir {
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #d9534f; /* Color rojo */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px ;
+}
+
+#btn-salir:hover {
+    background-color: #c9302c;
+}
+
 
 .welcome-text {
     font-weight: bold;

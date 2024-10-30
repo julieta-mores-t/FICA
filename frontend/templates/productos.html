@@ -12,23 +12,20 @@
 <body>
 
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <div class="nav-item d-flex align-items-center">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User" />
-                        <span class="me-3">Posada Javier</span>
-                        <span>Ignacio9876.ijjp@gmail.com</span>
-                    </div>
+        <nav class="navbar">
+            <div class="">
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/Abstract Colorful Technology Solutions Professional Logo.png"
+                        class="logo" alt="User" />
+                </a>
+            </div>
+            <div class="user-info">
+                <img src="../assets/img/usuario.webp" class="logo-usuario" alt="User" />
+                <div class="user-details">
+                    <p class="user-name">Posada Javier</p>
+                    <p class="user-email">Ignacio9876.jijp@gmail.com</p>
+                    <button id="btn-salir">Cerrar sesion</button>
+    
                 </div>
             </div>
         </nav>
@@ -37,7 +34,6 @@
             <h2 class="header-title">PRODUCTOS</h2>
         </div>
 
-       
         <section class="productos d-flex flex-column">
             <button class="btn btn-agregar align-self-end my-4" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">Agregar producto</button>
@@ -58,13 +54,13 @@
                         </tr>
                     </thead>
                     <tbody id="materiales-body">
-                        
+
                     </tbody>
                 </table>
             </div>
         </section>
 
-        
+
         <div>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">

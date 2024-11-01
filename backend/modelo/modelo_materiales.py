@@ -30,7 +30,7 @@ def agregar_material(material):
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
         "INSERT INTO deposito (material, cantidad, precio, precio_venta, estado, proveedor,ganancia) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id, ganancia)
+        (nombre_material, cantidad, precio, precio_venta, estado, proveedor_id,ganancia)
     )
     conexion.commit()
     ultimo_dato = cursor.lastrowid

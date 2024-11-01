@@ -9,6 +9,7 @@ from controlador.controlador_proveedores import mostrar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
 from controlador.controlador_empleados import verificar_contrasena_endpoint
 from controlador.controlador_impuestos import agregar_impuesto_endpoint
+from controlador.controlador_stock import mostrar_stock_endpoint
 
 
 aplicacion = Flask(__name__)
@@ -75,6 +76,12 @@ def mostrar_proveedores():
 @aplicacion.route("/api/agregar_impuesto", methods = ["POST"])
 def agregar_impuesto():
     return agregar_impuesto_endpoint()
+
+
+#--------------------------------mostrar stock--------------------------------
+@aplicacion.route("/api/mostrar_stock", methods = ["GET"])
+def mostrar_stock():
+    return mostrar_stock_endpoint()
 
 
 

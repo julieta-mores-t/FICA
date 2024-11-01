@@ -34,6 +34,14 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
         if (verificarResult.exito) {
             // Verificar el puesto del usuario y redirigir a la página correspondiente
+
+
+            // traer nombre y apellido en el navbar
+            // variable nombre y apellido (ej:body.nombre, body.apellido) de todas las que estan registradas
+
+
+
+
             if (usuarioEncontrado.puesto === "administrador") {
                 // Redirigir a la página de inicio.html si el usuario es administrador
                 window.location.href = "inicio.html";

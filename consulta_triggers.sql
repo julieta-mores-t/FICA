@@ -18,3 +18,7 @@ FROM
 WHERE 
     TRIGGER_SCHEMA = 'corralon'  -- Reemplaza 'tu_base_de_datos' con el nombre de tu base de datos
     AND TRIGGER_NAME = 'actualizar_precio_venta_despues_insertar_material_impuesto';  -- Reemplaza 'nombre_del_trigger' con el nombre del trigger que quieres ver
+
+
+SHOW TRIGGERS; #consultar los triggers
+DROP TRIGGER IF EXISTS insert_stock_after_deposito;

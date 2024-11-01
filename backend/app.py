@@ -9,20 +9,27 @@ from controlador.controlador_proveedores import mostrar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
 from controlador.controlador_empleados import verificar_contrasena_endpoint
 from controlador.controlador_impuestos import agregar_impuesto_endpoint
+from controlador.controlador_impuestos import mostrar_impuesto_endpoint
+from controlador.controlador_stock import mostrar_stock_endpoint
 
 
 aplicacion = Flask(__name__)
 
 CORS(aplicacion)
 bcrypt = Bcrypt(aplicacion)
-# ------------------------------EMPLEADOS-------------------------
-# ------------------------------agregar empleados-------------------------
+
+# --------------------------------------------------------------------
+# ----------------------------------EMPLEADOS-------------------------
+# --------------------------------------------------------------------
+
+
+# ------------------------------agregar empleados---------------------
 
 @aplicacion.route("/api/agregar_empleado", methods=["POST"])
 def agregar_empleado():
     return agregar_empleado_endpoint()
 
-# ------------------------------enviar empleados-------------------------
+# ------------------------------enviar empleados----------------------
 
 @aplicacion.route("/api/mostrar_usuarios",methods=["GET"])
 def mostrar_usuario():
@@ -38,19 +45,22 @@ def verificar_contrasena():
 
 
 
+# --------------------------------------------------------------------
+# ------------------------------MATERIALES----------------------------
+# --------------------------------------------------------------------
 
-# ------------------------------MATERIALES-------------------------
-#--------------------------------------agregar materiales--------------------------
+
+#---------------------------agregar materiales------------------------
 @aplicacion.route("/api/agregar_material", methods=["POST"])
 def agregar_material():
     return agregar_material_endpoint()
 
-#-----------------------------------enviar materiales-------------------------------
+#----------------------------enviar materiales------------------------
 @aplicacion.route("/api/mostrar_material", methods = ["GET"])
 def mostrar_material():
     return mostrar_material_endpoint()
 
-#-------------------------------------editar material-------------------------------
+#------------------------------editar material------------------------
 @aplicacion.route("/api/editar_materiales/<int:id>", methods = ["PUT"])
 def editar_material(id):
     return editar_material_endpoint(id)
@@ -63,18 +73,47 @@ def editar_material(id):
 
 
 
+# --------------------------------------------------------------------
+#---------------------------------proveedores-------------------------
+# --------------------------------------------------------------------
 
-#----------------------------------mostrar proveedores-------------------------------
+
+#-----------------------------mostrar proveedores---------------------
 @aplicacion.route("/api/mostrar_proveedores", methods = ["GET"])
 def mostrar_proveedores():
     return mostrar_proveedor_endpoint()
 
 
 
-#--------------------------------- agregar impuestos---------------------------------
+
+
+# --------------------------------------------------------------------
+#---------------------------------impuestos---------------------------
+# --------------------------------------------------------------------
+
+
+#------------------------------Mostrar impuestos----------------------
+@aplicacion.route("/api/mostrar_impuesto", methods = ["GET"])
+def mostrar_impuestos():
+    return mostrar_impuesto_endpoint()
+
+#------------------------------agregar impuestos---------------------------------
 @aplicacion.route("/api/agregar_impuesto", methods = ["POST"])
 def agregar_impuesto():
     return agregar_impuesto_endpoint()
+
+
+
+
+# --------------------------------------------------------------------
+#---------------------------------stock-------------------------------
+# --------------------------------------------------------------------
+
+
+#-----------------------------mostrar stock--------------------------------
+@aplicacion.route("/api/mostrar_stock", methods = ["GET"])
+def mostrar_stock():
+    return mostrar_stock_endpoint()
 
 
 

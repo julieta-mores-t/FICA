@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+	font-family: 'Roboto';
+}
+
+
+.logo-usuario {
+    width: 48px;
+    margin-right: 20px;
+}
+
+.logo {
+    width: 48px;
+    margin-left: 20px;
+}
+
+
+/* Estilos para el navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 2px solid #808080; /* Gris medio */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilos para el contenedor de usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info .icono-salir {
+    width: 25px;
+    height: 35px;
+}
+
+
+.header-title {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #fff;
+    gap: 50px;
+    /* Espacio entre el h2 y el campo de búsqueda */
+}
+
+/* Estilo del título */
+.header-title h2 {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 29px;
+    margin: 0;
+}
+
+/* Contenedor del campo de búsqueda */
+.search-container {
+    position: relative;
+    flex-grow: 1;
+    /* Hace que el campo de búsqueda ocupe el espacio sobrante */
+    max-width: 300px;
+    /* Controla el ancho máximo */
+}
+
+/* Estilo del input de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+/* Estilo del ícono de búsqueda */
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+    cursor: pointer;
+}
+
+
+/* Contenedor de detalles del usuario */
+.user-details {
+    display: flex;
+}
+
+/* Nombre de usuario */
+.user-name {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+/* Correo de usuario */
+.user-email {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    margin-right: 20px ;
+}
+
+.table thead th {
+    background-color: #000080;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}

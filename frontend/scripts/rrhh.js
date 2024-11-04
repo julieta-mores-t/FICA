@@ -1,15 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    const productosCard = document.getElementById('productos-card');
-    const stockCard = document.getElementById('stock-card');
+    const proveedoresCard = document.getElementById('proveedores-card');
+    const sociosCard = document.getElementById('socios-card');
+    const empleadosCard = document.getElementById('empleados-card');
 
-    productosCard.addEventListener('click', function() {
-        window.location.href = 'productos.html'; 
+    proveedoresCard.addEventListener('click', function() {
+        window.location.href = 'proveedores.html'; 
     });
 
     
-    stockCard.addEventListener('click', function() {
-        window.location.href = 'stock.html'; 
+    sociosCard.addEventListener('click', function() {
+        window.location.href = 'socios.html'; 
+    });
+
+    empleadosCard.addEventListener('click', function() {
+        window.location.href = 'empleados.html'; 
     });
 
 });

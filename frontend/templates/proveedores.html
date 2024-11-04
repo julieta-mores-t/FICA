@@ -32,7 +32,7 @@
         </nav>
 
         <div class="header-title">
-            <h2>PRODUCTOS</h2>
+            <h2>PROVEEDORES</h2>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Buscar...">
                 <span class="search-icon">
@@ -48,25 +48,18 @@
 
         <section class="productos d-flex flex-column">
             <button class="btn btn-agregar align-self-end my-4" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">Agregar producto</button>
+                data-bs-target="#staticBackdrop">Agregar proveedores</button>
             <div class="table-responsive">
                 <table class="table table-bordered text-center mt-4">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Proveedor</th>
-                            <th>Cantidad</th>
-                            <th>Fecha Ing.</th>
-                            <th>Ganancia</th>
-                            <th>Pre. Com.</th>
-                            <th>Pre. Venta</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th>id</th>
+                            <th>mail</th>
+                            <th>nombre</th>
+                            <th>telefono</th>
                         </tr>
                     </thead>
-                    <tbody id="materiales-body">
-
+                    <tbody id="proveedores-body">
                     </tbody>
                 </table>
             </div>
@@ -79,7 +72,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Agregar Producto</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Agregar Proveedor</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -128,7 +121,7 @@
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="../scripts/productos.js"></script>
+        <script src="../scripts/proveedores.js"></script>
     </div>
 
 </body>

@@ -7,6 +7,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const usuario = document.getElementById("usuario").value;
     const contrasena = document.getElementById("contrasena").value;
+    console.log(usuario);
 
     try {
         // Hacer una solicitud GET a la API para obtener los usuarios
@@ -15,6 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
         // Encontrar el usuario ingresado
         const usuarioEncontrado = usuarios.find(user => user.usuario === usuario);
+        console.log(usuarioEncontrado);
 
         if (!usuarioEncontrado) {
             alert("Usuario no encontrado");
@@ -38,6 +40,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
                 localStorage.setItem("nombre", usuarioEncontrado.nombre);
                 localStorage.setItem("apellido", usuarioEncontrado.apellido);
+                localStorage.setItem("mail", usuarioEncontrado.mail);
                 // Redirigir a la página de inicio.html si el usuario es administrador
                 window.location.href = "inicio.html";
             } else if (usuarioEncontrado.puesto === "empleado") {

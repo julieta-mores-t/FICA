@@ -73,11 +73,13 @@ function cargarProveedores() {
 // Obtener nombre y apellido de localStorage
 const nombre = localStorage.getItem("nombre");
 const apellido = localStorage.getItem("apellido");
+const emailUsuario = localStorage.getItem("mail");
 
 document.addEventListener("DOMContentLoaded", () => {
     if (nombre && apellido) {
         // Mostrar el nombre y apellido en los elementos correspondientes
         document.getElementById("nombreApellido").textContent = `${apellido} ${nombre}`;
+        document.getElementById("emailUsuario").textContent = `${emailUsuario}`;
     } else {
         console.error("Nombre y apellido no encontrados en localStorage");
     }

@@ -5,8 +5,6 @@
     padding: 0;
     font-family: 'Roboto';
 }
-
-
 .logo-usuario {
     width: 48px;
     margin-right: 20px;
@@ -25,6 +23,10 @@
     padding: 10px 20px;
     align-items: center;
     background-color: #fff;
+    border-bottom: 2px solid #808080;
+    /* Gris medio */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
 }
 
 
@@ -35,19 +37,14 @@
     gap: 10px;
 }
 
-/* Imagen de usuario */
-.user-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.user-info .icono-salir {
+    width: 25px;
+    height: 35px;
 }
 
 /* Contenedor de detalles del usuario */
 .user-details {
     display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-
 }
 
 /* Nombre de usuario */
@@ -84,11 +81,11 @@
     background-color: #c9302c;
 }
 
-
 .header-title {
     font-weight: bold;
     color: #2c3e50;
 }
+
 
 .welcome-text {
     font-weight: bold;
@@ -119,6 +116,7 @@
     background-color: #ffdc00;
 }
 
+
 .hover-content {
     position: absolute;
     top: 0;
@@ -134,6 +132,7 @@
     font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 6px;
 }
 
 .col-md-3:hover .hover-content {

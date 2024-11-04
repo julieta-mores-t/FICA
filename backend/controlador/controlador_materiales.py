@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from modelo.modelo_materiales import agregar_material
 from modelo.modelo_materiales import mostrar_material
+from modelo.modelo_materiales import mostrar_un_material
 from modelo.modelo_materiales import editar_material
 
 
@@ -12,6 +13,9 @@ def agregar_material_endpoint():
 
 def mostrar_material_endpoint():
     return jsonify(mostrar_material()),200
+
+def mostrar_un_material_endpoint(id):
+    return jsonify(mostrar_un_material(id)),200
 
 
 def editar_material_endpoint(id):

@@ -13,7 +13,6 @@ function mostrarProveedores() {
             const tbody = document.getElementById('proveedores-body');
             tbody.innerHTML = proveedoresList.map(proveedores => `
                 <tr>
-                    <td>${proveedores.id}</td>
                     <td>${proveedores.mail}</td>
                     <td>${proveedores.nombre}</td>
                     <td>${proveedores.telefono}</td>

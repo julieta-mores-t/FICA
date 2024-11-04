@@ -5,7 +5,6 @@ from datetime import datetime
 
 def agregar_material(material):
     ganancia = material.get("ganancia")
-    
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
     precio = material.get("precio")
@@ -50,9 +49,11 @@ def mostrar_material():
     cursor = conexion.cursor()
     
     cursor.execute("""
-        SELECT codigo, material, cantidad, precio, precio_venta, nombre AS proveedor, estado, fecha_ingreso, ganancia 
-        FROM deposito d 
-        JOIN proveedores p ON d.proveedor = p.id;
+        SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
+       p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia
+FROM deposito d
+JOIN proveedores p ON d.proveedor = p.id
+LIMIT 0, 200;
     """)
     
     materiales = cursor.fetchall()
@@ -78,6 +79,32 @@ def mostrar_material():
 
     return lista_materiales
 
+
+
+def mostrar_un_material(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    
+    cursor.execute("""
+        SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
+        p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia
+        FROM deposito d
+        JOIN proveedores p ON d.proveedor = p.id
+        WHERE d.id = %s;  -- Filtrar por el ID del material
+    """, (id,))  
+    material = cursor.fetchone()
+  
+    columnas = [desc[0] for desc in cursor.description]
+
+    cursor.close()
+    conexion.close()
+
+    if material:
+        
+        material_dict = {columnas[i]: material[i] for i in range(len(columnas))}
+        return material_dict
+    else:
+        return None  
 
 
 

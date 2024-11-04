@@ -19,6 +19,21 @@ def mostrar_proveedor():
     return lista_proveedores
 
 
+def agregar_proveedor(proveedor):
+    nombre = proveedor.get("nombre")
+    mail = proveedor.get("mail")
+    telefono = proveedor.get("telefono")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    cursor.execute("""INSERT INTO proveedores (nombre,mail,telefono)
+                      VALUES (%s,%s,%s);""",(nombre,mail,telefono))
+    
+    conexion.commit()
+    conexion.close()
+    cursor.close()
+
 
     
 

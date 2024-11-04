@@ -34,3 +34,24 @@ def mostrar_impuesto():
         list_impuestos.append(dic_impuestos)
     return list_impuestos
 
+
+def editar_impuesto(id,impuesto):
+    nombre = impuesto.get("nombre")
+    porcentaje = impuesto.get("porcentaje")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    cursor.execute("""UPDATE impuestos
+                      SET  porcentaje = %s, nombre = %s
+                      WHERE id = %s;""",(porcentaje,nombre,id))
+    
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+
+
+
+
+
+

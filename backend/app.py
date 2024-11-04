@@ -6,16 +6,20 @@ from controlador.controlador_empleados import mostrar_empleado_endpoint
 from controlador.controlador_materiales import agregar_material_endpoint
 from controlador.controlador_materiales import mostrar_material_endpoint
 from controlador.controlador_proveedores import mostrar_proveedor_endpoint
+from controlador.controlador_proveedores import agregar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
+from controlador.controlador_materiales import mostrar_un_material_endpoint
 from controlador.controlador_empleados import verificar_contrasena_endpoint
 from controlador.controlador_impuestos import agregar_impuesto_endpoint
 from controlador.controlador_impuestos import mostrar_impuesto_endpoint
+from controlador.controlador_impuestos import editar_impuesto_endpoint
 from controlador.controlador_stock import mostrar_stock_endpoint
+
 
 
 aplicacion = Flask(__name__)
 
-CORS(aplicacion)
+CORS(aplicacion, resources={r"/api/*": {"origins": "http://127.0.0.1:5500"}})
 bcrypt = Bcrypt(aplicacion)
 
 # --------------------------------------------------------------------
@@ -60,8 +64,13 @@ def agregar_material():
 def mostrar_material():
     return mostrar_material_endpoint()
 
+#-----------------------------mostrar un material---------------------
+@aplicacion.route("/api/mostrar_un_material/<int:id>",methods = ["GET"])
+def mostrar_un_material(id):
+    return mostrar_un_material_endpoint(id)
+
 #------------------------------editar material------------------------
-@aplicacion.route("/api/editar_materiales/<int:id>", methods = ["PUT"])
+@aplicacion.route("/api/editar_materiales/<int:id>", methods = ["PUT", "OPTIONS"])
 def editar_material(id):
     return editar_material_endpoint(id)
 
@@ -83,6 +92,11 @@ def editar_material(id):
 def mostrar_proveedores():
     return mostrar_proveedor_endpoint()
 
+#----------------------------agregar proveedores----------------------
+@aplicacion.route("/api/agregar_porveedor", methods = ["POST"])
+def agregar_proveedores():
+    return agregar_proveedor_endpoint()
+
 
 
 
@@ -97,11 +111,15 @@ def mostrar_proveedores():
 def mostrar_impuestos():
     return mostrar_impuesto_endpoint()
 
-#------------------------------agregar impuestos---------------------------------
+#------------------------------agregar impuestos----------------------
 @aplicacion.route("/api/agregar_impuesto", methods = ["POST"])
 def agregar_impuesto():
     return agregar_impuesto_endpoint()
 
+#-----------------------------editar impuestos-----------------------
+@aplicacion.route("/api/editar_impusto/<int:id>",methods = ["PUT"])
+def editar_impuesto(id):
+    return editar_impuesto_endpoint(id)
 
 
 
@@ -110,7 +128,7 @@ def agregar_impuesto():
 # --------------------------------------------------------------------
 
 
-#-----------------------------mostrar stock--------------------------------
+#-----------------------------mostrar stock---------------------------
 @aplicacion.route("/api/mostrar_stock", methods = ["GET"])
 def mostrar_stock():
     return mostrar_stock_endpoint()

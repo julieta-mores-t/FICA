@@ -19,7 +19,7 @@ from controlador.controlador_stock import mostrar_stock_endpoint
 
 aplicacion = Flask(__name__)
 
-CORS(aplicacion, resources={r"/api/*": {"origins": "http://127.0.0.1:5500"}})
+CORS(aplicacion)
 bcrypt = Bcrypt(aplicacion)
 
 # --------------------------------------------------------------------

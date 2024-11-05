@@ -31,6 +31,8 @@ CREATE TABLE `compradores` (
   `direccion` varchar(255) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
+  `socio` enum('sí','no') NOT NULL,
+  `situacion_laboral` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +43,7 @@ CREATE TABLE `compradores` (
 
 LOCK TABLES `compradores` WRITE;
 /*!40000 ALTER TABLE `compradores` DISABLE KEYS */;
-INSERT INTO `compradores` VALUES (1,'Juan','Pérez','12345678','1985-07-15','Calle Falsa 123','juan.perez@example.com','+3512565854'),(3,'Damian','Marquez','12345678','1985-07-15','rancagua 685','perez@example.com','+3512855854');
+INSERT INTO `compradores` VALUES (1,'Juan','Pérez','12345678','1985-07-15','Calle Falsa 123','juan.perez@example.com','+3512565854','sí',NULL),(3,'Damian','Marquez','12345678','1985-07-15','rancagua 685','perez@example.com','+3512855854','sí',NULL);
 /*!40000 ALTER TABLE `compradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +60,7 @@ CREATE TABLE `deposito` (
   `cantidad` int NOT NULL,
   `precio` decimal(10,0) DEFAULT NULL,
   `precio_venta` int DEFAULT NULL,
-  `estado` enum('alta','baja') DEFAULT NULL,
+  `estado` varchar(255) DEFAULT 'alta',
   `proveedor` int DEFAULT NULL,
   `codigo` varchar(255) DEFAULT NULL,
   `fecha_ingreso` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -67,7 +69,7 @@ CREATE TABLE `deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_proveedor` (`proveedor`),
   CONSTRAINT `fk_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +78,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (55,'cemento premiun',900,100,228,'alta',6,'aaa-001','2024-10-30 18:34:44',100,28),(56,'piedra granza',2100,1200,3780,'alta',1,'aaa-002','2024-10-30 18:47:44',2400,15);
+INSERT INTO `deposito` VALUES (55,'cemento premiun',900,100,228,'alta',6,'aaa-001','2024-10-30 18:34:44',100,29),(56,'piedra granza',2100,1200,3780,'alta',1,'aaa-002','2024-10-30 18:47:44',2400,15),(57,'hierro 8',1000,2000,4000,'baja',5,'aaa-003','2024-11-03 12:59:13',2000,NULL),(58,'puerta',200,100,200,'baja',1,'aaa-004','2024-11-03 21:08:08',100,NULL),(59,'tornillos',180,200,300,'alta',1,'aaa-005','2024-11-03 21:51:29',100,NULL),(60,'piedra bola',2000,1200,3600,'alta',6,'aaa-006','2024-11-05 13:49:24',2400,NULL);
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -191,7 +193,7 @@ CREATE TABLE `empleados` (
   UNIQUE KEY `dni` (`dni`),
   UNIQUE KEY `mail` (`mail`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +218,7 @@ CREATE TABLE `impuestos` (
   `nombre` varchar(50) DEFAULT NULL,
   `porcentaje` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +227,7 @@ CREATE TABLE `impuestos` (
 
 LOCK TABLES `impuestos` WRITE;
 /*!40000 ALTER TABLE `impuestos` DISABLE KEYS */;
-INSERT INTO `impuestos` VALUES (1,'iva21',20),(2,'iva10',10),(3,'imppais',5),(6,'tarjeta',3);
+INSERT INTO `impuestos` VALUES (1,'iva21',21),(2,'iva10',10),(3,'imppais',5),(6,'tarjeta',3),(7,'nafta',15);
 /*!40000 ALTER TABLE `impuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -418,8 +420,19 @@ CREATE TABLE `proveedores` (
   `nombre` varchar(50) DEFAULT NULL,
   `mail` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `descripcion` varchar(500) DEFAULT NULL,
+  `cuit` varchar(20) DEFAULT NULL,
+  `ciudad` varchar(500) DEFAULT NULL,
+  `codigo_postal` int DEFAULT NULL,
+  `barrio` varchar(50) DEFAULT NULL,
+  `fecha_ingreso` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `razon_social` varchar(100) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `numero` int DEFAULT NULL,
+  `estado` varchar(255) DEFAULT 'alta',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cuit` (`cuit`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,7 +441,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'daniel','dmontolla@gmail.com.ar','3512365896'),(5,'jose','juares@example.com','123456789'),(6,'Dionicio','perez@example.com','987654321');
+INSERT INTO `proveedores` VALUES (1,'daniel','dmontolla@gmail.com.ar','3512365896',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(5,'jose','juares@example.com','123456789',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(6,'Dionicio','perez@example.com','987654321',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(7,'Natalia','naty@gmail.com','351254578',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(8,'Damian','dm@gmail.com','36925814',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(9,'ferrocons','ferroavenida@gmail.com','3512565896','agrego descripcion',NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(10,'easy','easy@gmail.com','3512565896','otra descripcion','30-25632361-2','cordoba',5000,'lomas','2024-11-05 18:26:13','ferro sa.','calle',150,'alta');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,7 +459,7 @@ CREATE TABLE `stock` (
   PRIMARY KEY (`id`),
   KEY `stock_ibfk_1` (`material_id`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `deposito` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +468,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (19,55,400),(20,56,1900);
+INSERT INTO `stock` VALUES (19,55,200),(20,56,1900),(21,57,1000),(22,58,200),(23,59,180),(24,60,2000);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -473,6 +486,9 @@ CREATE TABLE `ventas` (
   `id_vendedor` int NOT NULL,
   `id_comprador` int DEFAULT NULL,
   `fecha_venta` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `precio_venta` decimal(10,2) DEFAULT NULL,
+  `descuento` decimal(5,2) DEFAULT NULL,
+  `total` decimal(10,2) GENERATED ALWAYS AS ((`precio_venta` * (1 - (`descuento` / 100)))) VIRTUAL,
   PRIMARY KEY (`id`),
   KEY `id_material` (`id_material`),
   KEY `id_vendedor` (`id_vendedor`),
@@ -480,7 +496,7 @@ CREATE TABLE `ventas` (
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_material`) REFERENCES `deposito` (`id`) ON DELETE CASCADE,
   CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`id_vendedor`) REFERENCES `empleados` (`id`),
   CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`id_comprador`) REFERENCES `compradores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -489,7 +505,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (4,55,500,15,1,'2024-10-30 21:35:35'),(5,56,200,15,1,'2024-10-30 21:48:31');
+INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`) VALUES (4,55,500,15,1,'2024-10-30 21:35:35',NULL,NULL),(5,56,200,15,1,'2024-10-30 21:48:31',NULL,NULL),(6,55,200,15,1,'2024-11-04 21:54:52',1200.00,20.00);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -585,4 +601,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-31 15:02:23
+-- Dump completed on 2024-11-05 17:07:42

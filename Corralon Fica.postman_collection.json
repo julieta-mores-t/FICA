@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "f0f70d31-7657-4895-a046-4d9ae0b9ba32",
+		"name": "Corralon Fica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524"
+	},
+	"item": [
+		{
+			"name": "mostrar empleados",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"IVA\",\r\n    \"porcentaje\": 21\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_usuarios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar materiales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_material",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_material"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar impuestos ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_impuesto",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar proveedores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_proveedores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_stock",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar un solo material",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_material/55",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_un_material",
+						"55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar empleados",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Damian\",\r\n  \"apellido\": \"Marquez\",\r\n  \"dni\": \"36925814\",\r\n  \"fecha_nacimiento\": \"15/08/1983\",\r\n  \"direccion\": \"paisa 58\",\r\n  \"mail\": \"dmarquez@example.com\",\r\n  \"telefono\": \"3512120589\",\r\n  \"usuario\": \"dmarquez\",\r\n  \"clave\": \"1234\",\r\n  \"puesto\": \"Administrador\",\r\n  \"fecha_ingreso\": \"01/01/2022\",\r\n  \"estado\": \"alta\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_empleado",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_empleado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar materiales",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 100,\r\n  \"precio\": 50,\r\n  \"ganancia\": 25,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_material",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_material"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar impuestos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"tarjeta\",\r\n  \"porcentaje\":3\r\n  \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_impuesto",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar proveedor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Damian\",\r\n  \"mail\": \"dm@gmail.com\",\r\n  \"telefono\": \"36925814\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_porveedor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_porveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar materiales",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 50000,\r\n  \"precio\": 500,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": 3500\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_materiales/46",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_materiales",
+						"46"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar  impuestos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nombre\": \"iva21\",\r\n        \"porcentaje\": 21\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_impusto/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_impusto",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

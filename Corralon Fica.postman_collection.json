@@ -43,9 +43,21 @@
 		},
 		{
 			"name": "mostrar materiales",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://127.0.0.1:5000/api/mostrar_material",
 					"protocol": "http",
@@ -220,7 +232,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 100,\r\n  \"precio\": 50,\r\n  \"ganancia\": 25,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\"\r\n}\r\n",
+					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 100,\r\n  \"precio\": 50,\r\n  \"ganancia\": 25,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"detalle\": \"detalle a confirmar\",\r\n  \"unidad_medida\": \"metro\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -252,7 +264,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"tarjeta\",\r\n  \"porcentaje\":3\r\n  \r\n}\r\n",
+					"raw": "{\r\n  \"nombre\": \"nafta\",\r\n  \"porcentaje\":15\r\n  \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -284,7 +296,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Damian\",\r\n  \"mail\": \"dm@gmail.com\",\r\n  \"telefono\": \"36925814\"\r\n  \r\n}",
+					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"3512565896\",\r\n  \"descripcion\": \"otra descripcion\",\r\n  \"cuit\": \"30-25632361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"lomas\",\r\n  \"razon_social\": \"ferro sa.\",\r\n  \"direccion\": \"calle\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -316,7 +328,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 50000,\r\n  \"precio\": 500,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": 3500\r\n}\r\n",
+					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 50000,\r\n  \"precio\": 500,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": 3500,\r\n  \"detalle\": \"ventas por metro\",\r\n  \"unidad_medida\": \"M3\"\r\n  \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -324,7 +336,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_materiales/46",
+					"raw": "http://127.0.0.1:5000/api/editar_materiales/55",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -336,7 +348,7 @@
 					"path": [
 						"api",
 						"editar_materiales",
-						"46"
+						"55"
 					]
 				}
 			},

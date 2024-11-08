@@ -23,12 +23,20 @@ def agregar_proveedor(proveedor):
     nombre = proveedor.get("nombre")
     mail = proveedor.get("mail")
     telefono = proveedor.get("telefono")
+    descripcion = proveedor.get("descripcion")
+    cuit = proveedor.get("cuit")
+    ciudad = proveedor.get("ciudad")
+    codigo_postal = proveedor.get("codigo_postal")
+    barrio = proveedor.get("barrio")
+    razon_social = proveedor.get("razon_social")
+    direccion = proveedor.get("direccion")
+    numero = proveedor.get("numero")
 
     conexion = obtener_base()
     cursor = conexion.cursor()
 
-    cursor.execute("""INSERT INTO proveedores (nombre,mail,telefono)
-                      VALUES (%s,%s,%s);""",(nombre,mail,telefono))
+    cursor.execute("""INSERT INTO proveedores (nombre,mail,telefono,descripcion,cuit,ciudad,codigo_postal,barrio,razon_social,direccion,numero)
+                      VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(nombre,mail,telefono,descripcion,cuit,ciudad,codigo_postal,barrio,razon_social,direccion,numero))
     
     conexion.commit()
     conexion.close()

@@ -4,7 +4,7 @@ def obtener_base():
     base = {
         "host": "localhost",
         "user": "root",
-        "password": "1230",
+        "password": "naty2611",
         "database": "corralon"
     }
     return mysql.connector.connect(**base)

@@ -1,4 +1,12 @@
-document.getElementById("btn-salir").addEventListener("click", function() {
-    // Opcional: agrega lógica de cierre de sesión aquí, como limpiar tokens o cookies.
-    window.location.href = "../index.html"; // Redirige a index.html
-});
+
+document.getElementById("iconoSalir").addEventListener("click", cerrarSesion);
+
+function cerrarSesion() {
+    window.location.href = "../index.html";
+
+    // Deshabilitar las flechas del navegador para volver
+    window.history.pushState(null, null, "../index.html");
+    window.addEventListener("popstate", function (event) {
+        window.history.pushState(null, null, "../index.html");
+    });
+}

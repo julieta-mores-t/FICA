@@ -7,6 +7,7 @@ from controlador.controlador_materiales import agregar_material_endpoint
 from controlador.controlador_materiales import mostrar_material_endpoint
 from controlador.controlador_proveedores import mostrar_proveedor_endpoint
 from controlador.controlador_proveedores import agregar_proveedor_endpoint
+from controlador.controlador_proveedores import editar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
 from controlador.controlador_materiales import mostrar_un_material_endpoint
 from controlador.controlador_empleados import verificar_contrasena_endpoint
@@ -96,6 +97,12 @@ def mostrar_proveedores():
 @aplicacion.route("/api/agregar_porveedor", methods = ["POST"])
 def agregar_proveedores():
     return agregar_proveedor_endpoint()
+
+#---------------------------mostrar proveedores-----------------------
+@aplicacion.route("/api/editar_proveedor/<int:id>",methods = ["PUT"])
+def editar_proveedores(id):
+    return editar_proveedor_endpoint(id)
+
 
 
 

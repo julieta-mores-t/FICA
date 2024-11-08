@@ -386,6 +386,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "editar proveedores",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Proveedores SA\",\r\n    \"mail\": \"contacto@proveedoressa.com\",\r\n    \"telefono\": \"+54 11 1234-5678\",\r\n    \"descripcion\": \"Empresa dedicada a la distribución de materiales de construcción.\",\r\n    \"cuit\": \"30-12345678-9\",\r\n    \"ciudad\": \"Buenos Aires\",\r\n    \"codigo_postal\": \"5000\",\r\n    \"barrio\": \"Palermo\",\r\n    \"razon_social\": \"Proveedores S.A.\",\r\n    \"direccion\": \"Av. Corrientes\",\r\n    \"numero\": \"1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_proveedor/9",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_proveedor",
+						"9"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -287,6 +287,14 @@ CREATE TABLE `empleados` (
   `puesto` enum('administrador','empleado') NOT NULL,
   `fecha_ingreso` date DEFAULT NULL,
   `estado` enum('alta','baja') DEFAULT NULL,
+  `cuil` varchar(20) DEFAULT NULL,
+  `estado_civil` varchar(20) DEFAULT NULL,
+  `nacionalidad` varchar(20) DEFAULT NULL,
+  `ciudad` varchar(20) DEFAULT NULL,
+  `codigo_postal` varchar(20) DEFAULT NULL,
+  `barrio` varchar(20) DEFAULT NULL,
+  `numero` int DEFAULT NULL,
+  `cuenta_bancaria` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
   UNIQUE KEY `mail` (`mail`),
@@ -300,7 +308,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (8,'Gonzalo','Martini','31568987','1987-07-19','valeriano 120','gonza.mart@example.com','3512895654','prueba','$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq','administrador','2021-11-05','alta'),(11,'Gonzalo','Martini','1','1987-07-19','valeriano 120','gonmart@example.com','3512895654','prueba2','$2b$12$tjM8t1HEhIuwmEu6dVGAZObgKVXqkj5kCqgHBZnuuaeakKNRPb78K','administrador','2021-11-05','alta'),(14,'Mariano','Martini','30332145','2000-07-22','Valeriano 120','gonzalez.mart@example.com','351254587','prueba3','$2b$12$e9hdAsLshNQir.q6s450qekFXgeRmgjblu8sk9olhWdugKuqFbkmO','empleado','2020-10-25','alta'),(15,'Damian','Marquez','36925814','1983-08-15','paisa 58','dmarquez@example.com','3512120589','dmarquez','$2b$12$tYpBy9MwjKNM3uVGUo4kguATvMu0EOOc/6LFUalDMyv039J0yoWIi','administrador','2022-01-01','alta');
+INSERT INTO `empleados` VALUES (8,'Gonzalo','Martini','31568987','1987-07-19','valeriano 120','gonza.mart@example.com','3512895654','prueba','$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'Gonzalo','Martini','1','1987-07-19','valeriano 120','gonmart@example.com','3512895654','prueba2','$2b$12$tjM8t1HEhIuwmEu6dVGAZObgKVXqkj5kCqgHBZnuuaeakKNRPb78K','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'Mariano','Martini','30332145','2000-07-22','Valeriano 120','gonzalez.mart@example.com','351254587','prueba3','$2b$12$e9hdAsLshNQir.q6s450qekFXgeRmgjblu8sk9olhWdugKuqFbkmO','empleado','2020-10-25','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,'Damian','Marquez','36925814','1983-08-15','paisa 58','dmarquez@example.com','3512120589','dmarquez','$2b$12$tYpBy9MwjKNM3uVGUo4kguATvMu0EOOc/6LFUalDMyv039J0yoWIi','administrador','2022-01-01','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,7 +547,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'daniel','dmontolla@gmail.com.ar','3512365896',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(5,'jose','juares@example.com','123456789',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(6,'Dionicio','perez@example.com','987654321',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(7,'Natalia','naty@gmail.com','351254578',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(8,'Damian','dm@gmail.com','36925814',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(9,'ferrocons','ferroavenida@gmail.com','3512565896','agrego descripcion',NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(10,'easy','easy@gmail.com','3512565896','otra descripcion','30-25632361-2','cordoba',5000,'lomas','2024-11-05 18:26:13','ferro sa.','calle',150,'alta');
+INSERT INTO `proveedores` VALUES (1,'daniel','dmontolla@gmail.com.ar','3512365896',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(5,'jose','juares@example.com','123456789',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(6,'Dionicio','perez@example.com','987654321',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(7,'Natalia','naty@gmail.com','351254578',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(8,'Damian','dm@gmail.com','36925814',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(9,'Proveedores SA','contacto@proveedoressa.com','+54 11 1234-5678','Empresa dedicada a la distribución de materiales de construcción.','30-12345678-9','Buenos Aires',5000,'Palermo','2024-11-05 17:57:42','Proveedores S.A.','Av. Corrientes',1234,'alta'),(10,'easy','easy@gmail.com','3512565896','otra descripcion','30-25632361-2','cordoba',5000,'lomas','2024-11-05 18:26:13','ferro sa.','calle',150,'alta');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -732,4 +740,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-07 21:31:17
+-- Dump completed on 2024-11-08 19:04:08

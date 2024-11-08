@@ -43,5 +43,37 @@ def agregar_proveedor(proveedor):
     cursor.close()
 
 
+
+def editar_proveedor(proveedor,id):
+    nombre = proveedor.get("nombre")
+    mail = proveedor.get("mail")
+    telefono =proveedor.get("telefono")
+    descripcion = proveedor.get("descripcion")
+    cuit = proveedor.get("cuit")
+    ciudad = proveedor.get("ciudad")
+    codigo_postal = proveedor.get("codigo_postal")
+    barrio = proveedor.get("barrio")
+    razon_social = proveedor.get("razon_social")
+    direccion = proveedor.get("direccion")
+    numero = proveedor.get("numero")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        UPDATE proveedores
+        SET nombre = %s, mail = %s, telefono = %s, descripcion = %s, cuit = %s, ciudad = %s,codigo_postal = %s, barrio = %s, razon_social = %s, direccion = %s,numero = %s
+        WHERE id = %s
+    """, (nombre, mail,telefono,descripcion,cuit,ciudad,codigo_postal,barrio,razon_social,direccion,numero, id))
+
+    conexion.commit()
+    conexion.close()
+    cursor.close()
+
+    return {"mensaje": "Proveedor actualizado con éxito"}, 200
+
+
+
+
     
 

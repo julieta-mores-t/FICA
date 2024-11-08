@@ -1,4 +1,18 @@
-// Suponiendo que este es tu JSON de datos de empleado
+// Obtener nombre y apellido de localStorage
+const nombre = localStorage.getItem("nombre");
+const apellido = localStorage.getItem("apellido");
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (nombre && apellido) {
+        document.getElementById("bienvenidaNombre").textContent = `${nombre} ${apellido}`;
+        document.getElementById("nombreApellido").textContent = `${apellido} ${nombre}`;
+    } else {
+        console.error("Nombre y apellido no encontrados en localStorage");
+    }
+});
+
+
+
 const empleado = {
     "apellido": "Martini",
     "clave": "$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq",
@@ -32,17 +46,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-// Obtener nombre y apellido de localStorage
-const nombre = localStorage.getItem("nombre");
-const apellido = localStorage.getItem("apellido");
-
-document.addEventListener("DOMContentLoaded", () => {
-    if (nombre && apellido) {
-        // Mostrar el nombre y apellido en los elementos correspondientes
-        document.getElementById("bienvenidaNombre").textContent = `${nombre} ${apellido}`;
-        document.getElementById("nombreApellido").textContent = `${apellido} ${nombre}`;
-    } else {
-        console.error("Nombre y apellido no encontrados en localStorage");
-    }
-});

@@ -1,6 +1,3 @@
-
-
-
 .table thead th {
     background-color: green;
     color: white;
@@ -44,7 +41,6 @@ td .badge-alta {
     padding: 20px;
     background-color: #fff;
     gap: 50px;
-    /* Espacio entre el h2 y el campo de búsqueda */
 }
 
 /* Estilo del título */
@@ -59,9 +55,7 @@ td .badge-alta {
 .search-container {
     position: relative;
     flex-grow: 1;
-    /* Hace que el campo de búsqueda ocupe el espacio sobrante */
     max-width: 300px;
-    /* Controla el ancho máximo */
 }
 
 /* Estilo del input de búsqueda */
@@ -92,7 +86,7 @@ td .badge-alta {
 }
 
 /* Estilos del botón para abrir el modal */
-#openModalBtn {
+#openModal1Btn {
     background-color: #005cbf;
     color: white;
     padding: 10px 20px;
@@ -100,12 +94,12 @@ td .badge-alta {
     cursor: pointer;
     width: 15%;
     margin-right: 0 auto;
-    display: block; 
+    display: block;
 }
 
 /* Estilos generales del modal */
-.modal {
-    display: none; /* Oculto por defecto */
+.modal1 {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -115,7 +109,7 @@ td .badge-alta {
     z-index: 1000;
 }
 
-.modal-content {
+.modal-content1 {
     background-color: white;
     margin: 5% auto;
     padding: 20px;
@@ -131,21 +125,21 @@ td .badge-alta {
     cursor: pointer;
 }
 
-.modal-title {
+.modal-title1 {
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
-    color:  #4A6A1C;
+    color: #4A6A1C;
     margin-bottom: 5px;
     text-align: center;
 }
 
-.modal-title::after {
+.modal-title1::after {
     content: "";
     display: block;
     width: 80%;
     height: 2px;
-    background-color: #D9534F; /* Rojo */
+    background-color: #D9534F;
     margin: 5px auto 15px;
 }
 
@@ -169,6 +163,7 @@ td .badge-alta {
 .form-row .form-group {
     flex: 1;
 }
+
 .form-group label {
     font-weight: bold;
     margin-bottom: 5px;
@@ -183,7 +178,8 @@ td .badge-alta {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-.form-group input, 
+
+.form-group input,
 .form-group select {
     padding: 8px;
     font-size: 1em;
@@ -199,9 +195,9 @@ textarea {
 .btn-guardar {
     width: 30%;
     margin: 0 auto;
-    display: block; 
+    display: block;
     padding: 10px;
-    background-color:  #1A1A50;
+    background-color: #1A1A50;
     color: white;
     border: none;
     border-radius: 10px;
@@ -215,3 +211,66 @@ textarea {
     background-color: #004085;
 }
 
+/* Estilos básicos del modal */
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content2 {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close2 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* BOTON DETALLE */
+.modal3 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content3 {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+.close3 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.detalle-seccion {
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #4CAF50;
+}

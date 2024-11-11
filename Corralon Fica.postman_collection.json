@@ -77,41 +77,6 @@
 			"response": []
 		},
 		{
-			"name": "mostrar impuestos ",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/api/mostrar_impuesto",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"mostrar_impuesto"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "mostrar proveedores",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -141,6 +106,41 @@
 					"path": [
 						"api",
 						"mostrar_proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar impuestos ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_impuesto",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_impuesto"
 					]
 				}
 			},
@@ -258,6 +258,38 @@
 			"response": []
 		},
 		{
+			"name": "agregar proveedor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"3512565896\",\r\n  \"descripcion\": \"otra descripcion\",\r\n  \"cuit\": \"30-25632361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"lomas\",\r\n  \"razon_social\": \"ferro sa.\",\r\n  \"direccion\": \"calle\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_porveedor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_porveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "agregar impuestos",
 			"request": {
 				"method": "POST",
@@ -290,13 +322,13 @@
 			"response": []
 		},
 		{
-			"name": "agregar proveedor",
+			"name": "editar empleado",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"3512565896\",\r\n  \"descripcion\": \"otra descripcion\",\r\n  \"cuit\": \"30-25632361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"lomas\",\r\n  \"razon_social\": \"ferro sa.\",\r\n  \"direccion\": \"calle\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
+					"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Pérez\",\r\n  \"dni\": \"12345678\",\r\n  \"cuil\": \"20-12345678-3\",\r\n  \"estado_civil\": \"Soltero\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"ciudad\": \"Buenos Aires\",\r\n  \"codigo_postal\": \"1000\",\r\n  \"barrio\": \"Monzon\",\r\n  \"fechaNacimiento\": \"1982-12-16\",\r\n  \"direccion\": \"Av. Siempre Viva\",\r\n  \"numero\": \"742\",\r\n  \"mail\": \"juan.perez@example.com\",\r\n  \"telefono\": \"+54 11 1234-5678\",\r\n  \"cuenta_bancaria\": \"0123456789012345678901\",\r\n  \"usuario\": \"juanperez\",\r\n  \"clave\": \"1234\",\r\n  \"puesto\": \"empleado\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -304,7 +336,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/agregar_porveedor",
+					"raw": "http://127.0.0.1:5000/api/editar_empleado/17",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -315,7 +347,8 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"agregar_porveedor"
+						"editar_empleado",
+						"17"
 					]
 				}
 			},
@@ -355,39 +388,6 @@
 			"response": []
 		},
 		{
-			"name": "editar  impuestos",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"iva21\",\r\n        \"porcentaje\": 21\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_impusto/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"editar_impusto",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "editar proveedores",
 			"request": {
 				"method": "PUT",
@@ -415,6 +415,39 @@
 						"api",
 						"editar_proveedor",
 						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar  impuestos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nombre\": \"iva21\",\r\n        \"porcentaje\": 21\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_impusto/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_impusto",
+						"1"
 					]
 				}
 			},

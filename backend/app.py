@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from controlador.controlador_empleados import agregar_empleado_endpoint
 from controlador.controlador_empleados import mostrar_empleado_endpoint
+from controlador.controlador_empleados import editar_empleado_endpoint
 from controlador.controlador_materiales import agregar_material_endpoint
 from controlador.controlador_materiales import mostrar_material_endpoint
 from controlador.controlador_proveedores import mostrar_proveedor_endpoint
@@ -47,7 +48,10 @@ def mostrar_usuario():
 def verificar_contrasena():
     return verificar_contrasena_endpoint()
 
-
+#------------------------------editar empleados-----------------------
+@aplicacion.route("/api/editar_empleado/<int:id>", methods = ["PUT"])
+def editar_empleado(id):
+    return editar_empleado_endpoint(id)
 
 
 # --------------------------------------------------------------------
@@ -98,7 +102,7 @@ def mostrar_proveedores():
 def agregar_proveedores():
     return agregar_proveedor_endpoint()
 
-#---------------------------mostrar proveedores-----------------------
+#---------------------------editar proveedores-----------------------
 @aplicacion.route("/api/editar_proveedor/<int:id>",methods = ["PUT"])
 def editar_proveedores(id):
     return editar_proveedor_endpoint(id)

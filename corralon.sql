@@ -27,7 +27,6 @@ CREATE TABLE `compradores` (
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
   `mail` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -39,7 +38,7 @@ CREATE TABLE `compradores` (
 
 LOCK TABLES `compradores` WRITE;
 /*!40000 ALTER TABLE `compradores` DISABLE KEYS */;
-INSERT INTO `compradores` VALUES (1,'Juan','Pérez','1985-07-15','+3512565854',NULL),(3,'Damian','Marquez','1985-07-15','+3512855854',NULL);
+INSERT INTO `compradores` VALUES (1,'Juan','Pérez','1985-07-15',NULL),(3,'Damian','Marquez','1985-07-15',NULL);
 /*!40000 ALTER TABLE `compradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,12 +293,12 @@ CREATE TABLE `empleados` (
   `codigo_postal` varchar(20) DEFAULT NULL,
   `barrio` varchar(20) DEFAULT NULL,
   `numero` int DEFAULT NULL,
-  `cuenta_bancaria` varchar(20) DEFAULT NULL,
+  `cuenta_bancaria` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
   UNIQUE KEY `mail` (`mail`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +307,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (8,'Gonzalo','Martini','31568987','1987-07-19','valeriano 120','gonza.mart@example.com','3512895654','prueba','$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'Gonzalo','Martini','1','1987-07-19','valeriano 120','gonmart@example.com','3512895654','prueba2','$2b$12$tjM8t1HEhIuwmEu6dVGAZObgKVXqkj5kCqgHBZnuuaeakKNRPb78K','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'Mariano','Martini','30332145','2000-07-22','Valeriano 120','gonzalez.mart@example.com','351254587','prueba3','$2b$12$e9hdAsLshNQir.q6s450qekFXgeRmgjblu8sk9olhWdugKuqFbkmO','empleado','2020-10-25','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,'Damian','Marquez','36925814','1983-08-15','paisa 58','dmarquez@example.com','3512120589','dmarquez','$2b$12$tYpBy9MwjKNM3uVGUo4kguATvMu0EOOc/6LFUalDMyv039J0yoWIi','administrador','2022-01-01','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `empleados` VALUES (8,'Gonzalo','Martini','31568987','1987-07-19','valeriano 120','gonza.mart@example.com','3512895654','prueba','$2b$12$wrLvoN7g0SF3N0teUXF0CeU44aB/W1MECeex.kDmURFUPCk67AXpq','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'Gonzalo','Martini','1','1987-07-19','valeriano 120','gonmart@example.com','3512895654','prueba2','$2b$12$tjM8t1HEhIuwmEu6dVGAZObgKVXqkj5kCqgHBZnuuaeakKNRPb78K','administrador','2021-11-05','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'Mariano','Martini','30332145','2000-07-22','Valeriano 120','gonzalez.mart@example.com','351254587','prueba3','$2b$12$e9hdAsLshNQir.q6s450qekFXgeRmgjblu8sk9olhWdugKuqFbkmO','empleado','2020-10-25','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,'Damian','Marquez','36925814','1983-08-15','paisa 58','dmarquez@example.com','3512120589','dmarquez','$2b$12$tYpBy9MwjKNM3uVGUo4kguATvMu0EOOc/6LFUalDMyv039J0yoWIi','administrador','2022-01-01','alta',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(17,'Juan','Pérez','12345678','1982-12-16','Av. Siempre Viva','juan.perez@example.com','+54 11 1234-5678','juanperez','1234','empleado',NULL,NULL,'20-12345678-3','Soltero','Argentina','Buenos Aires','1000','Monzon',742,'0123456789012345678901');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -570,9 +569,14 @@ CREATE TABLE `socios` (
   `dni` varchar(20) DEFAULT NULL,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` varchar(20) DEFAULT 'activo',
+  `estado_civil` varchar(20) DEFAULT NULL,
+  `nacionalidad` varchar(20) DEFAULT NULL,
+  `ciudad` varchar(20) DEFAULT NULL,
+  `codigo_postal` varchar(20) DEFAULT NULL,
+  `fecha_nacimiento` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,7 +585,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (1,'Juan','Perez','123456789','Calle Falsa',123,'Centro','juan.perez@email.com','12345678','2024-11-06 18:00:31','activo'),(2,'Maria','Gonzalez','987654321','Av. Siempreviva',456,'Norte','maria.gonzalez@email.com','87654321','2024-11-06 18:00:31','activo');
+INSERT INTO `socios` VALUES (1,'Juan','Perez','123456789','Calle Falsa',123,'Centro','juan.perez@email.com','12345678','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(2,'Maria','Gonzalez','987654321','Av. Siempreviva',456,'Norte','maria.gonzalez@email.com','87654321','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(4,'Juan','Pérez','11-98765432','Calle Ficticia 123',362,'Villa del Parque','juanperez@mail.com','36258888','2024-11-10 16:36:49','activo','Soltero','Argentina','Buenos Aires','1400','1985-06-15');
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -608,7 +612,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (28,64,800),(30,66,800),(33,69,100);
+INSERT INTO `stock` VALUES (28,64,796),(30,66,780),(33,69,100);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -636,7 +640,7 @@ CREATE TABLE `ventas` (
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_material`) REFERENCES `deposito` (`id`) ON DELETE CASCADE,
   CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`id_vendedor`) REFERENCES `empleados` (`id`),
   CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`id_comprador`) REFERENCES `compradores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -645,8 +649,52 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`) VALUES (8,64,2,8,3,'2024-11-10 15:10:19',818.00,50.00),(9,64,2,8,3,'2024-11-10 15:10:40',818.00,20.00),(10,66,10,8,3,'2024-11-10 15:11:36',2720.00,90.00),(11,66,10,8,3,'2024-11-10 15:20:56',2720.00,20.00);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_calcular_precio_venta` BEFORE INSERT ON `ventas` FOR EACH ROW BEGIN
+    DECLARE precio_base DECIMAL(10, 2);
+
+    -- Obtener el precio del depósito basado en el id_material
+    SELECT d.precio_venta INTO precio_base
+    FROM deposito d
+    WHERE d.id = NEW.id_material;
+
+    -- Calcular el precio total multiplicado por la cantidad
+    SET NEW.precio_venta = precio_base * NEW.cantidad;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_calcular_total_ventas` BEFORE INSERT ON `ventas` FOR EACH ROW BEGIN
+    -- Calcular el total restando el porcentaje del descuento en precio_venta
+    SET NEW.total = NEW.precio_venta * (1 - NEW.descuento / 100);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -666,6 +714,24 @@ DELIMITER ;;
     UPDATE stock
     SET cantidad = cantidad_deposito - (SELECT IFNULL(SUM(cantidad), 0) FROM ventas WHERE id_material = NEW.id_material)
     WHERE material_id = NEW.id_material;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_actualizar_total_ventas` BEFORE UPDATE ON `ventas` FOR EACH ROW BEGIN
+    -- Calcular el total nuevamente si el precio_venta o descuento cambia
+    SET NEW.total = NEW.precio_venta * (1 - NEW.descuento / 100);
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -740,4 +806,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-08 19:04:08
+-- Dump completed on 2024-11-11 15:56:26

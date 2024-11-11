@@ -16,15 +16,22 @@ def agregar_empleado(datos_empleado):
     nombre = datos_empleado.get("nombre")
     apellido = datos_empleado.get("apellido")
     dni = datos_empleado.get("dni")
-    fecha_nacimiento = datos_empleado.get("fecha_nacimiento")
+    cuil = datos_empleado.get("cuil")
+    estado_civil = datos_empleado.get("estado_civil")
+    nacionalidad = datos_empleado.get("nacionalidad")
+    ciudad  = datos_empleado.get("ciudad")
+    codigo_postal  = datos_empleado.get("codigo_postal")
+    barrio  = datos_empleado.get("barrio")
+    fechaNacimiento = datos_empleado.get("fechaNacimiento")
     direccion = datos_empleado.get("direccion")
+    numero = datos_empleado.get("numero")
     mail = datos_empleado.get("mail")
     telefono = datos_empleado.get("telefono")
+    cuenta_bancaria = datos_empleado.get("cuenta_bancaria")
     usuario = datos_empleado.get("usuario")
     clave = datos_empleado.get("clave")
     puesto = datos_empleado.get("puesto")
-    fecha_ingreso = datos_empleado.get("fecha_ingreso")
-    estado = datos_empleado.get("estado")
+    
     
     # Hashear la contraseña antes de guardarla
     clave_en_bytes = clave.encode('utf-8')
@@ -35,10 +42,11 @@ def agregar_empleado(datos_empleado):
     conexion = obtener_base()
     cursor = conexion.cursor()
     cursor.execute(
-        "INSERT INTO empleados (nombre, apellido, dni, fechaNacimiento, direccion, mail, telefono, usuario, clave, puesto, fecha_ingreso, estado) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (nombre, apellido, dni, fecha_nacimiento, direccion, mail, telefono, usuario, hash_clave, puesto, fecha_ingreso, estado)
+    "INSERT INTO empleados (nombre, apellido, dni, cuil, estado_civil, nacionalidad, ciudad, codigo_postal, barrio, fechaNacimiento, direccion, numero, mail, telefono, cuenta_bancaria, usuario, clave, puesto) "
+    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    (nombre, apellido, dni, cuil, estado_civil, nacionalidad, ciudad, codigo_postal, barrio, fechaNacimiento, direccion, numero, mail, telefono, cuenta_bancaria, usuario, hash_clave, puesto)
     )
+
     conexion.commit()
     ultimo_id = cursor.lastrowid
 
@@ -68,6 +76,68 @@ def mostrar_usuarios():
         lista_empleados.append(empleado_dict)
 
     return lista_empleados
+
+
+
+
+
+def editar_empleado(id,empleado):
+    nombre = empleado.get("nombre")
+    apellido = empleado.get("apellido")
+    dni = empleado.get("dni")
+    cuil = empleado.get("cuil")
+    estado_civil = empleado.get("estado_civil")
+    nacionalidad = empleado.get("nacionalidad")
+    ciudad  = empleado.get("ciudad")
+    codigo_postal  = empleado.get("codigo_postal")
+    barrio  = empleado.get("barrio")
+    fechaNacimiento = empleado.get("fechaNacimiento")
+    direccion = empleado.get("direccion")
+    numero = empleado.get("numero")
+    mail = empleado.get("mail")
+    telefono = empleado.get("telefono")
+    cuenta_bancaria = empleado.get("cuenta_bancaria")
+    usuario = empleado.get("usuario")
+    clave = empleado.get("clave")
+    puesto = empleado.get("puesto")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    cursor.execute(
+    """
+    UPDATE empleados
+    SET 
+        nombre = %s,
+        apellido = %s,
+        cuil = %s,
+        estado_civil = %s,
+        nacionalidad = %s,
+        ciudad = %s,
+        codigo_postal = %s,
+        barrio = %s,
+        fechaNacimiento = %s,
+        direccion = %s,
+        numero = %s,
+        mail = %s,
+        telefono = %s,
+        cuenta_bancaria = %s,
+        usuario = %s,
+        clave = %s,
+        puesto = %s
+    WHERE dni = %s
+    """,
+    (
+        nombre, apellido, cuil, estado_civil, nacionalidad, ciudad, codigo_postal, barrio, 
+        fechaNacimiento, direccion, numero, mail, telefono, cuenta_bancaria, usuario, 
+        clave, puesto, dni
+    )
+    )
+    conexion.commit()
+    conexion.close()
+    cursor.close()
+    return {"Mensaje":"edicion completada"},200
+
 
 
 

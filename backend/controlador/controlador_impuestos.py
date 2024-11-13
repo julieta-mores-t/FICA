@@ -2,6 +2,8 @@ from flask import jsonify, request
 from modelo.modelo_impuestos import agregar_impuesto
 from modelo.modelo_impuestos import mostrar_impuesto
 from modelo.modelo_impuestos import editar_impuesto
+from modelo.modelo_impuestos import agregar_material_impuesto
+from modelo.modelo_impuestos import editar_material_impuesto
 
 
 
@@ -20,4 +22,14 @@ def editar_impuesto_endpoint(id):
     editar_impuesto(id,dic_impuesto)
     
     return jsonify({"Mensaje":"El impuesto se modificó correctamente"}),200
+
+
+def agregar_material_impuesto_endpoint():
+    dic_matimp = request.get_json()
+    return jsonify({"Mensaje":"se agrego el impuesto al material","id":agregar_material_impuesto(dic_matimp)}), 200
+
+
+def editar_material_impuesto_endpoint(id):
+    dato = request.get_json()
+    return jsonify({"Mensaje":"se edita el impuesto para el material", "id": editar_material_impuesto(dato,id)}),200
     

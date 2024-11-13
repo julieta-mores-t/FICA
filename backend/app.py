@@ -15,6 +15,8 @@ from controlador.controlador_empleados import verificar_contrasena_endpoint
 from controlador.controlador_impuestos import agregar_impuesto_endpoint
 from controlador.controlador_impuestos import mostrar_impuesto_endpoint
 from controlador.controlador_impuestos import editar_impuesto_endpoint
+from controlador.controlador_impuestos import agregar_material_impuesto_endpoint
+from controlador.controlador_impuestos import editar_material_impuesto_endpoint
 from controlador.controlador_stock import mostrar_stock_endpoint
 
 
@@ -131,6 +133,20 @@ def agregar_impuesto():
 @aplicacion.route("/api/editar_impusto/<int:id>",methods = ["PUT"])
 def editar_impuesto(id):
     return editar_impuesto_endpoint(id)
+
+#----------------------------agregar impuesto al material ------------
+@aplicacion.route("/api/agregar_material_impuesto", methods = ["POST"])
+def agregar_material_impuesto():
+    return agregar_material_impuesto_endpoint()
+
+
+#-------------------------editar el impuesto al material---------------
+@aplicacion.route("/api/editar_material_impuesto/<int:id>", methods = ["PUT"])
+def editar_material_impuesto(id):
+    return editar_material_impuesto_endpoint(id)
+
+
+
 
 
 

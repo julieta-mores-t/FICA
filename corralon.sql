@@ -380,7 +380,7 @@ CREATE TABLE `material_impuesto` (
   KEY `fk_material_impuesto_material` (`id_material`),
   CONSTRAINT `fk_material_impuesto_material` FOREIGN KEY (`id_material`) REFERENCES `deposito` (`id`) ON DELETE CASCADE,
   CONSTRAINT `material_impuesto_ibfk_2` FOREIGN KEY (`id_impuesto`) REFERENCES `impuestos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +546,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'daniel','dmontolla@gmail.com.ar','3512365896',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(5,'jose','juares@example.com','123456789',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(6,'Dionicio','perez@example.com','987654321',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(7,'Natalia','naty@gmail.com','351254578',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(8,'Damian','dm@gmail.com','36925814',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(9,'Proveedores SA','contacto@proveedoressa.com','+54 11 1234-5678','Empresa dedicada a la distribución de materiales de construcción.','30-12345678-9','Buenos Aires',5000,'Palermo','2024-11-05 17:57:42','Proveedores S.A.','Av. Corrientes',1234,'alta'),(10,'easy','easy@gmail.com','3512565896','otra descripcion','30-25632361-2','cordoba',5000,'lomas','2024-11-05 18:26:13','ferro sa.','calle',150,'alta');
+INSERT INTO `proveedores` VALUES (1,'Daniel','daniel@gmail.com','3512154785','Empresa dedicada a la distribución de materiales.','30-15264789-9','Buenos Aires',2000,'soldati','2024-11-05 17:57:42','socios S.A.','Av. moron',52,'alta'),(5,'jose','juares@example.com','123456789',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(6,'Dionicio','perez@example.com','987654321',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(7,'Natalia','naty@gmail.com','351254578',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(8,'Damian','dm@gmail.com','36925814',NULL,NULL,NULL,NULL,NULL,'2024-11-05 17:57:42',NULL,NULL,NULL,'alta'),(9,'Proveedores SA','contacto@proveedoressa.com','+54 11 1234-5678','Empresa dedicada a la distribución de materiales de construcción.','30-12345678-9','Buenos Aires',5000,'Palermo','2024-11-05 17:57:42','Proveedores S.A.','Av. Corrientes',1234,'alta'),(10,'easy','easy@gmail.com','3512565896','otra descripcion','30-25632361-2','cordoba',5000,'lomas','2024-11-05 18:26:13','ferro sa.','calle',150,'alta');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -612,7 +612,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (28,64,796),(30,66,780),(33,69,100);
+INSERT INTO `stock` VALUES (28,64,796),(30,66,770),(33,69,100);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,14 +633,17 @@ CREATE TABLE `ventas` (
   `precio_venta` decimal(10,2) DEFAULT NULL,
   `descuento` decimal(5,2) DEFAULT NULL,
   `total` decimal(10,2) GENERATED ALWAYS AS ((`precio_venta` * (1 - (`descuento` / 100)))) VIRTUAL,
+  `socio` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_material` (`id_material`),
   KEY `id_vendedor` (`id_vendedor`),
   KEY `id_comprador` (`id_comprador`),
+  KEY `fk_socio` (`socio`),
+  CONSTRAINT `fk_socio` FOREIGN KEY (`socio`) REFERENCES `socios` (`id`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_material`) REFERENCES `deposito` (`id`) ON DELETE CASCADE,
   CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`id_vendedor`) REFERENCES `empleados` (`id`),
   CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`id_comprador`) REFERENCES `compradores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -649,7 +652,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`) VALUES (8,64,2,8,3,'2024-11-10 15:10:19',818.00,50.00),(9,64,2,8,3,'2024-11-10 15:10:40',818.00,20.00),(10,66,10,8,3,'2024-11-10 15:11:36',2720.00,90.00),(11,66,10,8,3,'2024-11-10 15:20:56',2720.00,20.00);
+INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`, `socio`) VALUES (8,64,2,8,3,'2024-11-10 15:10:19',818.00,50.00,NULL),(9,64,2,8,3,'2024-11-10 15:10:40',818.00,20.00,NULL),(10,66,10,8,3,'2024-11-10 15:11:36',2720.00,90.00,NULL),(11,66,10,8,3,'2024-11-10 15:20:56',2720.00,20.00,NULL),(12,66,10,8,3,'2024-11-13 21:40:39',2720.00,10.00,2);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -806,4 +809,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-11 15:56:26
+-- Dump completed on 2024-11-13 18:46:12

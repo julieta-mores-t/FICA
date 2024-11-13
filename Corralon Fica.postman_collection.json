@@ -322,6 +322,38 @@
 			"response": []
 		},
 		{
+			"name": "agregarle impuesto al material ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"clavos\",\r\n  \"impuesto\": \"iva10\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_material_impuesto",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_material_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "editar empleado",
 			"request": {
 				"method": "PUT",
@@ -448,6 +480,39 @@
 						"api",
 						"editar_impusto",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar impuesto al material",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"clavos\",\r\n  \"impuesto\": \"iva21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_material_impuesto/60",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_material_impuesto",
+						"60"
 					]
 				}
 			},

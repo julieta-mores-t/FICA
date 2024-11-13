@@ -51,6 +51,88 @@ def editar_impuesto(id,impuesto):
     conexion.close()
 
 
+def agregar_material_impuesto(matimpuesto):
+    material = matimpuesto.get("material")
+    impuesto = matimpuesto.get("impuesto")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    # Verificar que el material existe en la tabla proveedores
+    cursor.execute("SELECT id FROM deposito WHERE material = %s", (material,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        material_id = resultado[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return "Proveedor no encontrado"
+    
+    # Verificar que el impuesto existe en la tabla proveedores
+    cursor.execute("SELECT id FROM impuestos WHERE nombre = %s", (impuesto,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        impuesto_id = resultado[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return "Proveedor no encontrado"
+    
+
+    # Insertar el nuevo material impuesto en la tabla intermedia utilizando el id del material y del impuesto
+    cursor.execute(
+        "INSERT INTO material_impuesto (id_material,id_impuesto) VALUES (%s, %s)",
+        (material_id,impuesto_id)
+    )
+
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+
+
+def editar_material_impuesto(matimpuesto,id):
+    material = matimpuesto.get("material")
+    impuesto = matimpuesto.get("impuesto")
+
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    # Verificar que el material existe en la tabla proveedores
+    cursor.execute("SELECT id FROM deposito WHERE material = %s", (material,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        material_id = resultado[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return "Proveedor no encontrado"
+    
+    # Verificar que el impuesto existe en la tabla proveedores
+    cursor.execute("SELECT id FROM impuestos WHERE nombre = %s", (impuesto,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        impuesto_id = resultado[0]
+    else:
+        cursor.close()
+        conexion.close()
+        return "Proveedor no encontrado"
+    
+
+    
+    cursor.execute("""
+        UPDATE material_impuesto
+        SET id_material = %s, id_impuesto = %s
+        WHERE id = %s
+    """, (material_id,impuesto_id,id))
+
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+
 
 
 

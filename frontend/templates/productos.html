@@ -27,7 +27,8 @@
                         <p class="user-name" id="nombreApellido"></p>
                         <p class="user-email" id="emailUsuario"></p>
                     </div>
-                    <img src="../assets/img/icono-salir.svg" alt="cerrar sesion" class="align-self-center icono-salir" id="iconoSalir">
+                    <img src="../assets/img/icono-salir.svg" alt="cerrar sesion" class="align-self-center icono-salir"
+                        id="iconoSalir">
                 </div>
             </div>
         </nav>
@@ -47,19 +48,20 @@
         </div>
 
         <section class="productos d-flex flex-column">
-                <button id="openModalBtn" class="btn btn-primary align-self-end">Agregar Producto</button>
+            <button id="openModalBtn" class="btn btn-primary align-self-end">Agregar Producto</button>
             <div class="table-responsive">
                 <table class="table table-bordered text-center mt-4">
                     <thead>
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
+                            <th>Unidad Medida</th>
                             <th>Proveedor</th>
                             <th>Cantidad</th>
-                            <th>Fecha Ing.</th>
+                            <th>Fecha Ingreso</th>
                             <th>Ganancia</th>
-                            <th>Pre. Com.</th>
-                            <th>Pre. Venta</th>
+                            <th>Precio Compra</th>
+                            <th>Precio Venta</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -71,7 +73,7 @@
             </div>
         </section>
 
-        
+
 
         <!-- Modal -->
         <div id="materialModal" class="modal">
@@ -81,48 +83,79 @@
 
                 <form id="materialForm">
                     <div class="form-group">
-                        <label for="nombre-producto">Nombre del producto:</label>
+                        <label for="nombre-producto">NOMBRE DEL PRODUCTO:</label>
                         <input type="text" id="material" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cantidad">Cantidad:</label>
+                        <label for="cantidad">CANTIDAD:</label>
                         <input type="number" id="cantidad" placeholder="Digite la identificación" required>
                     </div>
 
+
                     <div class="form-group">
-                        <label for="proveedor">Proveedores:</label>
+                        <label for="unidadMedida">UNIDAD DE MEDIDA:</label>
+                        <select id="unidad_medida" placeholder="Elija una opción" required>
+                            <option value=""></option>
+                            <option value="bolsa">Bolsa</option>
+                            <option value="metro">Metro</option>
+                            <option value="unidad">Unidad</option>
+                            <option value="kilo">Kilo</option>
+                            <option value="rollo">Rollo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proveedor">PROVEEDORES:</label>
                         <select id="proveedor" placeholder="Elija un proveedor" required>
                             <option value=""></option>
                         </select>
                     </div>
-                    
 
                     <div class="form-group">
-                        <label for="precio-compra">Precio Compra:</label>
+                        <label for="precio-compra">PRECIO DE COMPRA:</label>
                         <input type="number" id="precio" placeholder="$" required>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="precio-venta">Precio de venta:</label>
+                        <label for="precio-venta">PRECIO DE VENTA:</label>
                         <input type="number" id="precio_venta" placeholder="$" required>
                     </div>
 
-                    
+
                     <div class="form-group">
-                        <label for="margen-ganancia">Margen de ganancia:</label>
-                        <input type="number" id="ganancia" placeholder="$" required>
+                        <label for="margen-ganancia">MARGEN DE GANANCIA:</label>
+                        <input type="number" id="ganancia" placeholder="%" required>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="observaciones">Observaciones:</label>
+                        <label for="observaciones">OBSERVACIONES:</label>
                         <textarea id="observaciones" placeholder="Escriba las observaciones..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-guardar">GUARDAR</button>
                 </form>
+            </div>
+            <!-- Modal de Confirmación -->
+            <div id="confirmModal" class="modal_confirm">
+                <div class="modal-contenido">
+                    <span class="close" onclick="closeModal('confirmModal')">&times;</span>
+                    <p>¿Quieres guardar los cambios realizados?</p>
+                    <button onclick="confirmSave()" class="confirm-btn">Si, confirmo</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="modal_confirm">
+            <div class="modal-contenido">
+                <span class="close" onclick="closeModal('successModal')">&times;</span>
+                <p><span class="check-icon">&#10003;</span> Sus datos se guardaron correctamente</p>
             </div>
         </div>
 

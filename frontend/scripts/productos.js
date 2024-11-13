@@ -13,11 +13,43 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarMateriales();
 });
 
-// Función para abrir y cerrar el modal
+
+//BOTÓN DE BUSCAR (filtra por nombre)
+const searchInput = document.getElementById('buscarInput');
+
+searchInput.addEventListener('input', () => {
+    const searchText = searchInput.value.toLowerCase();
+    const productoRows = document.querySelectorAll('#materiales-body tr');
+
+    productoRows.forEach(row => {
+        const codigoProducto = row.cells[0].textContent.toLowerCase();
+        const nombreProducto = row.cells[1].textContent.toLowerCase();
+        const proveedorProducto = row.cells[3].textContent.toLowerCase();
+        const estadoProducto = row.cells[9].textContent.toLowerCase();
+        if (
+            codigoProducto.includes(searchText) ||
+            nombreProducto.includes(searchText) ||
+            proveedorProducto.includes(searchText) ||
+            estadoProducto.includes(searchText)
+        ) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+
+
+// Referencias a los elementos del DOM
 const modal = document.getElementById("materialModal");
 const openModalBtn = document.getElementById("openModalBtn");
 const closeModal = document.querySelector(".close");
 
+const confirmModal = document.getElementById("confirmModal");
+const successModal = document.getElementById("successModal");
+
+// Abrir y cerrar el modal principal
 openModalBtn.addEventListener("click", () => {
     modal.style.display = "block";
     cargarProveedores();
@@ -28,10 +60,20 @@ closeModal.addEventListener("click", () => {
 });
 
 window.addEventListener("click", (event) => {
-    if (event.target == modal) {
+    if (event.target === modal) {
         modal.style.display = "none";
     }
 });
+
+// Función para abrir el modal de confirmación
+function openConfirmModal() {
+    confirmModal.style.display = "block";
+}
+
+// Función para cerrar cualquier modal por su ID
+function closeModalById(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
 
 // Función para cargar proveedores en el select
 function cargarProveedores() {
@@ -58,6 +100,7 @@ function cargarMateriales() {
                 <tr>
                     <td>${material.codigo}</td>
                     <td>${material.material}</td>
+                    <td>${material.unidad_medida}</td>
                     <td>${material.proveedor}</td>
                     <td>${material.cantidad}</td>
                     <td>${material.fecha_ingreso}</td>
@@ -75,14 +118,23 @@ function cargarMateriales() {
         .catch(error => console.error('Error al cargar los materiales:', error));
 }
 
+// Función para confirmar el guardado y enviar los datos
+function confirmSave() {
+    closeModalById("confirmModal");
 
-// Enviar el formulario al servidor
-document.getElementById("materialForm").addEventListener("submit", (event) => {
-    event.preventDefault();
+    // Mostrar el mensaje de éxito
+    successModal.style.display = "block";
 
+    // Llamada para guardar los datos en la base de datos
+    guardarDatosEnBaseDeDatos();
+}
+
+// Función para guardar datos en la base de datos
+function guardarDatosEnBaseDeDatos() {
     const datos = {
         material: document.getElementById("material").value,
         cantidad: document.getElementById("cantidad").value,
+        unidad_medida: document.getElementById("unidad_medida").value,
         ganancia: document.getElementById("ganancia").value,
         proveedor: document.getElementById("proveedor").value,
         precio: document.getElementById("precio").value,
@@ -98,65 +150,27 @@ document.getElementById("materialForm").addEventListener("submit", (event) => {
         .then(() => {
             document.getElementById("materialForm").reset();
             cargarMateriales();
-            modal.style.display = "none";
+            modal.style.display = "none"; // Cierra el modal principal
         })
         .catch(error => console.error('Error al agregar el material:', error));
-});
-
-
-
-// botón de BUSCAR
-// Selección de elementos
-const buscarInput = document.getElementById("buscarInput");
-const iconoBuscar = document.getElementById("iconoBuscar");
-
-function realizarBusqueda() {
-    const query = buscarInput.value.trim().toLowerCase();
-    if (!query) {
-        console.log("Ingrese un término para buscar.");
-        return;
-    }
-    
-    const productosRows = document.querySelectorAll('.producto-row');
-    const resultados = [];
-
-    productosRows.forEach(row => {
-        const codigo = row.cells[0].textContent.toLowerCase();
-        const nombre = row.cells[1].textContent.toLowerCase();
-        const proveedor = row.cells[2].textContent.toLowerCase();
-        const fecha_ingreso = row.cells[3].textContent.toLowerCase();
-        const estado = row.cells[4].textContent.toLowerCase();
-
-        // Filtra por coincidencia en cualquiera de los campos
-        if (
-            codigo.includes(query) || 
-            nombre.includes(query) || 
-            proveedor.includes(query) || 
-            fecha_ingreso.includes(query) || 
-            estado.includes(query)
-        ) {
-            row.style.display = ''; // Mostrar fila si coincide
-            resultados.push({
-                codigo,
-                nombre,
-                proveedor,
-                fecha_ingreso,
-                estado
-            });
-        } else {
-            row.style.display = 'none'; // Ocultar fila si no coincide
-        }
-    });
-
-    console.log("Resultados de búsqueda:", resultados);
 }
 
-// Evento al hacer clic en el icono de búsqueda
-iconoBuscar.addEventListener("click", realizarBusqueda);
+// Mostrar el modal de confirmación al hacer submit
+document.getElementById("materialForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    openConfirmModal();
+});
 
-// Evento al presionar Enter en el campo de búsqueda
-buscarInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        realizarBusqueda();
+// Cerrar el modal de éxito después de unos segundos
+successModal.addEventListener("click", () => {
+    closeModalById("successModal");
+});
+
+window.addEventListener("click", (event) => {
+    if (event.target === confirmModal) {
+        confirmModal.style.display = "none";
+    }
+    if (event.target === successModal) {
+        successModal.style.display = "none";
     }
 });

@@ -134,6 +134,56 @@ def editar_material_impuesto(matimpuesto,id):
     conexion.close()
 
 
+def mostrar_material_impuesto():
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+    SELECT mi.id,
+       d.material AS nombre_material, 
+       i.nombre AS nombre_impuesto, 
+       CONCAT('%', i.porcentaje) AS porcentaje
+       FROM deposito d
+       JOIN material_impuesto mi ON d.id = mi.id_material
+       JOIN impuestos i ON mi.id_impuesto = i.id
+       ORDER BY d.material;
+""")
+    material_impuesto = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    columnas = [col[0] for col in cursor.description]
+
+    list_impuestos = []
+    for imp in material_impuesto:
+        dic_impuestos = {}
+        for i in range(len(columnas)):
+            dic_impuestos[columnas[i]] = imp[i]
+        list_impuestos.append(dic_impuestos)
+    return list_impuestos
+
+
+def eliminar_material_impuesto(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+
+
+    cursor.execute("DELETE from material_impuesto WHERE id = %s;", (id,))
+
+    
+    conexion.commit()
+
+    cursor.close()
+    conexion.close()
+
+    return f"Impuesto con ID {id} eliminado exitosamente."
+
+    
+
+
+
+
 
 
 

@@ -17,6 +17,8 @@ from controlador.controlador_impuestos import mostrar_impuesto_endpoint
 from controlador.controlador_impuestos import editar_impuesto_endpoint
 from controlador.controlador_impuestos import agregar_material_impuesto_endpoint
 from controlador.controlador_impuestos import editar_material_impuesto_endpoint
+from controlador.controlador_impuestos import mostrar_impuesto_material_endpoint
+from controlador.controlador_impuestos import eliminar_material_impuesto_endpoint
 from controlador.controlador_stock import mostrar_stock_endpoint
 
 
@@ -144,6 +146,16 @@ def agregar_material_impuesto():
 @aplicacion.route("/api/editar_material_impuesto/<int:id>", methods = ["PUT"])
 def editar_material_impuesto(id):
     return editar_material_impuesto_endpoint(id)
+
+#------------------------mostrar impuesto del material-----------------
+@aplicacion.route("/api/mostrar_impuesto_material",methods = ["GET"])
+def mostrar_impuesto_material():
+    return mostrar_impuesto_material_endpoint()
+
+#-----------------------eliminar impuesto de lmaterial ----------------
+@aplicacion.route("/api/eliminar_impuesto_material/<int:id>", methods = ["DELETE"])
+def eliminar_impuesto_material(id):
+    return eliminar_material_impuesto_endpoint(id)
 
 
 

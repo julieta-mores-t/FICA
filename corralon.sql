@@ -76,7 +76,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (64,'Acero',800,156,409,'alta',5,'aaa-001','2024-11-06 18:24:36',100,31,'ventas por metro','M3','125000'),(66,'Tornillo',800,125,272,'baja',5,'aaa-002','2024-11-07 16:36:02',80,21,'ventas por metro','unidad','100000'),(69,'clavos',100,1000,1613,'alta',5,'aaa-003','2024-11-07 16:48:17',25,29,'detalle a confirmar','kilo','100000');
+INSERT INTO `deposito` VALUES (64,'Acero',800,156,343,'alta',5,'aaa-001','2024-11-06 18:24:36',100,10,'ventas por metro','M3','125000'),(66,'Tornillo',800,125,272,'baja',5,'aaa-002','2024-11-07 16:36:02',80,21,'ventas por metro','unidad','100000'),(69,'clavos',100,1000,1575,'alta',5,'aaa-003','2024-11-07 16:48:17',25,26,'detalle a confirmar','kilo','100000');
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -389,7 +389,7 @@ CREATE TABLE `material_impuesto` (
 
 LOCK TABLES `material_impuesto` WRITE;
 /*!40000 ALTER TABLE `material_impuesto` DISABLE KEYS */;
-INSERT INTO `material_impuesto` VALUES (50,64,1),(51,64,3),(53,64,3),(54,66,1),(57,69,1),(58,69,3),(59,69,6);
+INSERT INTO `material_impuesto` VALUES (51,64,3),(53,64,3),(54,66,1),(57,69,1),(58,69,3);
 /*!40000 ALTER TABLE `material_impuesto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -809,4 +809,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-13 18:46:12
+-- Dump completed on 2024-11-14 15:42:47

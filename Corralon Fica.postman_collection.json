@@ -194,6 +194,29 @@
 			"response": []
 		},
 		{
+			"name": "mostrar impuesto al material ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_impuesto_material",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_impuesto_material"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "agregar empleados",
 			"request": {
 				"method": "POST",
@@ -513,6 +536,30 @@
 						"api",
 						"editar_material_impuesto",
 						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar el impuesto a ese material",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/eliminar_impuesto_material/59",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"eliminar_impuesto_material",
+						"59"
 					]
 				}
 			},

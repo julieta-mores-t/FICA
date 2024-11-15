@@ -7,8 +7,6 @@ def agregar_material(material):
     ganancia = material.get("ganancia")
     nombre_material = material.get("material")
     cantidad = material.get("cantidad")
-    precio_venta = material.get("precio_venta")
-    estado = material.get("estado")
     proveedor = material.get("proveedor")
     detalle = material.get("detalle")
     unidad_medida = material.get("unidad_medida")
@@ -30,8 +28,8 @@ def agregar_material(material):
 
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
-        "INSERT INTO deposito (material, cantidad, precio_venta, estado, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (nombre_material, cantidad, precio_venta, estado, proveedor_id,ganancia,detalle,unidad_medida,precio_cantidad)
+        "INSERT INTO deposito (material, cantidad, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES ( %s, %s, %s, %s, %s, %s, %s)",
+        (nombre_material, cantidad, proveedor_id,ganancia,detalle,unidad_medida,precio_cantidad)
     )
     conexion.commit()
     ultimo_dato = cursor.lastrowid
@@ -52,7 +50,7 @@ def mostrar_material():
     
     cursor.execute("""
         SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
-       p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia,detalle,unidad_medida
+       p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia,detalle,unidad_medida,precio_cantidad
 FROM deposito d
 JOIN proveedores p ON d.proveedor = p.id
 LIMIT 0, 200;

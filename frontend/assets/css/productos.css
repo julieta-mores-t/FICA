@@ -215,7 +215,7 @@ textarea {
     background-color: #004085;
 }
 
-/* Estilo para los modales */
+
 .modal_confirm {
     display: none;
     position: fixed;
@@ -226,37 +226,79 @@ textarea {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+  
 
 .modal-contenido {
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 300px;
+    border-radius: 10px;
+    width: 400px;
     text-align: center;
 }
 
 .close {
-    color: #aaa;
+    color: #080707;
     float: right;
     font-size: 20px;
     cursor: pointer;
 }
 
 .confirm-btn {
-    background-color: #4b8a08;
+    background-color: #3c6b09;
     color: white;
-    padding: 10px 20px;
+    padding: 3px 100px;
     border: none;
     cursor: pointer;
+    border-radius: 10px; 
+    width: 90%;
+    text-align: center;
 }
 
+
 .confirm-btn:hover {
-    background-color: #3e7306;
+    background-color:  #4b8a08;
 }
 
 .check-icon {
-    color: green;
-    font-size: 24px;
-    margin-right: 5px;
+    color:  #4b8a08;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+/* Botón de cerrar "X" en la esquina superior derecha */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+
+/* Texto de mensaje en negrita */
+.modal-message {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.caracteristicas, .precio-compra, .impuestos {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+}
+
+.precio-final {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-top: 20px;
 }

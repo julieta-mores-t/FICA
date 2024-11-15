@@ -75,7 +75,7 @@
 
 
 
-        <!-- Modal -->
+        <!-- Modal AGREGAR PRODUCTO-->
         <div id="materialModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -114,15 +114,8 @@
 
                     <div class="form-group">
                         <label for="precio-compra">PRECIO DE COMPRA:</label>
-                        <input type="number" id="precio" placeholder="$" required>
+                        <input type="number" id="precio_cantidad" placeholder="$" required>
                     </div>
-
-
-                    <div class="form-group">
-                        <label for="precio-venta">PRECIO DE VENTA:</label>
-                        <input type="number" id="precio_venta" placeholder="$" required>
-                    </div>
-
 
                     <div class="form-group">
                         <label for="margen-ganancia">MARGEN DE GANANCIA:</label>
@@ -132,40 +125,119 @@
 
                     <div class="form-group">
                         <label for="observaciones">OBSERVACIONES:</label>
-                        <textarea id="observaciones" placeholder="Escriba las observaciones..."></textarea>
+                        <textarea id="detalle" placeholder="Escriba las observaciones..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-guardar">GUARDAR</button>
                 </form>
             </div>
+
             <!-- Modal de Confirmación -->
             <div id="confirmModal" class="modal_confirm">
                 <div class="modal-contenido">
-                    <span class="close" onclick="closeModal('confirmModal')">&times;</span>
+                    <span class="close" onclick="closeModalById('confirmModal')">&times;</span>
                     <p>¿Quieres guardar los cambios realizados?</p>
                     <button onclick="confirmSave()" class="confirm-btn">Si, confirmo</button>
                 </div>
             </div>
-
-
-
         </div>
 
         <!-- Modal de Éxito -->
         <div id="successModal" class="modal_confirm">
             <div class="modal-contenido">
-                <span class="close" onclick="closeModal('successModal')">&times;</span>
+                <span class="close" onclick="closeModalById('successModal')">&times;</span>
                 <p><span class="check-icon">&#10003;</span> Sus datos se guardaron correctamente</p>
             </div>
         </div>
 
+        
+                <!-- Modal EDITAR PRODUCTO-->
+                <div id="editarModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2 class="modal-title">EDITAR MATERIAL</h2>
+        
+                        <form id="materialForm">
+                            <div class="form-group">
+                                <label for="nombre-producto">NOMBRE DEL PRODUCTO:</label>
+                                <input type="text" id="material">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="cantidad">CANTIDAD:</label>
+                                <input type="number" id="cantidad">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">ESTADO:</label>
+                                <select id="estado">
+                                    <option value="alta">Alta</option>
+                                    <option value="baja">Baja</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="proveedor">PROVEEDORES:</label>
+                                <select id="proveedor">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="margen-ganancia">MARGEN DE GANANCIA:</label>
+                                <input type="number" id="ganancia">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="observaciones">OBSERVACIONES:</label>
+                                <textarea id="detalle"></textarea>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="unidadMedida">UNIDAD DE MEDIDA:</label>
+                                <select id="unidad_medida" placeholder="Elija una opción" required>
+                                    <option value=""></option>
+                                    <option value="bolsa">Bolsa</option>
+                                    <option value="metro">Metro</option>
+                                    <option value="unidad">Unidad</option>
+                                    <option value="kilo">Kilo</option>
+                                    <option value="rollo">Rollo</option>
+                                </select>
+                            </div>
+        
+                            <button type="submit" class="btn-guardar">GUARDAR</button>
+                        </form>
+                    </div>
+                </div>
 
 
-    </div>
+        <!-- Modal DETALLE DE PRODUCTO -->
+        <div id="detalleProductoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDetalleModal">&times;</span>
+                <h2>DETALLE DEL PRODUCTO</h2>
+                <div class="modal-body">
+                    <div class="caracteristicas">
+                        <h3>Características</h3>
+                        <p id="material"></p>
+                        <p id="cantidad"></p>
+                        <p id="unidad_medida"></p>
+                        <p id="proveedor"></p>
+                    </div>
+                    <div class="precio-compra">
+                        <h3>Precio Compra</h3>
+                        <p id="precio"></p>
+                    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/productos.js"></script>
-    <script src="../scripts/cerrarsesion.js"></script>
+                    <h3 class="precio-final">Precio Final</h3>
+                    <p id="precio_venta"></p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="../scripts/productos.js"></script>
+        <script src="../scripts/cerrarsesion.js"></script>
 
 </body>
 

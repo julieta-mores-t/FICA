@@ -67,7 +67,7 @@ CREATE TABLE `deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_proveedor` (`proveedor`),
   CONSTRAINT `fk_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (64,'Acero',800,156,343,'alta',5,'aaa-001','2024-11-06 18:24:36',100,10,'ventas por metro','M3','125000'),(66,'Tornillo',800,125,272,'baja',5,'aaa-002','2024-11-07 16:36:02',80,21,'ventas por metro','unidad','100000'),(69,'clavos',100,1000,1575,'alta',5,'aaa-003','2024-11-07 16:48:17',25,26,'detalle a confirmar','kilo','100000');
+INSERT INTO `deposito` VALUES (64,'Acero',800,156,343,'alta',5,'aaa-001','2024-11-06 18:24:36',100,10,'ventas por metro','M3','125000'),(66,'Tornillo',800,125,272,'baja',5,'aaa-002','2024-11-07 16:36:02',80,21,'ventas por metro','unidad','100000'),(69,'clavos',100,1000,1575,'alta',5,'aaa-003','2024-11-07 16:48:17',25,26,'detalle a confirmar','kilo','100000'),(70,'Acero',100,NULL,NULL,'alta',5,'aaa-004','2024-11-15 16:06:47',25,NULL,'detalle a confirmar','metro',NULL),(71,'Acero',100,NULL,NULL,'alta',5,'aaa-005','2024-11-15 16:07:46',25,NULL,'detalle a confirmar','metro',NULL),(72,'piedra granza',1000,100,200,'alta',1,'aaa-006','2024-11-15 16:08:08',100,NULL,'sin detalles','M3','100000'),(73,'farol',520,231,277,'estado',5,'aaa-007','2024-11-15 16:16:09',20,NULL,'detalle','unidad_medida','120000'),(74,'cinta',520,38,46,'alta',5,'aaa-008','2024-11-15 16:22:08',20,NULL,'detalle','unidad_medida','20000'),(75,'puerta',500,NULL,NULL,'alta',5,'aaa-009','2024-11-15 16:53:00',20,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -560,7 +560,6 @@ DROP TABLE IF EXISTS `socios`;
 CREATE TABLE `socios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `numero` int DEFAULT NULL,
@@ -576,7 +575,7 @@ CREATE TABLE `socios` (
   `fecha_nacimiento` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -585,7 +584,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (1,'Juan','Perez','123456789','Calle Falsa',123,'Centro','juan.perez@email.com','12345678','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(2,'Maria','Gonzalez','987654321','Av. Siempreviva',456,'Norte','maria.gonzalez@email.com','87654321','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(4,'Juan','Pérez','11-98765432','Calle Ficticia 123',362,'Villa del Parque','juanperez@mail.com','36258888','2024-11-10 16:36:49','activo','Soltero','Argentina','Buenos Aires','1400','1985-06-15');
+INSERT INTO `socios` VALUES (1,'Juan','123456789','Calle Falsa',123,'Centro','juan.perez@email.com','12345678','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(2,'Maria','987654321','Av. Siempreviva',456,'Norte','maria.gonzalez@email.com','87654321','2024-11-06 18:00:31','activo',NULL,NULL,NULL,NULL,NULL),(4,'Juan','11-98765432','Calle Ficticia 123',362,'Villa del Parque','juanperez@mail.com','36258888','2024-11-10 16:36:49','activo','Soltero','Argentina','Buenos Aires','1400','1985-06-15'),(7,'Juan Pérez','11-98765432','Calle Ficticia 123',362,'Villa del Parque','juanperez@mail.com','23652112','2024-11-15 18:20:41','activo','Soltero','Argentina','Buenos Aires','1400','1985-06-15');
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -603,7 +602,7 @@ CREATE TABLE `stock` (
   PRIMARY KEY (`id`),
   KEY `stock_ibfk_1` (`material_id`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `deposito` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,7 +611,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (28,64,796),(30,66,770),(33,69,100);
+INSERT INTO `stock` VALUES (28,64,796),(30,66,770),(33,69,100),(34,70,100),(35,71,100),(36,72,1000),(37,73,520),(38,74,520),(39,75,500);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -809,4 +808,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-14 15:42:47
+-- Dump completed on 2024-11-15 19:02:50

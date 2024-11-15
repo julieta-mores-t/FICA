@@ -20,6 +20,8 @@ from controlador.controlador_impuestos import editar_material_impuesto_endpoint
 from controlador.controlador_impuestos import mostrar_impuesto_material_endpoint
 from controlador.controlador_impuestos import eliminar_material_impuesto_endpoint
 from controlador.controlador_stock import mostrar_stock_endpoint
+from controlador.controlador_socios import mostrar_socios_endpoint
+from controlador.controlador_socios import agragar_socio_endpoint
 
 
 
@@ -175,6 +177,22 @@ def mostrar_stock():
 
 
 
+
+
+# --------------------------------------------------------------------
+#---------------------------------socios-------------------------------
+# --------------------------------------------------------------------
+
+#-----------------------------mostrar socios---------------------------
+@aplicacion.route("/api/mostrar_socios", methods = ["GET"])
+def mostrar_socios():
+    return mostrar_socios_endpoint()
+
+#-----------------------------agregar socios---------------------------
+@aplicacion.route("/api/agregar_socios", methods = ["POST"])
+def agregar_socios():
+    return agragar_socio_endpoint()
+           
 
 
 

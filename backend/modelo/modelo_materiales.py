@@ -28,7 +28,11 @@ def agregar_material(material):
 
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
+<<<<<<< HEAD
         "INSERT INTO deposito (material, cantidad, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+=======
+        "INSERT INTO deposito (material, cantidad, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES ( %s, %s, %s, %s, %s, %s, %s)",
+>>>>>>> c1e0d6f8ebd49a823bcd09e2ba8aa5c4eb893da4
         (nombre_material, cantidad, proveedor_id,ganancia,detalle,unidad_medida,precio_cantidad)
     )
     conexion.commit()

@@ -6,6 +6,7 @@ from modelo.modelo_impuestos import agregar_material_impuesto
 from modelo.modelo_impuestos import editar_material_impuesto
 from modelo.modelo_impuestos import mostrar_material_impuesto
 from modelo.modelo_impuestos import eliminar_material_impuesto
+from modelo.modelo_impuestos import mostrar_un_impuesto
 
 
 
@@ -41,4 +42,8 @@ def mostrar_impuesto_material_endpoint():
 
 def eliminar_material_impuesto_endpoint(id):
     return eliminar_material_impuesto(id)
+
+
+def mostrar_un_impuesto_endpoint(id):
+    return mostrar_un_impuesto(id)
     

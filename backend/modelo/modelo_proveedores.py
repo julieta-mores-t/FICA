@@ -73,6 +73,30 @@ def editar_proveedor(proveedor,id):
     return {"mensaje": "Proveedor actualizado con éxito"}, 200
 
 
+def mostrar_un_proveedor(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    
+    cursor.execute("""
+        SELECT * 
+        FROM proveedores
+        WHERE id = %s;
+    """, (id,))  
+    proveedor = cursor.fetchone()
+  
+    columnas = [desc[0] for desc in cursor.description]
+
+    cursor.close()
+    conexion.close()
+
+    if proveedor:
+        
+        json_proveedor = {columnas[i]: proveedor[i] for i in range(len(columnas))}
+        return json_proveedor
+    else:
+        return None 
+
+
 
 
     

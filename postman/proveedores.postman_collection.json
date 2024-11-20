@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "66ae4db2-4c48-416d-a644-79d3298a3b74",
+		"name": "proveedores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524",
+		"_collection_link": "https://fica00.postman.co/workspace/FICA-Workspace~5b1b71ce-9c39-46e5-8b88-009b3ef33e78/collection/27140524-66ae4db2-4c48-416d-a644-79d3298a3b74?action=share&source=collection_link&creator=27140524"
+	},
+	"item": [
+		{
+			"name": "editar proveedores",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Proveedores SA\",\r\n    \"mail\": \"contacto@proveedoressa.com\",\r\n    \"telefono\": \"+54 11 1234-5678\",\r\n    \"descripcion\": \"Empresa dedicada a la distribución de materiales de construcción.\",\r\n    \"cuit\": \"30-12345678-9\",\r\n    \"ciudad\": \"Buenos Aires\",\r\n    \"codigo_postal\": \"5000\",\r\n    \"barrio\": \"Palermo\",\r\n    \"razon_social\": \"Proveedores S.A.\",\r\n    \"direccion\": \"Av. Corrientes\",\r\n    \"numero\": \"1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_proveedor/9",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_proveedor",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar proveedor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"3512565896\",\r\n  \"descripcion\": \"otra descripcion\",\r\n  \"cuit\": \"30-25632361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"lomas\",\r\n  \"razon_social\": \"ferro sa.\",\r\n  \"direccion\": \"calle\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_porveedor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_porveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar proveedores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_proveedores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar un proveedor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_proveedor/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_un_proveedor",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

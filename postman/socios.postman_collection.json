@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "5ec49b46-1c86-4469-8304-1105ed527bbc",
+		"name": "socios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524",
+		"_collection_link": "https://fica00.postman.co/workspace/FICA-Workspace~5b1b71ce-9c39-46e5-8b88-009b3ef33e78/collection/27140524-5ec49b46-1c86-4469-8304-1105ed527bbc?action=share&source=collection_link&creator=27140524"
+	},
+	"item": [
+		{
+			"name": "mostrar socios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_socios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_socios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar un socio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_socio/7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_un_socio",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar socio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"telefono\": \"11-98765432\",\r\n    \"direccion\": \"Calle Ficticia 123\",\r\n    \"numero\": \"362\",\r\n    \"barrio\": \"Villa del Parque\",\r\n    \"correo\": \"juanperez@mail.com\",\r\n    \"dni\": \"23652112\",\r\n    \"estado_civil\": \"Soltero\",\r\n    \"nacionalidad\": \"Argentina\",\r\n    \"ciudad\": \"Buenos Aires\",\r\n    \"codigo_postal\": \"1400\",\r\n    \"fecha_nacimiento\": \"1985-06-15\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_socios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_socios"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

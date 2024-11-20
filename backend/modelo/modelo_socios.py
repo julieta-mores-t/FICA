@@ -47,6 +47,35 @@ def agregar_socio(datos):
     conexion.commit()
     conexion.close()
     cursor.close()
+
+
+
+def mostrar_un_socio(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    
+    cursor.execute("""
+        SELECT * 
+        FROM socios
+        WHERE id = %s;
+    """, (id,))  
+    proveedor = cursor.fetchone()
+  
+    columnas = [desc[0] for desc in cursor.description]
+
+    cursor.close()
+    conexion.close()
+
+    if proveedor:
+        
+        json_proveedor = {columnas[i]: proveedor[i] for i in range(len(columnas))}
+        return json_proveedor
+    else:
+        return None 
+    
+
+
+    
     
 
 

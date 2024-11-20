@@ -67,7 +67,7 @@ CREATE TABLE `deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_proveedor` (`proveedor`),
   CONSTRAINT `fk_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (64,'Acero',800,156,343,'alta',5,'aaa-001','2024-11-06 18:24:36',100,10,'ventas por metro','M3','125000'),(66,'Tornillo',800,125,272,'baja',5,'aaa-002','2024-11-07 16:36:02',80,21,'ventas por metro','unidad','100000'),(69,'clavos',100,1000,1575,'alta',5,'aaa-003','2024-11-07 16:48:17',25,26,'detalle a confirmar','kilo','100000'),(70,'Acero',100,NULL,NULL,'alta',5,'aaa-004','2024-11-15 16:06:47',25,NULL,'detalle a confirmar','metro',NULL),(71,'Acero',100,NULL,NULL,'alta',5,'aaa-005','2024-11-15 16:07:46',25,NULL,'detalle a confirmar','metro',NULL),(72,'piedra granza',1000,100,200,'alta',1,'aaa-006','2024-11-15 16:08:08',100,NULL,'sin detalles','M3','100000'),(73,'farol',520,231,277,'estado',5,'aaa-007','2024-11-15 16:16:09',20,NULL,'detalle','unidad_medida','120000'),(74,'cinta',520,38,46,'alta',5,'aaa-008','2024-11-15 16:22:08',20,NULL,'detalle','unidad_medida','20000'),(75,'puerta',500,NULL,NULL,'alta',5,'aaa-009','2024-11-15 16:53:00',20,NULL,NULL,NULL,NULL);
+INSERT INTO `deposito` VALUES (66,'piedra ',50000,4,4,'alta',5,'aaa-002','2024-11-07 16:36:02',10,21,'ventas por metro','metro','200000'),(69,'clavos',100,200,277,'alta',5,'aaa-003','2024-11-07 16:48:17',10,26,'detalle a confirmar','kilo','20000'),(86,'tornillos',400,25,28,'baja',6,'aaa-004','2024-11-16 14:33:47',10,NULL,'otros','unidad','10000');
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -166,13 +166,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `actualizar_precio_venta_nuevo` BEFORE INSERT ON `deposito` FOR EACH ROW BEGIN
+    SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `actualizar_precio_venta` BEFORE INSERT ON `deposito` FOR EACH ROW BEGIN
-    -- Calcula precio_venta al insertar un nuevo registro
-    IF NEW.porcentaje_imp IS NULL OR NEW.porcentaje_imp = 0 THEN
-        SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100);
-    ELSE
-        SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100) * (1 + NEW.porcentaje_imp / 100);
-    END IF;
+    SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100);
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -225,13 +237,10 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `actualizar_precio_venta_update` BEFORE UPDATE ON `deposito` FOR EACH ROW BEGIN
-    -- Verifica si porcentaje_imp está siendo agregado o modificado
-    IF OLD.porcentaje_imp IS NULL OR OLD.porcentaje_imp = 0 THEN
-        -- Si el registro anterior no tenía impuesto, agregar solo el nuevo porcentaje de impuesto
-        SET NEW.precio_venta = OLD.precio_venta * (1 + NEW.porcentaje_imp / 100);
-    ELSE
-        -- Si ya había impuesto, recalcula el precio_venta completo para incluir el nuevo valor
-        SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100) * (1 + NEW.porcentaje_imp / 100);
+    -- Verificar si ha cambiado precio, ganancia o precio_cantidad
+    IF NEW.precio <> OLD.precio OR NEW.ganancia <> OLD.ganancia OR NEW.precio_cantidad <> OLD.precio_cantidad THEN
+        -- Recalcular precio_venta si cambia cualquiera de las tres columnas
+        SET NEW.precio_venta = NEW.precio * (1 + NEW.ganancia / 100);
     END IF;
 END */;;
 DELIMITER ;
@@ -389,7 +398,7 @@ CREATE TABLE `material_impuesto` (
 
 LOCK TABLES `material_impuesto` WRITE;
 /*!40000 ALTER TABLE `material_impuesto` DISABLE KEYS */;
-INSERT INTO `material_impuesto` VALUES (51,64,3),(53,64,3),(54,66,1),(57,69,1),(58,69,3);
+INSERT INTO `material_impuesto` VALUES (54,66,1),(57,69,1),(58,69,3);
 /*!40000 ALTER TABLE `material_impuesto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -602,7 +611,7 @@ CREATE TABLE `stock` (
   PRIMARY KEY (`id`),
   KEY `stock_ibfk_1` (`material_id`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `deposito` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,7 +620,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (28,64,796),(30,66,770),(33,69,100),(34,70,100),(35,71,100),(36,72,1000),(37,73,520),(38,74,520),(39,75,500);
+INSERT INTO `stock` VALUES (30,66,49970),(33,69,100),(50,86,400);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,7 +660,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`, `socio`) VALUES (8,64,2,8,3,'2024-11-10 15:10:19',818.00,50.00,NULL),(9,64,2,8,3,'2024-11-10 15:10:40',818.00,20.00,NULL),(10,66,10,8,3,'2024-11-10 15:11:36',2720.00,90.00,NULL),(11,66,10,8,3,'2024-11-10 15:20:56',2720.00,20.00,NULL),(12,66,10,8,3,'2024-11-13 21:40:39',2720.00,10.00,2);
+INSERT INTO `ventas` (`id`, `id_material`, `cantidad`, `id_vendedor`, `id_comprador`, `fecha_venta`, `precio_venta`, `descuento`, `socio`) VALUES (10,66,10,8,3,'2024-11-10 15:11:36',2720.00,90.00,NULL),(11,66,10,8,3,'2024-11-10 15:20:56',2720.00,20.00,NULL),(12,66,10,8,3,'2024-11-13 21:40:39',2720.00,10.00,2);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -808,4 +817,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-15 19:02:50
+-- Dump completed on 2024-11-16 15:08:43

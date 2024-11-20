@@ -174,7 +174,7 @@ window.addEventListener("click", (event) => {
 
 // EDITAAR  PRODUCTOO-- Función para abrir el modal y cargar datos
 function abrirModalEdicion(codigoId) {
-    console.log("Cargando datos del producto con ID:", codigoId);
+    
     const modalEditar = document.getElementById("editarModal");
     modalEditar.style.display = "block";
 

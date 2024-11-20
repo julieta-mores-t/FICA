@@ -141,5 +141,31 @@ def editar_empleado(id,empleado):
 
 
 
+def mostrar_un_empleado(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    
+    cursor.execute("""
+        SELECT * 
+        FROM empleados
+        WHERE id = %s;
+    """, (id,))  
+    empleado = cursor.fetchone()
+  
+    columnas = [desc[0] for desc in cursor.description]
+
+    cursor.close()
+    conexion.close()
+
+    if empleado:
+        
+        json_empleado = {columnas[i]: empleado[i] for i in range(len(columnas))}
+        return json_empleado
+    else:
+        return None 
+
+
+
+
 
     

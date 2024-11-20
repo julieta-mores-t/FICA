@@ -179,6 +179,30 @@ def eliminar_material_impuesto(id):
 
     return f"Impuesto con ID {id} eliminado exitosamente."
 
+
+
+def mostrar_un_impuesto(id):
+    conexion = obtener_base()
+    cursor = conexion.cursor()
+    
+    cursor.execute("""
+        SELECT * 
+        FROM impuestos
+        WHERE id = %s;
+    """, (id,))  
+    impuesto = cursor.fetchone()
+  
+    columnas = [desc[0] for desc in cursor.description]
+
+    cursor.close()
+    conexion.close()
+
+    if impuesto:
+        
+        json_impuesto = {columnas[i]: impuesto[i] for i in range(len(columnas))}
+        return json_impuesto
+    else:
+        return None 
     
 
 

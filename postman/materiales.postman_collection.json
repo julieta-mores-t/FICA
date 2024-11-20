@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "e12d59df-6a83-410f-a13b-81fcae5bf3ce",
+		"name": "materiales",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524",
+		"_collection_link": "https://fica00.postman.co/workspace/FICA-Workspace~5b1b71ce-9c39-46e5-8b88-009b3ef33e78/collection/27140524-e12d59df-6a83-410f-a13b-81fcae5bf3ce?action=share&source=collection_link&creator=27140524"
+	},
+	"item": [
+		{
+			"name": "mostrar materiales",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_material",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_material"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar un solo material",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_material/69",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_un_material",
+						"69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar materiales",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"cinta\",\r\n  \"cantidad\": \"520\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": \"20\",\r\n  \"detalle\": \"detalle\",\r\n  \"unidad_medida\": \"unidad_medida\",\r\n  \"precio_cantidad\": \"20000\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_material",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_material"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar materiales",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 50000,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": 3500,\r\n  \"detalle\": \"ventas por metro\",\r\n  \"unidad_medida\": \"unidad\",\r\n  \"precio_cantidad\": \"200000\"\r\n  \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_materiales/66",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_materiales",
+						"66"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

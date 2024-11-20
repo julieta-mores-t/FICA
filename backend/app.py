@@ -3,11 +3,13 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from controlador.controlador_empleados import agregar_empleado_endpoint
 from controlador.controlador_empleados import mostrar_empleado_endpoint
+from controlador.controlador_empleados import mostrar_un_empleado_endpoint
 from controlador.controlador_empleados import editar_empleado_endpoint
 from controlador.controlador_materiales import agregar_material_endpoint
 from controlador.controlador_materiales import mostrar_material_endpoint
 from controlador.controlador_proveedores import mostrar_proveedor_endpoint
 from controlador.controlador_proveedores import agregar_proveedor_endpoint
+from controlador.controlador_proveedores import mostrar_un_proveedor_endpoint
 from controlador.controlador_proveedores import editar_proveedor_endpoint
 from controlador.controlador_materiales import editar_material_endpoint
 from controlador.controlador_materiales import mostrar_un_material_endpoint
@@ -19,9 +21,11 @@ from controlador.controlador_impuestos import agregar_material_impuesto_endpoint
 from controlador.controlador_impuestos import editar_material_impuesto_endpoint
 from controlador.controlador_impuestos import mostrar_impuesto_material_endpoint
 from controlador.controlador_impuestos import eliminar_material_impuesto_endpoint
+from controlador.controlador_impuestos import mostrar_un_impuesto_endpoint
 from controlador.controlador_stock import mostrar_stock_endpoint
 from controlador.controlador_socios import mostrar_socios_endpoint
 from controlador.controlador_socios import agragar_socio_endpoint
+from controlador.controlador_socios import mostrar_un_socio_endpoint
 
 
 
@@ -46,6 +50,11 @@ def agregar_empleado():
 @aplicacion.route("/api/mostrar_usuarios",methods=["GET"])
 def mostrar_usuario():
     return mostrar_empleado_endpoint()
+
+#-----------------------------mostrar un empleado---------------------
+@aplicacion.route("/api/mostrar_un_empleado/<int:id>",methods = ["GET"])
+def mostrar_un_empleado(id):
+    return mostrar_un_empleado_endpoint(id)
 
 
 
@@ -81,7 +90,7 @@ def mostrar_un_material(id):
     return mostrar_un_material_endpoint(id)
 
 #------------------------------editar material------------------------
-@aplicacion.route("/api/editar_materiales/<int:id>", methods = ["PUT", "OPTIONS"])
+@aplicacion.route("/api/editar_materiales/<int:id>", methods = ["PUT"])
 def editar_material(id):
     return editar_material_endpoint(id)
 
@@ -102,6 +111,12 @@ def editar_material(id):
 @aplicacion.route("/api/mostrar_proveedores", methods = ["GET"])
 def mostrar_proveedores():
     return mostrar_proveedor_endpoint()
+
+
+#-----------------------------mostrar un proveedor---------------------
+@aplicacion.route("/api/mostrar_un_proveedor/<int:id>",methods = ["GET"])
+def mostrar_un_proveedor(id):
+    return mostrar_un_proveedor_endpoint(id)
 
 #----------------------------agregar proveedores----------------------
 @aplicacion.route("/api/agregar_porveedor", methods = ["POST"])
@@ -127,6 +142,11 @@ def editar_proveedores(id):
 @aplicacion.route("/api/mostrar_impuesto", methods = ["GET"])
 def mostrar_impuestos():
     return mostrar_impuesto_endpoint()
+
+#-----------------------------mostrar un impuesto---------------------
+@aplicacion.route("/api/mostrar_un_impuesto/<int:id>",methods = ["GET"])
+def mostrar_un_impuesto(id):
+    return mostrar_un_impuesto_endpoint(id)
 
 #------------------------------agregar impuestos----------------------
 @aplicacion.route("/api/agregar_impuesto", methods = ["POST"])
@@ -187,6 +207,11 @@ def mostrar_stock():
 @aplicacion.route("/api/mostrar_socios", methods = ["GET"])
 def mostrar_socios():
     return mostrar_socios_endpoint()
+
+#-----------------------------mostrar un socio---------------------
+@aplicacion.route("/api/mostrar_un_socio/<int:id>",methods = ["GET"])
+def mostrar_un_socio(id):
+    return mostrar_un_socio_endpoint(id)
 
 #-----------------------------agregar socios---------------------------
 @aplicacion.route("/api/agregar_socios", methods = ["POST"])

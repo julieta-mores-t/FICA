@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "98446176-7950-469d-86b3-6bc9975763f7",
+		"name": "stock",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524",
+		"_collection_link": "https://fica00.postman.co/workspace/FICA-Workspace~5b1b71ce-9c39-46e5-8b88-009b3ef33e78/collection/27140524-98446176-7950-469d-86b3-6bc9975763f7?action=share&source=collection_link&creator=27140524"
+	},
+	"item": [
+		{
+			"name": "mostrar stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_stock",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_stock"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

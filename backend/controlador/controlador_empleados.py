@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from modelo.modelo_empleados import agregar_empleado
 from modelo.modelo_empleados import mostrar_usuarios
 from modelo.modelo_empleados import editar_empleado
+from modelo.modelo_empleados import mostrar_un_empleado
 
 
 
@@ -38,6 +39,10 @@ def verificar_contrasena_endpoint():
 def editar_empleado_endpoint(id):
     datos = request.get_json()
     return editar_empleado(id,datos)
+
+
+def mostrar_un_empleado_endpoint(id):
+    return jsonify(mostrar_un_empleado(id)),200
     
 
 

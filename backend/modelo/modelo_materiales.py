@@ -28,11 +28,7 @@ def agregar_material(material):
 
     # Insertar el nuevo material en la tabla deposito utilizando el id del proveedor
     cursor.execute(
-<<<<<<< HEAD
-        "INSERT INTO deposito (material, cantidad, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-=======
         "INSERT INTO deposito (material, cantidad, proveedor,ganancia,detalle,unidad_medida,precio_cantidad) VALUES ( %s, %s, %s, %s, %s, %s, %s)",
->>>>>>> c1e0d6f8ebd49a823bcd09e2ba8aa5c4eb893da4
         (nombre_material, cantidad, proveedor_id,ganancia,detalle,unidad_medida,precio_cantidad)
     )
     conexion.commit()
@@ -53,12 +49,15 @@ def mostrar_material():
     cursor = conexion.cursor()
     
     cursor.execute("""
-        SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
-       p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia,detalle,unidad_medida,precio_cantidad
-FROM deposito d
-JOIN proveedores p ON d.proveedor = p.id
-LIMIT 0, 200;
-    """)
+    SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
+           p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia,
+           d.detalle, d.unidad_medida, d.precio_cantidad
+    FROM deposito d
+    JOIN proveedores p ON d.proveedor = p.id
+    ORDER BY d.codigo
+    LIMIT 0, 200;
+""")
+
     
     materiales = cursor.fetchall()
 
@@ -90,8 +89,8 @@ def mostrar_un_material(id):
     cursor = conexion.cursor()
     
     cursor.execute("""
-        SELECT d.id, d.codigo, d.material, d.cantidad, d.precio, d.precio_venta, 
-        p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia
+        SELECT d.id, d.codigo, d.material, d.cantidad, d.precio_cantidad, d.precio_venta, 
+        p.nombre AS proveedor, d.estado, d.fecha_ingreso, d.ganancia,unidad_medida,detalle
         FROM deposito d
         JOIN proveedores p ON d.proveedor = p.id
         WHERE d.id = %s;  -- Filtrar por el ID del material
@@ -121,6 +120,7 @@ def editar_material(id, material):
     ganancia = material.get("ganancia")
     detalle = material.get("detalle")
     unidad_medida = material.get("unidad_medida")
+    precio_cantidad = material.get("precio_cantidad")
 
     conexion = obtener_base()
     cursor = conexion.cursor()
@@ -139,9 +139,9 @@ def editar_material(id, material):
     # Actualizar solo las columnas especificadas en la tabla deposito
     cursor.execute("""
         UPDATE deposito
-        SET material = %s, cantidad = %s, estado = %s, proveedor = %s, ganancia = %s, detalle = %s,unidad_medida = %s
+        SET material = %s, cantidad = %s, estado = %s, proveedor = %s, ganancia = %s, detalle = %s,unidad_medida = %s,precio_cantidad =%s
         WHERE id = %s
-    """, (nombre_material, cantidad, estado, proveedor_id, ganancia, detalle, unidad_medida, id))
+    """, (nombre_material, cantidad, estado, proveedor_id, ganancia, detalle,unidad_medida,precio_cantidad, id))
 
     conexion.commit()
     cursor.close()

@@ -21,3 +21,4 @@ def mostrar_un_material_endpoint(id):
 def editar_material_endpoint(id):
     datos_material = request.get_json()
     return editar_material(id, datos_material)
+

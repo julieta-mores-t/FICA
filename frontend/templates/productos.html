@@ -79,7 +79,8 @@
         <div id="materialModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2 class="modal-title">CARGA DE MATERIAL</h2>
+                <h2 class="modal-title " >CARGA DE MATERIAL</h2>
+                <span class="linea-divisoria"></span>
 
                 <form id="materialForm">
                     <div class="form-group">
@@ -150,94 +151,99 @@
             </div>
         </div>
 
-        
-                <!-- Modal EDITAR PRODUCTO-->
-                <div id="editarModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <h2 class="modal-title">EDITAR MATERIAL</h2>
-        
-                        <form id="materialForm">
-                            <div class="form-group">
-                                <label for="nombre-producto">NOMBRE DEL PRODUCTO:</label>
-                                <input type="text" id="material">
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="cantidad">CANTIDAD:</label>
-                                <input type="number" id="cantidad">
-                            </div>
 
-                            <div class="form-group">
-                                <label for="estado">ESTADO:</label>
-                                <select id="estado">
-                                    <option value="alta">Alta</option>
-                                    <option value="baja">Baja</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="proveedor">PROVEEDORES:</label>
-                                <select id="proveedor">
-                                    <option value=""></option>
-                                </select>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="margen-ganancia">MARGEN DE GANANCIA:</label>
-                                <input type="number" id="ganancia">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="observaciones">OBSERVACIONES:</label>
-                                <textarea id="detalle"></textarea>
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="unidadMedida">UNIDAD DE MEDIDA:</label>
-                                <select id="unidad_medida" placeholder="Elija una opción" required>
-                                    <option value=""></option>
-                                    <option value="bolsa">Bolsa</option>
-                                    <option value="metro">Metro</option>
-                                    <option value="unidad">Unidad</option>
-                                    <option value="kilo">Kilo</option>
-                                    <option value="rollo">Rollo</option>
-                                </select>
-                            </div>
-        
-                            <button type="submit" class="btn-guardar">GUARDAR</button>
-                        </form>
+        <!-- Modal para editar producto -->
+        <div id="editarModal" class="modal">
+            <div class="modal-content">
+                <span class="closeEdit">&times;</span>
+                <h2 class="modal-title">EDITAR PRODUCTO</h2>
+                <span class="linea-divisoria"></span>
+                <form id="editarMaterialForm" data-id="">
+                    <div class="form-group">
+                        <label for="editar-material">Nombre del Producto:</label>
+                        <input type="text" id="editar-material">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="editar-cantidad">Cantidad:</label>
+                        <input type="number" id="editar-cantidad">
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-unidad-medida">Unidad de Medida:</label>
+                        <select id="editar-unidad-medida">
+                            <option value="">Seleccione...</option>
+                            <option value="bolsa">Bolsa</option>
+                            <option value="metro">Metro</option>
+                            <option value="unidad">Unidad</option>
+                            <option value="kilo">Kilo</option>
+                            <option value="rollo">Rollo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-proveedor">Proveedor:</label>
+                        <input type="text" id="editar-proveedor">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-precio-compra">Precio de Compra:</label>
+                        <input type="number" id="editar-precio-compra">
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-ganancia">Margen de Ganancia (%):</label>
+                        <input type="number" id="editar-ganancia">
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-detalle">Observaciones:</label>
+                        <textarea id="editar-detalle"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editar-estado">Estado:</label>
+                        <select id="editar-estado" required>
+                            <option value="alta">Alta</option>
+                            <option value="baja">Baja</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-success" id="guardarCambiosBtn">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+
 
 
         <!-- Modal DETALLE DE PRODUCTO -->
-        <div id="detalleProductoModal" class="modal">
+        <div id="detalleModal" class="modal">
             <div class="modal-content">
-                <span class="close" id="closeDetalleModal">&times;</span>
-                <h2>DETALLE DEL PRODUCTO</h2>
-                <div class="modal-body">
-                    <div class="caracteristicas">
-                        <h3>Características</h3>
-                        <p id="material"></p>
-                        <p id="cantidad"></p>
-                        <p id="unidad_medida"></p>
-                        <p id="proveedor"></p>
-                    </div>
-                    <div class="precio-compra">
-                        <h3>Precio Compra</h3>
-                        <p id="precio"></p>
-                    </div>
-
-                    <h3 class="precio-final">Precio Final</h3>
-                    <p id="precio_venta"></p>
+                <span class="closeDetail">&times;</span>
+                <h2 class="modal-title">DETALLE DEL PRODUCTO</h2>
+                <span class="linea-divisoria"></span>
+                <div>
+                    <h3 class="modal-title">CARACTERÍSTICAS</h3>
+                    <p><strong>Nombre:</strong> <span id="detalle-nombre"></span></p>
+                    <p><strong>Cantidad:</strong> <span id="detalle-cantidad"></span></p>
+                    <p><strong>Unidad de Medida:</strong> <span id="detalle-unidad-medida"></span></p>
+                    <p><strong>Nombre de Proveedor:</strong> <span id="detalle-proveedor"></span></p>
+                    <span class="linea-divisoria"></span>
+                    <h3 class="modal-title">PRECIO DE COMPRA</h3>
+                    <p><strong>Precio:</strong> <span id="detalle-precio-compra"></span></p>
+                    <span class="linea-divisoria"></span>
+                    <h3 class="modal-title">DETALLE</h3>
+                    <p><strong>Ganancia:</strong> <span id="detalle-ganancia"></span></p>
+                    <p><strong>Detalle:</strong> <span id="detalle-detalle"></span></p>
+                    <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
+                    <span class="linea-divisoria"></span>
+                    <h3 class="modal-title">PRECIO FINAL:</h3> 
+                    <p><strong>Precio:</strong><span id="detalle-precio-final"></span></p>
                 </div>
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="../scripts/productos.js"></script>
-        <script src="../scripts/cerrarsesion.js"></script>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/productos.js"></script>
+    <script src="../scripts/cerrarsesion.js"></script>
 
 </body>
 

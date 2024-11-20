@@ -44,7 +44,6 @@ td .badge-alta {
     padding: 20px;
     background-color: #fff;
     gap: 50px;
-    /* Espacio entre el h2 y el campo de búsqueda */
 }
 
 /* Estilo del título */
@@ -59,9 +58,7 @@ td .badge-alta {
 .search-container {
     position: relative;
     flex-grow: 1;
-    /* Hace que el campo de búsqueda ocupe el espacio sobrante */
     max-width: 300px;
-    /* Controla el ancho máximo */
 }
 
 /* Estilo del input de búsqueda */
@@ -104,6 +101,8 @@ td .badge-alta {
 }
 
 /* Estilos generales del modal */
+
+/* Estilos generales del modal */
 .modal {
     display: none; /* Oculto por defecto */
     position: fixed;
@@ -124,6 +123,7 @@ td .badge-alta {
     max-width: 500px;
 }
 
+
 .close {
     float: right;
     font-size: 24px;
@@ -140,14 +140,15 @@ td .badge-alta {
     text-align: center;
 }
 
-.modal-title::after {
-    content: "";
+/* Líneas rojas debajo de las secciones */
+
+.linea-divisoria {
+    border: none;
+    border-top: 2px solid #c92a2a; /* Línea roja */
+    margin: 10px 0;
     display: block;
-    width: 80%;
-    height: 2px;
-    background-color: #D9534F; /* Rojo */
-    margin: 5px auto 15px;
 }
+
 
 .form-group {
     display: flex;
@@ -196,7 +197,7 @@ textarea {
     height: 100px;
 }
 
-.btn-guardar {
+.btn-guardar, .btn-success {
     width: 30%;
     margin: 0 auto;
     display: block; 
@@ -226,7 +227,6 @@ textarea {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-  
 
 .modal-contenido {
     background-color: #fff;
@@ -238,7 +238,8 @@ textarea {
     text-align: center;
 }
 
-.close {
+.close, .closeEdit, .closeEdit {
+    width: fit-content;
     color: #080707;
     float: right;
     font-size: 20px;
@@ -268,10 +269,8 @@ textarea {
 }
 
 /* Botón de cerrar "X" en la esquina superior derecha */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.close-btn, .closeEdit, .closeDetail {
+    width: fit-content;
     font-size: 20px;
     color: #000;
     cursor: pointer;
@@ -291,14 +290,17 @@ textarea {
     text-align: center;
 }
 
-.caracteristicas, .precio-compra, .impuestos {
-    display: inline-block;
-    width: 48%;
-    vertical-align: top;
-}
 
-.precio-final {
-    color: #4CAF50;
-    font-weight: bold;
-    margin-top: 20px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+

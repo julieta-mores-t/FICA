@@ -25,17 +25,18 @@
 }
 
 
-.bg-proveedores {
+.bg-socios {
     background-color: #2e003e;
 }
 
-.bg-socios {
+.bg-empleados {
     background-color: #ffdc00;
 }
 
-.bg-empleados {
-    background-color: orangered;
+.bg-proveedores {
+    background-color: green;
 }
+
 
 .hover-content {
     position: absolute;
@@ -52,6 +53,7 @@
     font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 6px;
 }
 
 .col-md-3:hover .hover-content {

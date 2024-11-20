@@ -36,8 +36,8 @@
         <div class="header-title">
             <h2>PROVEEDORES</h2>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar...">
-                <span class="search-icon">
+                <input type="text" class="search-input" placeholder="Buscar..." id="buscarInput">
+                <span class="search-icon" id="iconoBuscar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
                         <path
@@ -48,158 +48,234 @@
         </div>
 
         <section class="proveedores d-flex flex-column">
-            <button id="openModal1Btn" class="btn btn-primary align-self-end">Agregar Proveedor</button>
+            <button id="openModalBtn" class="btn btn-primary align-self-end">Agregar Proveedor</button>
             <div class="table-responsive">
                 <table class="table table-bordered text-center mt-4">
                     <thead>
                         <tr>
-                            <th>NOMBRE</th>
-                            <th>RAZÓN SOCIAL</th>
-                            <th>CIUDAD</th>
-                            <th>DOMICILIO</th>
-                            <th>FECHA INGR.</th>
-                            <th>EMAIL</th>
-                            <th>CUIT</th>
-                            <th>TELEFONO</th>
-                            <th>ESTADO</th>
-                            <th>ACCIONES</th>
+                            <th>Nombre</th>
+                            <th>Razón Social</th>
+                            <th>Ciudad</th>
+                            <th>Domicilio</th>
+                            <th>Fecha Ingreso</th>
+                            <th>Email</th>
+                            <th>Cuit</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="proveedores-body"></tbody>
+                    <tbody id="proveedores-body">
+                    </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- MODAL AGREGAR PROVEEDOR -->
-        <div id="materialModal1" class="modal1">
-            <div class="modal-content1">
+
+
+        <!-- MODAL AGREGAR PROVEEDOR-->
+        <div id="proveedorModal" class="modal">
+            <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2 class="modal-title1">CARGA DE PROVEEDOR</h2>
+                <h2 class="modal-title ">CARGA DE PROVEEDOR</h2>
+                <span class="linea-divisoria"></span>
 
                 <form id="proveedorForm">
                     <div class="form-group">
-                        <label for="nombre-proveedor">NOMBRE:</label>
+                        <label for="nombre-proveedor">Nombres:</label>
                         <input type="text" id="nombre" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cuit">NUMERO DE CUIT:</label>
+                        <label for="numero-cuit">Número de CUIT:</label>
                         <input type="number" id="cuit" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="razon_social">RAZON SOCIAL:</label>
-                        <input type="number" id="razon_social" placeholder="Escriba aquí..." required>
+                        <label for="razon-social">Razón Social:</label>
+                        <input type="text" id="razon_social" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="ciudad">CIUDAD:</label>
+                        <label for="ciudad">Ciudad:</label>
                         <input type="text" id="ciudad" placeholder="Escriba aquí..." required>
                     </div>
 
-
                     <div class="form-group">
-                        <label for="direccion">DIRECCIÓN:</label>
-                        <input type="text" id="direccion" placeholder="Escriba aqui..." required>
+                        <label for="codigo-postal">Código Postal:</label>
+                        <input type="number" id="codigo_postal" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefono">TELÉFONO:</label>
+                        <label for="barrio">Barrio:</label>
+                        <input type="text" id="barrio" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número:</label>
+                        <input type="number" id="numero" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfonos:</label>
                         <input type="number" id="telefono" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
-                        <label for="mail">CORREO ELECTRÓNICO:</label>
-                        <input type="email" id="mail" placeholder="Escriba aqui.." required>
+                        <label for="mail">Correo Electrónico:</label>
+                        <input type="email" id="mail" placeholder="Escriba aquí..." required>
                     </div>
-
 
                     <div class="form-group">
                         <label for="observaciones">OBSERVACIONES:</label>
-                        <textarea id="observaciones" placeholder="Escriba las observaciones..."></textarea>
+                        <textarea id="detalle" placeholder="Escriba las observaciones..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-guardar">GUARDAR</button>
                 </form>
             </div>
+
+            <!-- Modal de Confirmación -->
+            <div id="confirmModal" class="modal_confirm">
+                <div class="modal-contenido">
+                    <span class="close" onclick="closeModalById('confirmModal')">&times;</span>
+                    <p>¿Quieres guardar los cambios realizados?</p>
+                    <button onclick="confirmSave()" class="confirm-btn">Si, confirmo</button>
+                </div>
+            </div>
         </div>
 
-        <!-- MODAL EDITAR -->
-        <div id="editModal2" class="modal2">
-            <div class="modal-content2">
-                <span class="close2" onclick="closeModal()">&times;</span>
-                <h2>Editar Proveedor</h2>
-                <form id="editForm">
-                    <label for="editNombre">Nombre:</label>
-                    <input type="text" id="editNombre" name="nombre">
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="modal_confirm">
+            <div class="modal-contenido">
+                <span class="close" onclick="closeModalById('successModal')">&times;</span>
+                <p><span class="check-icon">&#10003;</span> Sus datos se guardaron correctamente</p>
+            </div>
+        </div>
 
-                    <label for="editRazonSocial">Razón Social:</label>
-                    <input type="text" id="editRazonSocial" name="razon_social">
 
-                    <label for="editCiudad">Ciudad:</label>
-                    <input type="text" id="editCiudad" name="ciudad">
+        <!-- MODAL EDITAR PROVEEDOR -->
+        <div id="editarModal" class="modal">
+            <div class="modal-content">
+                <span class="closeEdit">&times;</span>
+                <h2 class="modal-title">EDITAR PROVEEDOR</h2>
+                <span class="linea-divisoria"></span>
 
-                    <label for="editDireccion">Domicilio:</label>
-                    <input type="text" id="editDireccion" name="direccion">
+                <form id="editarProveedorForm" data-id="">
+                    <div class="form-group">
+                        <label for="nombre-proveedor">Nombres:</label>
+                        <input type="text" id="nombre">
+                    </div>
 
-                    <label for="editFechaIngreso">Fecha de Ingreso:</label>
-                    <input type="date" id="editFechaIngreso" name="fecha_ingreso">
+                    <div class="form-group">
+                        <label for="numero-cuit">Número de CUIT:</label>
+                        <input type="number" id="cuit">
+                    </div>
 
-                    <label for="editEmail">Email:</label>
-                    <input type="email" id="editEmail" name="email">
+                    <div class="form-group">
+                        <label for="razon-social">Razón Social:</label>
+                        <input type="text" id="razon_social">
+                    </div>
 
-                    <label for="editCuit">CUIT:</label>
-                    <input type="text" id="editCuit" name="cuit">
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad:</label>
+                        <input type="text" id="ciudad">
+                    </div>
 
-                    <label for="editTelefono">Teléfono:</label>
-                    <input type="text" id="editTelefono" name="telefono">
+                    <div class="form-group">
+                        <label for="codigo-postal">Código Postal:</label>
+                        <input type="number" id="codigo_postal">
+                    </div>
 
-                    <button type="submit">Guardar Cambios</button>
+                    <div class="form-group">
+                        <label for="barrio">Barrio:</label>
+                        <input type="text" id="barrio">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número:</label>
+                        <input type="number" id="numero">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfonos:</label>
+                        <input type="number" id="telefono">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Correo Electrónico:</label>
+                        <input type="email" id="mail">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editar-estado">Estado:</label>
+                        <select id="editar-estado" required>
+                            <option value="alta">Alta</option>
+                            <option value="baja">Baja</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observaciones">OBSERVACIONES:</label>
+                        <textarea id="detalle" placeholder="Escriba las observaciones..."></textarea>
+                    </div>
+                    <button type="button" class="btn-success" id="guardarCambiosBtn">Guardar</button>
                 </form>
             </div>
         </div>
 
-        <!-- Modal para detalle de proveedor -->
-        <div id="detalleModal3" class="modal3">
-            <div class="modal-content3">
-                <span class="close3" onclick="cerrarDetalleModal()">&times;</span>
-                <h2>Detalle del Proveedor</h2>
 
-                <div class="detalle-seccion">
-                    <h3>Información Personal</h3>
-                    <p><strong>Nombre:</strong> <span id="detalleNombre"></span></p>
-                    <p><strong>Razón Social:</strong> <span id="detalleRazonSocial"></span></p>
-                    <p><strong>CUIT:</strong> <span id="detalleCuit"></span></p>
-                </div>
+        <!-- MODAL DETALLE DE PROVEEDOR -->
+        <div id="detalleModal" class="modal">
+            <div class="modal-content">
+                <span class="closeDetail">&times;</span>
+                <h2 class="modal-title">DETALLE DEL PROVEEDOR</h2>
+                <span class="linea-divisoria"></span>
+                <div>
+                    <h3 class="modal-title">Información Personal</h3>
+                    <p><strong>Nombre:</strong> <span id="detalle-nombre"></span></p>
+                    <p><strong>Razón Social:</strong> <span id="detalle-razon-social"></span></p>
+                    <p><strong>CUIT:</strong> <span id="detalle-cuit"></span></p>
+                    <span class="linea-divisoria"></span>
 
-                <div class="detalle-seccion">
-                    <h3>Contactos</h3>
-                    <p><strong>Correo:</strong> <span id="detalleCorreo"></span></p>
-                    <p><strong>Teléfono:</strong> <span id="detalleTelefono"></span></p>
-                </div>
+                    <h3 class="modal-title">Contactos</h3>
+                    <p><strong>Correo:</strong> <span id="detalle-mail"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="detalle-telefono"></span></p>
+                    <span class="linea-divisoria"></span>
 
-                <div class="detalle-seccion">
-                    <h3>Ubicación</h3>
-                    <p><strong>Ciudad:</strong> <span id="detalleCiudad"></span></p>
-                    <p><strong>Código Postal:</strong> <span id="detalleCodigoPostal"></span></p>
-                    <p><strong>Barrio:</strong> <span id="detalleBarrio"></span></p>
-                    <p><strong>Dirección:</strong> <span id="detalleDireccion"></span></p>
-                    <p><strong>Número:</strong> <span id="detalleNumero"></span></p>
-                    <p><strong>Fecha de Ingreso:</strong> <span id="detalleFechaIngreso"></span></p>
-                </div>
+                    <h3 class="modal-title">Ubicación</h3>
+                    <p><strong>Ciudad:</strong> <span id="detalle-ciudad"></span></p>
+                    <p><strong>Código Postal:</strong> <span id="detalle-codigo-postal"></span></p>
+                    <p><strong>Barrio:</strong> <span id="detalle-barrio"></span></p>
+                    <p><strong>Dirección:</strong> <span id="detalle-direccion"></span></p>
+                    <p><strong>Número:</strong> <span id="detalle-numero"></span></p>
+                    <p><strong>Fecha de Ingreso:</strong> <span id="detalle-fecha-ingreso"></span></p>
+                    <span class="linea-divisoria"></span>
 
-                <div class="detalle-seccion">
-                    <h3>Estado del Proveedor</h3>
-                    <p id="detalleEstado"></p>
+                    <h3 class="modal-title">Estado del Proveedor</h3>
+                    <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
+                    <span class="linea-divisoria"></span>
                 </div>
             </div>
         </div>
 
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/proveedores.js"></script>
+    <script src="../scripts/productos.js"></script>
     <script src="../scripts/cerrarsesion.js"></script>
+
 </body>
 
 </html>

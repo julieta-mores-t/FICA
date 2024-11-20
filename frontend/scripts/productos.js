@@ -41,6 +41,10 @@ searchInput.addEventListener('input', () => {
 
 
 
+
+
+
+
 // Referencias a los elementos del DOM
 const modal = document.getElementById("materialModal");
 const openModalBtn = document.getElementById("openModalBtn");
@@ -124,6 +128,11 @@ function confirmSave() {
     guardarDatosEnBaseDeDatos();
 }
 
+
+
+
+
+
 // Función para guardar datos en la base de datos
 function guardarDatosEnBaseDeDatos() {
     const datos = {
@@ -135,7 +144,7 @@ function guardarDatosEnBaseDeDatos() {
         proveedor: document.getElementById("proveedor").value,
         precio_cantidad: document.getElementById("precio_cantidad").value,
     };
-    console.log(material);
+    
     fetch("http://127.0.0.1:5000/api/agregar_material", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -149,6 +158,13 @@ function guardarDatosEnBaseDeDatos() {
         })
         .catch(error => console.error('Error al agregar el material:', error));
 }
+
+
+
+
+
+
+
 
 // Mostrar el modal de confirmación al hacer submit
 document.getElementById("materialForm").addEventListener("submit", (event) => {
@@ -172,40 +188,19 @@ window.addEventListener("click", (event) => {
 
 
 
-// EDITAAR  PRODUCTOO-- Función para abrir el modal y cargar datos
-function abrirModalEdicion(codigoId) {
-    
-    const modalEditar = document.getElementById("editarModal");
-    modalEditar.style.display = "block";
 
-    fetch(`http://127.0.0.1:5000/api/mostrar_material/${codigoId}`)
-        .then(response => response.json())
-        .then(material => {
-            document.getElementById("material").value = material.material || '';
-            document.getElementById("cantidad").value = material.cantidad || '';
-            document.getElementById("estado").value = material.estado || '';
-            document.getElementById("proveedor").value = material.proveedor || '';
-            document.getElementById("ganancia").value = material.ganancia || '';
-            document.getElementById("detalle").value = material.detalle || '';
-            document.getElementById("unidad_medida").value = material.unidad_medida || '';
-        })
-        .catch(error => console.error('Error al cargar los datos del producto:', error));
-}
-
-// Función para agregar eventos a los botones "Editar"
-function agregarEventosEditar() {
-    document.querySelectorAll(".btn-editar").forEach(button => {
-        button.addEventListener("click", event => {
-            event.preventDefault();
-            const codigoId = button.getAttribute("data-id");
-            abrirModalEdicion(codigoId);
-        });
-    });
-}
 
 // Cerrar modal al hacer clic en el botón de cierre
+
 document.querySelector(".closeEdit").addEventListener("click", () => {
-    document.getElementById("editarMaterialModal").style.display = "none";
+    document.getElementById("editarModal").style.display = "none";
+});
+
+window.addEventListener("click", event => {
+    const modal = document.getElementById("editarModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
 });
 
 // Cargar los materiales al cargar la página
@@ -216,88 +211,165 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+   //***EDITAR PRODUCTO***//
+
+// Seleccionamos el modal y los campos del formulario de edición tambien sirve para el de detalle hay que hacer otro modal y otro codigo como este solo para el detalle
+const editarModal = document.getElementById('editarModal');
+const closeEditBtn = editarModal.querySelector('.closeEdit'); // Botón para cerrar el modal
+
+// Abrir el modal al hacer clic en "Editar"
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('btn-editar')) {
+        event.preventDefault(); // Evitar la acción predeterminada del enlace
+
+        // Obtener el ID del material desde el atributo data-id
+        const materialId = event.target.getAttribute('data-id');
+        
+
+        // Abrir el modal de edición
+        const editarModal = document.getElementById('editarModal');
+        editarModal.style.display = 'block';
+
+        // Llamar al API para obtener los datos del material
+        fetch(`http://127.0.0.1:5000/api/mostrar_un_material/${materialId}`)
+            .then(response => response.json())
+            .then(data => {
+                
+
+                // Llenar los campos del formulario con los datos obtenidos
+                document.getElementById('editar-material').value = data.material;
+                document.getElementById('editar-cantidad').value = data.cantidad;
+                document.getElementById('editar-unidad-medida').value = data.unidad_medida;
+                document.getElementById('editar-proveedor').value = data.proveedor;
+                document.getElementById('editar-precio-compra').value = data.precio_cantidad;
+                document.getElementById('editar-ganancia').value = data.ganancia;
+                document.getElementById('editar-detalle').value = data.detalle || '';  // significa que si arroja falso el resultado, coloca vacio en el imput
+                document.getElementById('editar-estado').value = data.estado;
+
+                // Asignar el ID del material al campo de material
+                document.getElementById('editar-material').setAttribute('data-id', materialId);
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos del material:', error);
+            });
+    }
+});
 
 
-// // BOTON DETALLE PRODUCTO
 
-// // Función para cargar productos en la tabla
-// function cargarMateriales() {
-//     fetch('http://127.0.0.1:5000/api/mostrar_material')
-//         .then(response => {
-//             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-//             return response.json();
-//         })
-//         .then(materiales => {
-//             const tbody = document.getElementById('materiales-body');
-//             tbody.innerHTML = materiales.map(material => `
-//                 <tr>
-//                     <td>${material.codigo}</td>
-//                     <td>${material.material}</td>
-//                     <td>${material.unidad_medida}</td>
-//                     <td>${material.proveedor}</td>
-//                     <td>${material.cantidad}</td>
-//                     <td>${material.fecha_ingreso}</td>
-//                     <td>${material.ganancia}</td>
-//                     <td>${material.precio}</td>
-//                     <td>${material.precio_venta}</td>
-//                     <td><span class="badge ${material.estado === 'alta' ? 'badge-alta' : 'badge-baja'}">${material.estado}</span></td>
-//                     <td class="actions">
-//                         <a href="#" class="btn-editar" data-id="${material.id}">Editar</a>
-//                         <a href="#" class="btn-detalle" data-id="${material.id}">Detalle</a>
-//                     </td>
-//                 </tr>
-//             `).join('');
-//             agregarEventosEditar(); // Llamamos a la función para agregar los eventos de edición
-//         })
-//         .catch(error => console.error('Error al cargar los materiales:', error));
-// }
+// Botón de guardar cambios en el modal de edición
+document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
+    // Obtener los datos del formulario de edición
+    const materialId = document.getElementById("editar-material").getAttribute('data-id'); 
+    const material = document.getElementById("editar-material").value;
+    const cantidad = document.getElementById("editar-cantidad").value;
+    const estado = document.getElementById("editar-estado").value;
+    const proveedor = document.getElementById("editar-proveedor").value;
+    const ganancia = document.getElementById("editar-ganancia").value;
+    const detalle = document.getElementById("editar-detalle").value;
+    const unidad_medida = document.getElementById("editar-unidad-medida").value;
+    const precio_cantidad = document.getElementById("editar-precio-compra").value;
+
+    // Crea el objeto JSON que se enviará
+    const datos = {
+        material,
+        cantidad,
+        estado,
+        proveedor,
+        ganancia,
+        detalle,
+        unidad_medida,
+        precio_cantidad
+    };
+
+    // Realizar la solicitud PUT
+    fetch(`http://127.0.0.1:5000/api/editar_materiales/${materialId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();  
+        } else {
+            throw new Error("Error al guardar los cambios");
+        }
+    })
+    .then(data => {
+        console.log("Material actualizado:", data);
+        
+        editarModal.style.display = 'none'; // Cerrar el modal
+        cargarMateriales();  
+    })
+    .catch(error => {
+        console.error("Error al actualizar el material:", error);
+        alert("Hubo un problema al guardar los cambios. Inténtalo nuevamente.");
+    });
+});
 
 
-// // Función para mostrar el modal de DETALLE del producto
-// function abrirModalDetalle(codigoId) {
-//     const modal = document.getElementById("detalleProductoModal");
-//     modal.style.display = "block";
-//     // Fetch de datos del producto específico
-//     fetch(`http://127.0.0.1:5000/api/mostrar_material/${codigoId}`)
-//         .then(response => response.json())
-//         .then(material => {
-//             document.getElementById("material").textContent = `Nombre: ${material.material}`;
-//             document.getElementById("cantidad").textContent = `Cantidad: ${material.cantidad} ${material.unidad_medida}`;
-//             document.getElementById("unidad_medida").textContent = `Unidad de medida: ${material.unidad_medida}`;
-//             document.getElementById("proveedor").textContent = `Nombre proveedor: ${material.proveedor}`;
-//             document.getElementById("precio_compra").textContent = `Precio: $${material.precio_compra}`;
-//             document.getElementById("iva").textContent = `IVA ${material.iva}%: ${material.aplica_iva ? 'SI APLICA' : 'NO APLICA'}`;
-//             document.getElementById("ganancia").textContent = `Margen de ganancia: ${material.ganancia}%`;
-//             document.getElementById("precio_final").textContent = `Precio: $${material.precio_final}`;
-//         })
-//         .catch(error => console.error('Error al obtener el detalle del producto:', error));
-// }
+// Cerrar el modal al hacer clic en el botón de cierre
+closeEditBtn.addEventListener('click', () => {
+    editarModal.style.display = 'none';
+});
 
-// // Función para agregar eventos a los botones "Detalle"
-// function agregarEventosDetalle() {
-//     const botonesDetalle = document.querySelectorAll(".btn-detalle");
-//     botonesDetalle.forEach(button => {
-//         button.addEventListener("click", (event) => {
-//             event.preventDefault();
-//             const codigoId = button.getAttribute("data-id");
-//             abrirModalDetalle(codigoId);
-//         });
-//     });
-// }
+// Cerrar el modal al hacer clic fuera de él
+window.addEventListener('click', (event) => {
+    if (event.target === editarModal) {
+        editarModal.style.display = 'none';
+    }
+});
 
-// // Cerrar el modal de detalle
-// document.getElementById("closeDetalleModal").addEventListener("click", () => {
-//     document.getElementById("detalleProductoModal").style.display = "none";
-// });
 
-// window.addEventListener("click", (event) => {
-//     const modal = document.getElementById("detalleProductoModal");
-//     if (event.target === modal) {
-//         modal.style.display = "none";
-//     }
-// });
+//***DETALLE DEL PRODUCTO***//
 
-// // Cargar productos cuando la página esté lista
-// window.addEventListener("DOMContentLoaded", (event) => {
-//     cargarMateriales();
-// });
+// Seleccionamos el modal y el botón para cerrar
+const detalleModal = document.getElementById('detalleModal');
+const closeDetailBtn = detalleModal.querySelector('.closeDetail'); // Botón para cerrar el modal
+
+// Abrir el modal al hacer clic en "Detalle"
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('btn-detalle')) {
+        event.preventDefault(); 
+
+        // Obtener el ID del material desde el atributo data-id
+        const materialId = event.target.getAttribute('data-id');
+
+        // Abrir el modal de detalle
+        detalleModal.style.display = 'block';
+
+        // Llamar al API para obtener los datos del material
+        fetch(`http://127.0.0.1:5000/api/mostrar_un_material/${materialId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Llenar los campos del modal con los datos obtenidos
+                document.getElementById('detalle-nombre').textContent = data.material;
+                document.getElementById('detalle-cantidad').textContent = data.cantidad;
+                document.getElementById('detalle-unidad-medida').textContent = data.unidad_medida;
+                document.getElementById('detalle-proveedor').textContent = data.proveedor;
+                document.getElementById('detalle-precio-compra').textContent = `$ ${data.precio_cantidad}`;
+                document.getElementById('detalle-ganancia').textContent = `${data.ganancia}%`;
+                document.getElementById('detalle-detalle').textContent = data.detalle || 'Sin detalle';
+                document.getElementById('detalle-precio-final').textContent = `$ ${data.precio_venta}`;
+                document.getElementById('detalle-estado').textContent = data.estado;
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos del material:', error);
+                alert('Hubo un problema al cargar los datos del detalle.');
+            });
+    }
+});
+
+// Cerrar el modal al hacer clic en el botón de cierre
+closeDetailBtn.addEventListener('click', () => {
+    detalleModal.style.display = 'none';
+});
+
+// Cerrar el modal al hacer clic fuera de él
+window.addEventListener('click', (event) => {
+    if (event.target === detalleModal) {
+        detalleModal.style.display = 'none';
+    }
+});

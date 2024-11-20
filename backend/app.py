@@ -26,6 +26,9 @@ from controlador.controlador_stock import mostrar_stock_endpoint
 from controlador.controlador_socios import mostrar_socios_endpoint
 from controlador.controlador_socios import agragar_socio_endpoint
 from controlador.controlador_socios import mostrar_un_socio_endpoint
+from controlador.controlador_socios import editar_socio_endpoint
+
+from controlador.controlador_ventas import mostrar_ventas_endpoint
 
 
 
@@ -217,6 +220,23 @@ def mostrar_un_socio(id):
 @aplicacion.route("/api/agregar_socios", methods = ["POST"])
 def agregar_socios():
     return agragar_socio_endpoint()
+
+#---------------------------editar socio-----------------------
+@aplicacion.route("/api/editar_socio/<int:id>",methods = ["PUT"])
+def editar_socio(id):
+    return editar_socio_endpoint(id)
+
+
+
+
+# --------------------------------------------------------------------
+#---------------------------------socios-------------------------------
+# --------------------------------------------------------------------
+
+#-----------------------------mostrar socios---------------------------
+@aplicacion.route("/api/mostrar_ventas/<fecha1>/<fecha2>", methods=["GET"])
+def mostrar_ventas(fecha1,fecha2):
+    return mostrar_ventas_endpoint(fecha1,fecha2)
            
 
 

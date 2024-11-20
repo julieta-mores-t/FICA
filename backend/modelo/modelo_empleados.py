@@ -124,13 +124,14 @@ def editar_empleado(id,empleado):
         cuenta_bancaria = %s,
         usuario = %s,
         clave = %s,
-        puesto = %s
-    WHERE dni = %s
+        puesto = %s,
+        dni = %s
+    WHERE id = %s
     """,
     (
         nombre, apellido, cuil, estado_civil, nacionalidad, ciudad, codigo_postal, barrio, 
         fechaNacimiento, direccion, numero, mail, telefono, cuenta_bancaria, usuario, 
-        clave, puesto, dni
+        clave, puesto, dni,id
     )
     )
     conexion.commit()

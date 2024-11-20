@@ -85,6 +85,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "editar socio",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"telefono\": \"+54 9 1234-5678\",\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"numero\": 123,\r\n  \"barrio\": \"Centro\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"dni\": \"12345678\",\r\n  \"estado\": \"baja\",\r\n  \"estado_civil\": \"Soltero\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"ciudad\": \"Buenos Aires\",\r\n  \"codigo_postal\": \"1000\",\r\n  \"fecha_nacimiento\": \"1984-05-14\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_socio/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_socio",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

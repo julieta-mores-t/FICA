@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "a5d7f76a-0986-46ed-a13a-ed871710a404",
+		"name": "ventas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140524",
+		"_collection_link": "https://fica00.postman.co/workspace/FICA-Workspace~5b1b71ce-9c39-46e5-8b88-009b3ef33e78/collection/27140524-a5d7f76a-0986-46ed-a13a-ed871710a404?action=share&source=collection_link&creator=27140524"
+	},
+	"item": [
+		{
+			"name": "mostrar ventas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_ventas/2024-11-10/2024-11-15\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_ventas",
+						"2024-11-10",
+						"2024-11-15\n"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

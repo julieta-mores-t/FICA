@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from modelo.modelo_socios import mostrar_socios
 from modelo.modelo_socios import agregar_socio
 from modelo.modelo_socios import mostrar_un_socio
+from modelo.modelo_socios import editar_socio
 
 
 
@@ -18,3 +19,7 @@ def agragar_socio_endpoint():
 
 def mostrar_un_socio_endpoint(id):
     return jsonify(mostrar_un_socio(id)),200
+
+def editar_socio_endpoint(id):
+    datos = request.get_json()
+    return editar_socio(id,datos)

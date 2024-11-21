@@ -11,9 +11,7 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
-
         <nav class="navbar">
             <div class="">
                 <a class="navbar-brand" href="#">
@@ -27,8 +25,7 @@
                         <p class="user-name" id="nombreApellido"></p>
                         <p class="user-email" id="emailUsuario"></p>
                     </div>
-                    <img src="../assets/img/icono-salir.svg" alt="cerrar sesion" class="align-self-center icono-salir"
-                        id="iconoSalir">
+                    <img src="../assets/img/icono-salir.svg" alt="cerrar sesion" class="align-self-center icono-salir"id="iconoSalir">
                 </div>
             </div>
         </nav>
@@ -40,8 +37,7 @@
                 <span class="search-icon" id="iconoBuscar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 0a5.5 5.5 0 1 1 0-7.778 5.5 5.5 0 0 1 0 7.778z" />
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 0a5.5 5.5 0 1 1 0-7.778 5.5 5.5 0 0 1 0 7.778z" />
                     </svg>
                 </span>
             </div>
@@ -56,7 +52,7 @@
                             <th>Nombre</th>
                             <th>Razón Social</th>
                             <th>Ciudad</th>
-                            <th>Domicilio</th>
+                            <th>Dirección</th>
                             <th>Fecha Ingreso</th>
                             <th>Email</th>
                             <th>Cuit</th>
@@ -77,7 +73,7 @@
         <div id="proveedorModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2 class="modal-title ">CARGA DE PROVEEDOR</h2>
+                <h2 class="modal-title ">CARGA DE PROVEEDORES</h2>
                 <span class="linea-divisoria"></span>
 
                 <form id="proveedorForm">
@@ -127,13 +123,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mail">Correo Electrónico:</label>
+                        <label for="mail">Email:</label>
                         <input type="email" id="mail" placeholder="Escriba aquí..." required>
                     </div>
 
                     <div class="form-group">
                         <label for="observaciones">OBSERVACIONES:</label>
-                        <textarea id="detalle" placeholder="Escriba las observaciones..."></textarea>
+                        <textarea id="descripcion" placeholder="Escriba las observaciones..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-guardar">GUARDAR</button>
@@ -213,13 +209,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mail">Correo Electrónico:</label>
+                        <label for="mail">Email:</label>
                         <input type="email" id="mail">
                     </div>
 
                     <div class="form-group">
                         <label for="editar-estado">Estado:</label>
-                        <select id="editar-estado" required>
+                        <select id="estado" required>
                             <option value="alta">Alta</option>
                             <option value="baja">Baja</option>
                         </select>
@@ -227,7 +223,7 @@
 
                     <div class="form-group">
                         <label for="observaciones">OBSERVACIONES:</label>
-                        <textarea id="detalle" placeholder="Escriba las observaciones..."></textarea>
+                        <textarea id="descripcion" placeholder="Escriba las observaciones..."></textarea>
                     </div>
                     <button type="button" class="btn-success" id="guardarCambiosBtn">Guardar</button>
                 </form>
@@ -243,27 +239,27 @@
                 <span class="linea-divisoria"></span>
                 <div>
                     <h3 class="modal-title">Información Personal</h3>
-                    <p><strong>Nombre:</strong> <span id="detalle-nombre"></span></p>
-                    <p><strong>Razón Social:</strong> <span id="detalle-razon-social"></span></p>
-                    <p><strong>CUIT:</strong> <span id="detalle-cuit"></span></p>
+                    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+                    <p><strong>Razón Social:</strong> <span id="razon_social"></span></p>
+                    <p><strong>CUIT:</strong> <span id="cuit"></span></p>
                     <span class="linea-divisoria"></span>
 
                     <h3 class="modal-title">Contactos</h3>
-                    <p><strong>Correo:</strong> <span id="detalle-mail"></span></p>
-                    <p><strong>Teléfono:</strong> <span id="detalle-telefono"></span></p>
+                    <p><strong>Email:</strong> <span id="mail"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
                     <span class="linea-divisoria"></span>
 
                     <h3 class="modal-title">Ubicación</h3>
-                    <p><strong>Ciudad:</strong> <span id="detalle-ciudad"></span></p>
-                    <p><strong>Código Postal:</strong> <span id="detalle-codigo-postal"></span></p>
-                    <p><strong>Barrio:</strong> <span id="detalle-barrio"></span></p>
-                    <p><strong>Dirección:</strong> <span id="detalle-direccion"></span></p>
-                    <p><strong>Número:</strong> <span id="detalle-numero"></span></p>
-                    <p><strong>Fecha de Ingreso:</strong> <span id="detalle-fecha-ingreso"></span></p>
+                    <p><strong>Ciudad:</strong> <span id="ciudad"></span></p>
+                    <p><strong>Código Postal:</strong> <span id="codigo_postal"></span></p>
+                    <p><strong>Barrio:</strong> <span id="barrio"></span></p>
+                    <p><strong>Dirección:</strong> <span id="direccion"></span></p>
+                    <p><strong>Número:</strong> <span id="numero"></span></p>
+                    <p><strong>Fecha de Ingreso:</strong> <span id="fecha_ingreso"></span></p>
                     <span class="linea-divisoria"></span>
 
                     <h3 class="modal-title">Estado del Proveedor</h3>
-                    <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
+                    <p><strong>Estado:</strong> <span id="estado"></span></p>
                     <span class="linea-divisoria"></span>
                 </div>
             </div>
@@ -273,7 +269,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/productos.js"></script>
+    <script src="../scripts/proveedores.js"></script>
     <script src="../scripts/cerrarsesion.js"></script>
 
 </body>

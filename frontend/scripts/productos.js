@@ -130,9 +130,6 @@ function confirmSave() {
 
 
 
-
-
-
 // Función para guardar datos en la base de datos
 function guardarDatosEnBaseDeDatos() {
     const datos = {

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Nombre y apellido no encontrados en localStorage");
     }
-    cargarMateriales();
+    cargarProveedores();
 });
 
 
@@ -22,15 +22,15 @@ searchInput.addEventListener('input', () => {
     const proveedorRows = document.querySelectorAll('#proveedores-body tr');
 
     proveedorRows.forEach(row => {
-        const nombreProveedor = row.cells[1].textContent.toLowerCase();
-        const razonSocial = row.cells[3].textContent.toLowerCase();
-        const cuit = row.cells[3].textContent.toLowerCase();
-        const estadoProveedor = row.cells[9].textContent.toLowerCase();
+        const nombre = row.cells[0].textContent.toLowerCase();
+        const razonSocial = row.cells[2].textContent.toLowerCase();
+        const cuit = row.cells[1].textContent.toLowerCase();
+        const estado = row.cells[11].textContent.toLowerCase();
         if (
-            nombreProveedor.includes(searchText) ||
+            nombre.includes(searchText) ||
             razonSocial.includes(searchText) ||
             cuit.includes(searchText) ||
-            estadoProveedor.includes(searchText)
+            estado.includes(searchText)
         ) {
             row.style.display = '';
         } else {
@@ -38,9 +38,6 @@ searchInput.addEventListener('input', () => {
         }
     });
 });
-
-
-
 
 // Referencias a los elementos del DOM
 const modal = document.getElementById("proveedorModal");
@@ -89,7 +86,7 @@ function cargarProveedores() {
                     <td>${proveedor.nombre}</td>
                     <td>${proveedor.razon_social}</td>
                     <td>${proveedor.ciudad}</td>
-                    <td>${proveedor.domicilio}</td>
+                    <td>${proveedor.direccion}</td>
                     <td>${proveedor.fecha_ingreso}</td>
                     <td>${proveedor.mail}</td>
                     <td>${proveedor.cuit}</td>
@@ -117,15 +114,19 @@ function confirmSave() {
 function guardarDatosEnBaseDeDatos() {
     const datos = {
         nombre: document.getElementById("nombre").value,
+        cuit: document.getElementById("cuit").value,
         razonSocial: document.getElementById("razon_social").value,
         ciudad: document.getElementById("ciudad").value,
-        domicilio: document.getElementById("domicilio").value,
-        email: document.getElementById("mail").value,
-        cuit: document.getElementById("cuit").value,
+        codigoPostal: document.getElementById("codigo_postal").value,
+        barrio: document.getElementById("barrio").value,
+        direccion: document.getElementById("direccion").value,
+        numero: document.getElementById("numero").value,
         telefono: document.getElementById("telefono").value,
+        email: document.getElementById("mail").value,
+        descripcion: document.getElementById("descripcion").value,
     };
 
-    fetch("http://127.0.0.1:5000/api/agregar_proveedor", {
+    fetch("http://127.0.0.1:5000/api/agregar_porveedor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
@@ -176,8 +177,7 @@ window.addEventListener("click", event => {
 // Cargar los proveedores al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
     cargarProveedores();
-});
-
+})
 
 //***EDITAR PROVEEDOR***//
 const editarModal = document.getElementById('editarModal');
@@ -196,7 +196,7 @@ document.addEventListener('click', (event) => {
         editarModal.style.display = 'block';
 
         // Llamar al API para obtener los datos del material
-        fetch(`http://127.0.0.1:5000/api/mostrar_un_proveedor/${materialId}`)
+        fetch(`http://127.0.0.1:5000/api/mostrar_un_proveedor/${proveedorId}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('nombre').value = data.nombre;
@@ -209,11 +209,11 @@ document.addEventListener('click', (event) => {
                 document.getElementById('numero').value = data.numero;
                 document.getElementById('telefono').value = data.telefono;
                 document.getElementById('mail').value = data.email;
-                document.getElementById('editar-estado').value = data.estado;
-                document.getElementById('detalle').value = data.detalle || '';
+                document.getElementById('estado').value = data.estado;
+                document.getElementById('dscripcion').value = data.detalle || '';
 
                 // Asignar el ID del proveedor al campo de nombre
-                document.getElementById('nombre').setAttribute('data-id', materialId);
+                document.getElementById('nombre').setAttribute('data-id', proveedorId);
             })
             .catch(error => {
                 console.error('Error al obtener los datos del proveedor:', error);
@@ -223,7 +223,6 @@ document.addEventListener('click', (event) => {
 
 // Botón de guardar cambios en el modal de edición
 document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
-    // Obtener los datos del formulario de edición
     const nombreId = document.getElementById("nombre").getAttribute('data-id');
     const nombre = document.getElementById("nombre").value;
     const cuit = document.getElementById("cuit").value;
@@ -235,6 +234,9 @@ document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
     const numero = document.getElementById("numero").value;
     const telefono = document.getElementById("telefono").value;
     const email = document.getElementById("mail").value;
+    const estado = document.getElementById("estado").value;
+    const descripcion = document.getElementById("descripcion").value;
+
 
     // Crea el objeto JSON que se enviará
     const datos = {
@@ -247,7 +249,9 @@ document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
         direccion,
         numero,
         telefono,
-        email
+        email,
+        estado,
+        descripcion
     };
 
     // Realizar la solicitud PUT
@@ -268,7 +272,7 @@ document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
         .then(data => {
             console.log("Proveedor actualizado:", data);
 
-            editarModal.style.display = 'none'; 
+            editarModal.style.display = 'none';
             cargarProveedores();
         })
         .catch(error => {
@@ -295,35 +299,34 @@ window.addEventListener('click', (event) => {
 
 // Seleccionamos el modal y el botón para cerrar
 const detalleModal = document.getElementById('detalleModal');
-const closeDetailBtn = detalleModal.querySelector('.closeDetail'); 
+const closeDetailBtn = detalleModal.querySelector('.closeDetail');
 
 // Abrir el modal al hacer clic en "Detalle"
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('btn-detalle')) {
         event.preventDefault();
 
-        // Obtener el ID del material desde el atributo data-id
+        // Obtener el ID del proveedor desde el atributo data-id
         const nombreId = event.target.getAttribute('data-id');
 
         // Abrir el modal de detalle
         detalleModal.style.display = 'block';
 
-        // Llamar al API para obtener los datos del material
         fetch(`http://127.0.0.1:5000/api/mostrar_un_proveedor/${nombreId}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('detalle-nombre').textContent = data.nombre;
-                document.getElementById('detalle-razon-social').textContent = data.razonSocial;
-                document.getElementById('detalle-cuit').textContent = data.cuit;
-                document.getElementById('detalle-mail').textContent = data.email;
-                document.getElementById('detalle-telefono').textContent = data.telefono;
-                document.getElementById('detalle-ciudad').textContent = data.ciudad;
-                document.getElementById('detalle-codigo-postal').textContent = data.codigoPostal;
-                document.getElementById('detalle-barrio').textContent = data.barrio;
-                document.getElementById('detalle-direccion').textContent = data.direccion;
-                document.getElementById('detalle-numero').textContent = data.numero;
-                document.getElementById('detalle-fecha-ingreso').textContent = data.fechaIngreso;
-                document.getElementById('detalle-estado').textContent = data.estado;
+                document.getElementById('nombre').textContent = data.nombre;
+                document.getElementById('razon_social').textContent = data.razonSocial;
+                document.getElementById('cuit').textContent = data.cuit;
+                document.getElementById('mail').textContent = data.email;
+                document.getElementById('telefono').textContent = data.telefono;
+                document.getElementById('ciudad').textContent = data.ciudad;
+                document.getElementById('codigo_postal').textContent = data.codigoPostal;
+                document.getElementById('barrio').textContent = data.barrio;
+                document.getElementById('direccion').textContent = data.direccion;
+                document.getElementById('numero').textContent = data.numero;
+                document.getElementById('fecha_ingreso').textContent = data.fechaIngreso;
+                document.getElementById('estado').textContent = data.estado;
             })
             .catch(error => {
                 console.error('Error al obtener los datos del proveedor:', error);

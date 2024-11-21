@@ -1,13 +1,38 @@
 
-.header-title {
 
+
+.table thead th {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td .badge-baja {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 25px;
+}
+
+td .badge-alta {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px 25px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+
+.header-title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin: 20px 20px;
     padding: 20px;
     background-color: #fff;
     gap: 50px;
-    /* Espacio entre el h2 y el campo de búsqueda */
 }
 
 /* Estilo del título */
@@ -22,14 +47,12 @@
 .search-container {
     position: relative;
     flex-grow: 1;
-    /* Hace que el campo de búsqueda ocupe el espacio sobrante */
     max-width: 300px;
-    /* Controla el ancho máximo */
 }
 
 /* Estilo del input de búsqueda */
 .search-input {
-    width: 100%;
+    width: 600px;
     padding: 10px 35px 10px 15px;
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -41,7 +64,7 @@
 /* Estilo del ícono de búsqueda */
 .search-icon {
     position: absolute;
-    right: 10px;
+    left: 560px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
@@ -50,31 +73,19 @@
 }
 
 
-/* Contenedor de detalles del usuario */
-.user-details {
-    display: flex;
+.col-auto h5 {
+    font-size: 1rem;
 }
 
-/* Nombre de usuario */
-.user-name {
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-    margin-right: 20px ;
-}
 
-/* Correo de usuario */
-.user-email {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-    margin-right: 20px ;
-}
 
-.table thead th {
-    background-color: #000080;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-left: 10px;
-}
+
+
+
+
+
+
+
+
+
+

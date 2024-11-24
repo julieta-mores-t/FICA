@@ -231,8 +231,6 @@ document.addEventListener('click', (event) => {
         fetch(`http://127.0.0.1:5000/api/mostrar_un_material/${materialId}`)
             .then(response => response.json())
             .then(data => {
-                
-
                 // Llenar los campos del formulario con los datos obtenidos
                 document.getElementById('editar-material').value = data.material;
                 document.getElementById('editar-cantidad').value = data.cantidad;

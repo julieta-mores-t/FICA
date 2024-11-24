@@ -115,14 +115,14 @@ function guardarDatosEnBaseDeDatos() {
     const datos = {
         nombre: document.getElementById("nombre").value,
         cuit: document.getElementById("cuit").value,
-        razonSocial: document.getElementById("razon_social").value,
+        razon_social: document.getElementById("razon_social").value,
         ciudad: document.getElementById("ciudad").value,
-        codigoPostal: document.getElementById("codigo_postal").value,
+        codigo_postal: document.getElementById("codigo_postal").value,
         barrio: document.getElementById("barrio").value,
         direccion: document.getElementById("direccion").value,
         numero: document.getElementById("numero").value,
         telefono: document.getElementById("telefono").value,
-        email: document.getElementById("mail").value,
+        mail: document.getElementById("mail").value,
         descripcion: document.getElementById("descripcion").value,
     };
 
@@ -199,21 +199,21 @@ document.addEventListener('click', (event) => {
         fetch(`http://127.0.0.1:5000/api/mostrar_un_proveedor/${proveedorId}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('nombre').value = data.nombre;
-                document.getElementById('cuit').value = data.cuit;
-                document.getElementById('razon_social').value = data.razonSocial;
-                document.getElementById('ciudad').value = data.ciudad;
-                document.getElementById('codigo_postal').value = data.codigoPostal;
-                document.getElementById('barrio').value = data.barrio;
-                document.getElementById('direccion').value = data.direccion;
-                document.getElementById('numero').value = data.numero;
-                document.getElementById('telefono').value = data.telefono;
-                document.getElementById('mail').value = data.email;
-                document.getElementById('estado').value = data.estado;
-                document.getElementById('dscripcion').value = data.detalle || '';
+                document.getElementById('enombre').value = data.nombre;
+                document.getElementById('ecuit').value = data.cuit;
+                document.getElementById('erazon_social').value = data.razon_social;
+                document.getElementById('eciudad').value = data.ciudad;
+                document.getElementById('ecodigo_postal').value = data.codigo_postal;
+                document.getElementById('ebarrio').value = data.barrio;
+                document.getElementById('edireccion').value = data.direccion;
+                document.getElementById('enumero').value = data.numero;
+                document.getElementById('etelefono').value = data.telefono;
+                document.getElementById('email').value = data.mail;
+                document.getElementById('eestado').value = data.estado;
+                document.getElementById('edescripcion').value = data.descripcion || '';
 
                 // Asignar el ID del proveedor al campo de nombre
-                document.getElementById('nombre').setAttribute('data-id', proveedorId);
+                document.getElementById('enombre').setAttribute('data-id', proveedorId);
             })
             .catch(error => {
                 console.error('Error al obtener los datos del proveedor:', error);
@@ -223,40 +223,40 @@ document.addEventListener('click', (event) => {
 
 // Botón de guardar cambios en el modal de edición
 document.getElementById("guardarCambiosBtn").addEventListener("click", () => {
-    const nombreId = document.getElementById("nombre").getAttribute('data-id');
-    const nombre = document.getElementById("nombre").value;
-    const cuit = document.getElementById("cuit").value;
-    const razonSocial = document.getElementById("razon_social").value;
-    const ciudad = document.getElementById("ciudad").value;
-    const codigoPostal = document.getElementById("codigo_postal").value;
-    const barrio = document.getElementById("barrio").value;
-    const direccion = document.getElementById("direccion").value;
-    const numero = document.getElementById("numero").value;
-    const telefono = document.getElementById("telefono").value;
-    const email = document.getElementById("mail").value;
-    const estado = document.getElementById("estado").value;
-    const descripcion = document.getElementById("descripcion").value;
+    const nombreId = document.getElementById("enombre").getAttribute('data-id');
+    const nombre = document.getElementById("enombre").value;
+    const cuit = document.getElementById("ecuit").value;
+    const razon_social = document.getElementById("erazon_social").value;
+    const ciudad = document.getElementById("eciudad").value;
+    const codigo_postal = document.getElementById("ecodigo_postal").value;
+    const barrio = document.getElementById("ebarrio").value;
+    const direccion = document.getElementById("edireccion").value;
+    const numero = document.getElementById("enumero").value;
+    const telefono = document.getElementById("etelefono").value;
+    const mail = document.getElementById("email").value;
+    const estado = document.getElementById("eestado").value;
+    const descripcion = document.getElementById("edescripcion").value;
 
 
     // Crea el objeto JSON que se enviará
     const datos = {
         nombre,
         cuit,
-        razonSocial,
+        razon_social,
         ciudad,
-        codigoPostal,
+        codigo_postal,
         barrio,
         direccion,
         numero,
         telefono,
-        email,
+        mail,
         estado,
         descripcion
     };
 
     // Realizar la solicitud PUT
     fetch(`http://127.0.0.1:5000/api/editar_proveedor/${nombreId}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
@@ -315,18 +315,18 @@ document.addEventListener('click', (event) => {
         fetch(`http://127.0.0.1:5000/api/mostrar_un_proveedor/${nombreId}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('nombre').textContent = data.nombre;
-                document.getElementById('razon_social').textContent = data.razonSocial;
-                document.getElementById('cuit').textContent = data.cuit;
-                document.getElementById('mail').textContent = data.email;
-                document.getElementById('telefono').textContent = data.telefono;
-                document.getElementById('ciudad').textContent = data.ciudad;
-                document.getElementById('codigo_postal').textContent = data.codigoPostal;
-                document.getElementById('barrio').textContent = data.barrio;
-                document.getElementById('direccion').textContent = data.direccion;
-                document.getElementById('numero').textContent = data.numero;
-                document.getElementById('fecha_ingreso').textContent = data.fechaIngreso;
-                document.getElementById('estado').textContent = data.estado;
+                document.getElementById('dnombre').textContent = data.nombre;
+                document.getElementById('drazon_social').textContent = data.razon_social;
+                document.getElementById('dcuit').textContent = data.cuit;
+                document.getElementById('dmail').textContent = data.email;
+                document.getElementById('dtelefono').textContent = data.telefono;
+                document.getElementById('dciudad').textContent = data.ciudad;
+                document.getElementById('dcodigo_postal').textContent = data.codigo_postal;
+                document.getElementById('dbarrio').textContent = data.barrio;
+                document.getElementById('ddireccion').textContent = data.direccion;
+                document.getElementById('dnumero').textContent = data.numero;
+                document.getElementById('dfecha_ingreso').textContent = data.fecha_ingreso;
+                document.getElementById('destado').textContent = data.estado;
             })
             .catch(error => {
                 console.error('Error al obtener los datos del proveedor:', error);

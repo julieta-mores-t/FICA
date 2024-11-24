@@ -5,32 +5,29 @@ const emailUsuario = localStorage.getItem("mail");
 
 document.addEventListener("DOMContentLoaded", () => {
     if (nombre && apellido) {
+        // Mostrar el nombre y apellido en los elementos correspondientes
         document.getElementById("nombreApellido").textContent = `${apellido} ${nombre}`;
         document.getElementById("emailUsuario").textContent = `${emailUsuario}`;
     } else {
         console.error("Nombre y apellido no encontrados en localStorage");
     }
-    cargarMateriales();
 });
 
 
-//BOTÓN DE BUSCAR (filtra por codigo,nombre,proveedor y estado)
+
+//BOTÓN DE BUSCAR (filtra por codigo,nombre)
 const searchInput = document.getElementById('buscarInput');
 
 searchInput.addEventListener('input', () => {
     const searchText = searchInput.value.toLowerCase();
-    const productoRows = document.querySelectorAll('#materiales-body tr');
+    const stockRows = document.querySelectorAll('#stock-body tr');
 
-    productoRows.forEach(row => {
-        const codigo = row.cells[0].textContent.toLowerCase();
-        const nombre = row.cells[1].textContent.toLowerCase();
-        const proveedor = row.cells[2].textContent.toLowerCase();
-        const estado = row.cells[5].textContent.toLowerCase();
+    stockRows.forEach(row => {
+        const codigoStock = row.cells[0].textContent.toLowerCase();
+        const nombreStock = row.cells[1].textContent.toLowerCase();
         if (
-            codigo.includes(searchText) ||
-            nombre.includes(searchText) ||
-            proveedor.includes(searchText) ||
-            estado.includes(searchText)
+            codigoStock.includes(searchText) ||
+            nombreStock.includes(searchText)
         ) {
             row.style.display = '';
         } else {
@@ -39,38 +36,28 @@ searchInput.addEventListener('input', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    cargarStock();
+});
 
-// Función para cargar proveedores en el select
-function cargarProveedores() {
-    fetch('http://127.0.0.1:5000/api/mostrar_proveedores')
-        .then(response => response.json())
-        .then(proveedores => {
-            const proveedorSelect = document.getElementById('proveedor');
-            proveedorSelect.innerHTML = '<option value=""></option>' +
-                proveedores.map(proveedor => `<option value="${proveedor.nombre}">${proveedor.nombre}</option>`).join('');
-        })
-        .catch(error => console.error('Error al cargar los proveedores:', error));
-}
-
-// Función para cargar materiales en la tabla
-function cargarMateriales() {
-    fetch("http://127.0.0.1:5000/api/mostrar_stock")
+// Cargar lista de stock
+function cargarStock() {
+    fetch('http://127.0.0.1:5000/api/mostrar_stock')
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
-        .then(materiales => {
-            const tbody = document.getElementById('materiales-body');
-            tbody.innerHTML = materiales.map(material => `
+        .then(stockList => {
+            const tbody = document.getElementById('stock-body');
+            tbody.innerHTML = stockList.map(stock => `
                 <tr>
-                    <td>${material.codigo}</td>
-                    <td>${material.material}</td>
-                    <td>${material.proveedor}</td>
-                    <td>${material.cantidad}</td>
-                    <td>${material.precio_venta}</td>
-                    <td><span class="badge ${material.estado === 'alta' ? 'badge-alta' : 'badge-baja'}">${material.estado}</span></td>
+                    <td>${stock.Codigo}</td>
+                    <td>${stock.Nombre}</td>
+                    <td>${stock.cantidad}</td>
                 </tr>
             `).join('');
         })
-        .catch(error => console.error('Error al cargar los materiales:', error));
+        .catch(error => console.error('Error al cargar el stock:', error));
 }
+
+

@@ -48,7 +48,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/mostrar_un_material/69",
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_material/88",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -60,7 +60,7 @@
 					"path": [
 						"api",
 						"mostrar_un_material",
-						"69"
+						"88"
 					]
 				}
 			},
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"material\": \"cinta\",\r\n  \"cantidad\": \"520\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": \"20\",\r\n  \"detalle\": \"detalle\",\r\n  \"unidad_medida\": \"unidad_medida\",\r\n  \"precio_cantidad\": \"20000\"\r\n}\r\n",
+					"raw": "{\r\n  \"material\": \"arena\",\r\n  \"cantidad\": \"200\",\r\n  \"proveedor\": \"Ferrocons\",\r\n  \"ganancia\": \"15\",\r\n  \"detalle\": \"tambien por bolsa\",\r\n  \"unidad_medida\": \"m3\",\r\n  \"precio_cantidad\": \"50000\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"material\": \"Acero\",\r\n  \"cantidad\": 50000,\r\n  \"estado\": \"alta\",\r\n  \"proveedor\": \"jose\",\r\n  \"ganancia\": 3500,\r\n  \"detalle\": \"ventas por metro\",\r\n  \"unidad_medida\": \"unidad\",\r\n  \"precio_cantidad\": \"200000\"\r\n  \r\n}\r\n",
+					"raw": "{\r\n  \"material\": \"cinta\",\r\n  \"cantidad\": 100,\r\n  \"estado\": \"baja\",\r\n  \"proveedor\": \"easy\",\r\n  \"ganancia\": 20,\r\n  \"detalle\": \"se ingresa por corralon\",\r\n  \"unidad_medida\": \"rollo\",\r\n  \"precio_cantidad\": \"20000\"\r\n  \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +113,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_materiales/66",
+					"raw": "http://127.0.0.1:5000/api/editar_materiales/87",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -125,7 +125,7 @@
 					"path": [
 						"api",
 						"editar_materiales",
-						"66"
+						"87"
 					]
 				}
 			},

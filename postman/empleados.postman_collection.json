@@ -48,7 +48,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/mostrar_un_empleado/8",
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_empleado/20",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -60,7 +60,7 @@
 					"path": [
 						"api",
 						"mostrar_un_empleado",
-						"8"
+						"20"
 					]
 				}
 			},
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Damian\",\r\n  \"apellido\": \"Marquez\",\r\n  \"dni\": \"36925814\",\r\n  \"fecha_nacimiento\": \"15/08/1983\",\r\n  \"direccion\": \"paisa 58\",\r\n  \"mail\": \"dmarquez@example.com\",\r\n  \"telefono\": \"3512120589\",\r\n  \"usuario\": \"dmarquez\",\r\n  \"clave\": \"1234\",\r\n  \"puesto\": \"Administrador\",\r\n  \"fecha_ingreso\": \"01/01/2022\",\r\n  \"estado\": \"alta\"\r\n}\r\n",
+					"raw": "{\r\n    \"nombre\": \"julieta\",\r\n    \"apellido\": \"Mores\",\r\n    \"dni\": \"12553678\",\r\n    \"cuil\": \"20-14355678-9\",\r\n    \"estado_civil\": \"Soltera\",\r\n    \"nacionalidad\": \"Argentino\",\r\n    \"ciudad\": \"Cordoba\",\r\n    \"codigo_postal\": \"5000\",\r\n    \"barrio\": \"platanos\",\r\n    \"fechaNacimiento\": \"1992/04/20\",\r\n    \"direccion\": \"Av. alem\",\r\n    \"numero\": \"72\",\r\n    \"mail\": \"juli@example.com\",\r\n    \"telefono\": \"3515447854\",\r\n    \"cuenta_bancaria\": \"12345693330123456\",\r\n    \"usuario\": \"julieta\",\r\n    \"clave\": \"1234\",\r\n    \"puesto\": \"administrador\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Pérez\",\r\n  \"dni\": \"12345678\",\r\n  \"cuil\": \"20-12345678-3\",\r\n  \"estado_civil\": \"Soltero\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"ciudad\": \"Buenos Aires\",\r\n  \"codigo_postal\": \"1000\",\r\n  \"barrio\": \"Monzon\",\r\n  \"fechaNacimiento\": \"1982-12-16\",\r\n  \"direccion\": \"Av. Siempre Viva\",\r\n  \"numero\": \"742\",\r\n  \"mail\": \"juan.perez@example.com\",\r\n  \"telefono\": \"+54 11 1234-5678\",\r\n  \"cuenta_bancaria\": \"0123456789012345678901\",\r\n  \"usuario\": \"juanperez\",\r\n  \"clave\": \"1234\",\r\n  \"puesto\": \"empleado\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"julieta\",\r\n    \"apellido\": \"Mores\",\r\n    \"dni\": \"22225455\",\r\n    \"cuil\": \"20-14355678-9\",\r\n    \"estado_civil\": \"Soltera\",\r\n    \"nacionalidad\": \"Argentino\",\r\n    \"ciudad\": \"Cordoba\",\r\n    \"codigo_postal\": \"5000\",\r\n    \"barrio\": \"platanos\",\r\n    \"fechaNacimiento\": \"1992/04/20\",\r\n    \"direccion\": \"Av. alem\",\r\n    \"numero\": \"72\",\r\n    \"mail\": \"juli@example.com\",\r\n    \"telefono\": \"3515447854\",\r\n    \"cuenta_bancaria\": \"12345693330123456\",\r\n    \"usuario\": \"julieta\",\r\n    \"clave\": \"2352\",\r\n    \"puesto\": \"administrador\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +113,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_empleado/17",
+					"raw": "http://127.0.0.1:5000/api/editar_empleado/20",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -125,7 +125,7 @@
 					"path": [
 						"api",
 						"editar_empleado",
-						"17"
+						"20"
 					]
 				}
 			},

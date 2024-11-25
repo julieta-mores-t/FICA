@@ -56,15 +56,16 @@ def editar_proveedor(proveedor,id):
     razon_social = proveedor.get("razon_social")
     direccion = proveedor.get("direccion")
     numero = proveedor.get("numero")
+    estado = proveedor.get("estado")
 
     conexion = obtener_base()
     cursor = conexion.cursor()
 
     cursor.execute("""
         UPDATE proveedores
-        SET nombre = %s, mail = %s, telefono = %s, descripcion = %s, cuit = %s, ciudad = %s,codigo_postal = %s, barrio = %s, razon_social = %s, direccion = %s,numero = %s
+        SET nombre = %s, mail = %s, telefono = %s, descripcion = %s, cuit = %s, ciudad = %s,codigo_postal = %s, barrio = %s, razon_social = %s, direccion = %s,numero = %s,estado = %s
         WHERE id = %s
-    """, (nombre, mail,telefono,descripcion,cuit,ciudad,codigo_postal,barrio,razon_social,direccion,numero, id))
+    """, (nombre, mail,telefono,descripcion,cuit,ciudad,codigo_postal,barrio,razon_social,direccion,numero,estado, id))
 
     conexion.commit()
     conexion.close()

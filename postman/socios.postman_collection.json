@@ -36,7 +36,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/mostrar_un_socio/7",
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_socio/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -48,7 +48,7 @@
 					"path": [
 						"api",
 						"mostrar_un_socio",
-						"7"
+						"2"
 					]
 				}
 			},
@@ -93,7 +93,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"telefono\": \"+54 9 1234-5678\",\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"numero\": 123,\r\n  \"barrio\": \"Centro\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"dni\": \"12345678\",\r\n  \"estado\": \"baja\",\r\n  \"estado_civil\": \"Soltero\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"ciudad\": \"Buenos Aires\",\r\n  \"codigo_postal\": \"1000\",\r\n  \"fecha_nacimiento\": \"1984-05-14\"\r\n}\r\n",
+					"raw": "{\r\n  \"nombre\": \"Maria\",\r\n  \"telefono\": \"+54 9 1234-5678\",\r\n  \"direccion\": \"Calle publica\",\r\n  \"numero\": 123,\r\n  \"barrio\": \"lopez\",\r\n  \"correo\": \"lopez@example.com\",\r\n  \"dni\": \"12333678\",\r\n  \"estado\": \"alta\",\r\n  \"estado_civil\": \"Soltero\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"ciudad\": \"Rosario\",\r\n  \"codigo_postal\": \"1520\",\r\n  \"fecha_nacimiento\": \"1984-06-24\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,7 +101,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_socio/1",
+					"raw": "http://127.0.0.1:5000/api/editar_socio/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -113,7 +113,7 @@
 					"path": [
 						"api",
 						"editar_socio",
-						"1"
+						"2"
 					]
 				}
 			},

@@ -27,8 +27,11 @@ from controlador.controlador_socios import mostrar_socios_endpoint
 from controlador.controlador_socios import agragar_socio_endpoint
 from controlador.controlador_socios import mostrar_un_socio_endpoint
 from controlador.controlador_socios import editar_socio_endpoint
-
 from controlador.controlador_ventas import mostrar_ventas_endpoint
+from controlador.controlador_ventas import mostrar_ventas_empleado_endpoint
+from controlador.controlador_ventas import editar_venta_endpoint
+from controlador.controlador_ventas import agregar_venta_endpoint
+
 
 
 
@@ -127,7 +130,7 @@ def agregar_proveedores():
     return agregar_proveedor_endpoint()
 
 #---------------------------editar proveedores-----------------------
-@aplicacion.route("/api/editar_proveedor/<int:id>",methods = ["PUT"])
+@aplicacion.route("/api/editar_proveedor/<int:id>",methods = ["PATCH"])
 def editar_proveedores(id):
     return editar_proveedor_endpoint(id)
 
@@ -230,14 +233,32 @@ def editar_socio(id):
 
 
 # --------------------------------------------------------------------
-#---------------------------------socios-------------------------------
+#---------------------------------ventas-------------------------------
 # --------------------------------------------------------------------
 
-#-----------------------------mostrar socios---------------------------
+#-----------------------------mostrar ventas---------------------------
 @aplicacion.route("/api/mostrar_ventas/<fecha1>/<fecha2>", methods=["GET"])
 def mostrar_ventas(fecha1,fecha2):
     return mostrar_ventas_endpoint(fecha1,fecha2)
-           
+
+#------------------------mostrar ventas por empleado----------------------
+@aplicacion.route("/api/mostrar_ventas_empleado/<int:id>", methods=["GET"])
+def mostrar_ventas_empleado(id):
+    return mostrar_ventas_empleado_endpoint(id)
+
+#------------------------mostrar ventas por socio----------------------
+@aplicacion.route("/api/editar_venta/<int:id>",methods = ["PUT"])
+def editar_venta(id):
+    return editar_venta_endpoint(id)
+
+#------------------------agregar ventas--------------------------------
+
+@aplicacion.route("/api/agregar_venta", methods = ["POST"])
+def agregar_venta():
+    return agregar_venta_endpoint()
+
+
+
 
 
 

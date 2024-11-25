@@ -9,12 +9,17 @@ def mostrar_stock():
     cursor.execute("""SELECT 
     deposito.codigo AS "Codigo",
     deposito.material AS "Nombre",
-    deposito.unidad_medida as "unidad de medida",
-    stock.cantidad 
+    deposito.unidad_medida AS "Unidad de Medida",
+    deposito.precio_venta AS "Precio de Venta",
+    stock.cantidad,
+    proveedores.nombre AS "Proveedor"
 FROM 
     deposito
 JOIN 
-    stock ON deposito.id = stock.material_id;""")
+    stock ON deposito.id = stock.material_id
+JOIN 
+    proveedores ON deposito.proveedor = proveedores.id;
+""")
 
     stock = cursor.fetchall()
 

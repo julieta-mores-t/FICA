@@ -31,6 +31,95 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "mostrar ventas por empleado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/mostrar_ventas_empleado/11",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"mostrar_ventas_empleado",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar ventas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"tornillos\",\r\n  \"cantidad\": 350,\r\n  \"comprador\": \"Damian\",\r\n  \"socio\": null,\r\n  \"descuento\": 5.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/editar_venta/12",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"editar_venta",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar venta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"material\": \"cinta\",\r\n  \"cantidad\": 680,\r\n  \"vendedor\": 20,\r\n  \"comprador\": \"Damian\",\r\n  \"descuento\": 87,\r\n  \"socio\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/agregar_venta",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"agregar_venta"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

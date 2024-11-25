@@ -101,6 +101,11 @@ def editar_empleado(id,empleado):
     clave = empleado.get("clave")
     puesto = empleado.get("puesto")
 
+    # Hashear la contraseña antes de guardarla
+    clave_en_bytes = clave.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hash_clave = bcrypt.hashpw(clave_en_bytes, salt)
+
     conexion = obtener_base()
     cursor = conexion.cursor()
 
@@ -131,7 +136,7 @@ def editar_empleado(id,empleado):
     (
         nombre, apellido, cuil, estado_civil, nacionalidad, ciudad, codigo_postal, barrio, 
         fechaNacimiento, direccion, numero, mail, telefono, cuenta_bancaria, usuario, 
-        clave, puesto, dni,id
+        hash_clave, puesto, dni,id
     )
     )
     conexion.commit()

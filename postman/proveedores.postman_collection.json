@@ -10,11 +10,11 @@
 		{
 			"name": "editar proveedores",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Proveedores SA\",\r\n    \"mail\": \"contacto@proveedoressa.com\",\r\n    \"telefono\": \"+54 11 1234-5678\",\r\n    \"descripcion\": \"Empresa dedicada a la distribución de materiales de construcción.\",\r\n    \"cuit\": \"30-12345678-9\",\r\n    \"ciudad\": \"Buenos Aires\",\r\n    \"codigo_postal\": \"5000\",\r\n    \"barrio\": \"Palermo\",\r\n    \"razon_social\": \"Proveedores S.A.\",\r\n    \"direccion\": \"Av. Corrientes\",\r\n    \"numero\": \"1234\"\r\n}\r\n",
+					"raw": "{\r\n    \"nombre\": \"Ferrocons\",\r\n    \"mail\": \"Ferrocons@gmail.com\",\r\n    \"telefono\": \"3512545678\",\r\n    \"descripcion\": \"Empresa dedicada a la distribución de materiales de construcción.\",\r\n    \"cuit\": \"30-12366678-9\",\r\n    \"ciudad\": \"Buenos Aires\",\r\n    \"codigo_postal\": \"20\",\r\n    \"barrio\": \"Palermo\",\r\n    \"razon_social\": \"Ferrocons S.A.\",\r\n    \"direccion\": \"Av. Corrientes\",\r\n    \"numero\": \"1234\",\r\n    \"estado\": \"alta\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,7 +22,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/editar_proveedor/9",
+					"raw": "http://127.0.0.1:5000/api/editar_proveedor/16",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -34,7 +34,7 @@
 					"path": [
 						"api",
 						"editar_proveedor",
-						"9"
+						"16"
 					]
 				}
 			},
@@ -47,7 +47,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"3512565896\",\r\n  \"descripcion\": \"otra descripcion\",\r\n  \"cuit\": \"30-25632361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"lomas\",\r\n  \"razon_social\": \"ferro sa.\",\r\n  \"direccion\": \"calle\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
+					"raw": "{\r\n  \"nombre\": \"easy\",\r\n  \"mail\": \"easy@gmail.com\",\r\n  \"telefono\": \"37859896\",\r\n  \"descripcion\": \"entre calles alem y puch\",\r\n  \"cuit\": \"30-22542361-2\",\r\n  \"ciudad\": \"cordoba\",\r\n  \"codigo_postal\": \"5000\",\r\n  \"barrio\": \"cercania horizonte\",\r\n  \"razon_social\": \"easy sa.\",\r\n  \"direccion\": \"av valparaiso\",\r\n  \"numero\": \"150\"\r\n  \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +113,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/mostrar_un_proveedor/5",
+					"raw": "http://127.0.0.1:5000/api/mostrar_un_proveedor/17",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -125,7 +125,7 @@
 					"path": [
 						"api",
 						"mostrar_un_proveedor",
-						"5"
+						"17"
 					]
 				}
 			},

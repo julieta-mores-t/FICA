@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/empleados.css">
+    <link rel="stylesheet" href="../assets/css/estilosGenerales.css">
+    <title>Lista de Empleados</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <nav class="navbar">
+            <div class="">
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/Abstract Colorful Technology Solutions Professional Logo.png" class="logo"
+                        alt="User" />
+                </a>
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <div>
+                        <p class="user-name" id="nombreApellido"></p>
+                        <p class="user-email" id="emailUsuario"></p>
+                    </div>
+                    <img src="../assets/img/icono-salir.svg" alt="cerrar sesion" class="align-self-center icono-salir"
+                        id="iconoSalir">
+                </div>
+            </div>
+        </nav>
+
+        <div class="header-title">
+            <h2>EMPLEADOS</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar..." id="buscarInput">
+                <span class="search-icon" id="iconoBuscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 0a5.5 5.5 0 1 1 0-7.778 5.5 5.5 0 0 1 0 7.778z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        <section class="empleados d-flex flex-column">
+            <button id="openModalBtn" class="btn btn-primary align-self-end">Agregar Empleado</button>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center mt-4">
+                    <thead>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>APELLIDO</th>
+                            <th>DNI</th>
+                            <th>PUESTO</th>
+                            <th>EMAIL</th>
+                            <th>TELEFONO</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="empleados-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Modal AGREGAR EMPLEADO-->
+        <div id="empleadoModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class="modal-title ">CARGA DE EMPLEADO</h2>
+                <span class="linea-divisoria"></span>
+
+                <form id="empleadoForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombres:</label>
+                        <input type="text" id="nombre" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellido">Apellidos:</label>
+                        <input type="text" id="apellido" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nacionalidad">Nacionalidad:</label>
+                        <input type="text" id="nacionalidad" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="fecha_nacimiento" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dni">DNI:</label>
+                        <input type="number" id="dni" placeholder="Digite la identificación" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="number" id="telefono" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="mail" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre_usuario">Nombre de Usuario:</label>
+                        <input type="text" id="usuario" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contraseña">Contraseña:</label>
+                        <input type="password" id="clave" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="puesto_trabajo">Puesto de Trabajo:</label>
+                        <input type="text" id="puesto" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <button type="submit" class="btn-guardar">GUARDAR</button>
+                </form>
+            </div>
+
+            <!-- Modal de Confirmación -->
+            <div id="confirmModal" class="modal_confirm">
+                <div class="modal-contenido">
+                    <span class="close" onclick="closeModalById('confirmModal')">&times;</span>
+                    <p>¿Quieres guardar los cambios realizados?</p>
+                    <button onclick="confirmSave()" class="confirm-btn">Si, confirmo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="modal_confirm">
+            <div class="modal-contenido">
+                <span class="close" onclick="closeModalById('successModal')">&times;</span>
+                <p><span class="check-icon">&#10003;</span> Sus datos se guardaron correctamente</p>
+            </div>
+        </div>
+
+
+
+        <!-- Modal para editar empleado -->
+        <div id="editarModal" class="modal">
+            <div class="modal-content">
+                <span class="closeEdit">&times;</span>
+                <h2 class="modal-title">EDITAR EMPLEADO</h2>
+                <span class="linea-divisoria"></span>
+                <form id="editarEmpleadoForm" data-id="">
+
+                    <div class="form-group">
+                        <label for="enombre">Nombres:</label>
+                        <input type="text" id="enombre" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eapellido">Apellidos:</label>
+                        <input type="text" id="eapellido" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enacionalidad">Nacionalidad:</label>
+                        <input type="text" id="enacionalidad" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="efecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="efecha_nacimiento" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edni">DNI:</label>
+                        <input type="number" id="edni" placeholder="Digite la identificación" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ecuil">CUIL:</label>
+                        <input type="number" id="ecuil" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eestado_civil">Estado Civil:</label>
+                        <input type="text" id="eestado_civil" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eciudad">Ciudad:</label>
+                        <input type="text" id="eciudad" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ecodigo_postal">Codigo Postal:</label>
+                        <input type="number" id="ecodigo_postal" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ebarrio">Barrio:</label>
+                        <input type="text" id="ebarrio" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edireccion">Dirección:</label>
+                        <input type="text" id="edireccion" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enumero">Número:</label>
+                        <input type="number" id="enumero" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="etelefono">Teléfono:</label>
+                        <input type="number" id="etelefono" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eemail">Correo Electrónico:</label>
+                        <input type="email" id="email" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enombre_usuario">Nombre de Usuario:</label>
+                        <input type="text" id="eusuario" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="econtraseña">Contraseña:</label>
+                        <input type="password" id="eclave" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="epuesto_trabajo">Puesto de Trabajo:</label>
+                        <input type="text" id="epuesto" placeholder="Escriba aquí..." required>
+                    </div>
+
+                    <button type="button" class="btn-success" id="guardarCambiosBtn">Guardar</button>
+                </form>
+            </div>
+
+            <!-- Modal de Confirmación -->
+            <div id="confirmModal" class="modal_confirm">
+                <div class="modal-contenido">
+                    <span class="close" onclick="closeModalById('confirmModal')">&times;</span>
+                    <p>¿Quieres guardar los cambios realizados?</p>
+                    <button onclick="confirmSave()" class="confirm-btn">Si, confirmo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="modal_confirm">
+            <div class="modal-contenido">
+                <span class="close" onclick="closeModalById('successModal')">&times;</span>
+                <p><span class="check-icon">&#10003;</span> Sus datos se guardaron correctamente</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal DETALLE DE EMPLEADO -->
+    <div id="detalleModal" class="modal">
+        <div class="modal-content">
+            <span class="closeDetail">&times;</span>
+            <h2 class="modal-title">DETALLE DEL EMPLEADO</h2>
+            <span class="linea-divisoria"></span>
+            <div>
+                <h3 class="modal-title">INFORMACIÓN PERSONAL</h3>
+                <p><strong>Nombre:</strong> <span id="dnombre"></span></p>
+                <p><strong>Apellido:</strong> <span id="dapellido"></span></p>
+                <p><strong>Dni:</strong> <span id="ddni"></span></p>
+                <p><strong>Fecha de Nacimiento:</strong> <span id="dfechaNacimiento"></span></p>
+                <p><strong>Cuil:</strong> <span id="dcuil"></span></p>
+                <p><strong>Estado Civil:</strong> <span id="destado_civil"></span></p>
+                <p><strong>Nacionalidad:</strong> <span id="dnacionalidad"></span></p>
+                <span class="linea-divisoria"></span>
+                <h3 class="modal-title">UBICACIÓN</h3>
+                <p><strong>Ciudad:</strong> <span id="dciudad"></span></p>
+                <p><strong>Barrio:</strong> <span id="dbarrio"></span></p>
+                <p><strong>Dirección:</strong> <span id="ddireccion"></span></p>
+                <p><strong>Número:</strong> <span id="dnumero"></span></p>
+                <p><strong>Código Postal:</strong> <span id="dcodigo_postal"></span></p>
+                <span class="linea-divisoria"></span>
+                <h3 class="modal-title">CONTACTO</h3>
+                <p><strong>Teléfono:</strong> <span id="dtelefono"></span></p>
+                <p><strong>Email:</strong> <span id="dmail"></span></p>
+                <span class="linea-divisoria"></span>
+                <h3 class="modal-title">DATOS DE EMPLEADO:</h3>
+                <p><strong>Usuario:</strong><span id="dusuario"></span></p>
+                <p><strong>Contraseña:</strong> <span id="dclave"></span></p>
+                <p><strong>Estado:</strong> <span id="destado"></span></p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/empleados.js"></script>
+    <script src="../scripts/cerrarsesion.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+
+
+
+.table thead th {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td .badge-baja {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 25px;
+}
+
+td .badge-alta {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px 25px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.actions a {
+    color: rgb(59, 184, 233);
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+.actions a:hover {
+    text-decoration: underline;
+}
+
+
+
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 20px;
+    padding: 20px;
+    background-color: #fff;
+    gap: 50px;
+}
+
+/* Estilo del título */
+.header-title h2 {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 29px;
+    margin: 0;
+}
+
+/* Contenedor del campo de búsqueda */
+.search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+/* Estilo del input de búsqueda */
+.search-input {
+    width: 600px;
+    padding: 10px 35px 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+/* Estilo del ícono de búsqueda */
+.search-icon {
+    position: absolute;
+    left: 560px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+    cursor: pointer;
+}
+
+
+.col-auto h5 {
+    font-size: 1rem;
+}
+
+/* Estilos del botón para abrir el modal */
+#openModalBtn {
+    background-color: #005cbf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+    margin-right: 0 auto;
+    display: block; 
+}
+
+/* Estilos generales del modal */
+
+/* Estilos generales del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+}
+
+
+.close {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color:  #4A6A1C;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* Líneas rojas debajo de las secciones */
+
+.linea-divisoria {
+    border: none;
+    border-top: 2px solid #c92a2a; /* Línea roja */
+    margin: 10px 0;
+    display: block;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4A6A1C;
+}
+
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.form-group input, 
+.form-group select {
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.btn-guardar, .btn-success {
+    width: 30%;
+    margin: 0 auto;
+    display: block; 
+    padding: 10px;
+    background-color:  #1A1A50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.btn-guardar:hover {
+    background-color: #004085;
+}
+
+
+.modal_confirm {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-contenido {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+}
+
+.close, .closeEdit, .closeEdit {
+    width: fit-content;
+    color: #080707;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background-color: #3c6b09;
+    color: white;
+    padding: 3px 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; 
+    width: 90%;
+    text-align: center;
+}
+
+
+.confirm-btn:hover {
+    background-color:  #4b8a08;
+}
+
+.check-icon {
+    color:  #4b8a08;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+/* Botón de cerrar "X" en la esquina superior derecha */
+.close-btn, .closeEdit, .closeDetail {
+    width: fit-content;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+
+/* Texto de mensaje en negrita */
+.modal-message {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

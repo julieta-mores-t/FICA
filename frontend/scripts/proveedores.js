@@ -72,7 +72,7 @@ function closeModalById(modalId) {
 }
 
 
-// Función para cargar materiales en la tabla
+// Función para cargar proveedores en la tabla
 function cargarProveedores() {
     fetch('http://127.0.0.1:5000/api/mostrar_proveedores')
         .then(response => {
@@ -187,7 +187,6 @@ const closeEditBtn = editarModal.querySelector('.closeEdit');
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('btn-editar')) {
         event.preventDefault();
-        // Obtener el ID del proveedor desde el atributo data-id
         const proveedorId = event.target.getAttribute('data-id');
 
 
@@ -318,7 +317,7 @@ document.addEventListener('click', (event) => {
                 document.getElementById('dnombre').textContent = data.nombre;
                 document.getElementById('drazon_social').textContent = data.razon_social;
                 document.getElementById('dcuit').textContent = data.cuit;
-                document.getElementById('dmail').textContent = data.email;
+                document.getElementById('dmail').textContent = data.mail;
                 document.getElementById('dtelefono').textContent = data.telefono;
                 document.getElementById('dciudad').textContent = data.ciudad;
                 document.getElementById('dcodigo_postal').textContent = data.codigo_postal;

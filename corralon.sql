@@ -38,7 +38,7 @@ CREATE TABLE `compradores` (
 
 LOCK TABLES `compradores` WRITE;
 /*!40000 ALTER TABLE `compradores` DISABLE KEYS */;
-INSERT INTO `compradores` VALUES (1,'Juan','Pérez','1985-07-15',NULL),(3,'Damian','Marquez','1985-07-15',NULL);
+INSERT INTO `compradores` VALUES (1,'Juan','Pérez','1985-07-15','jm@gmail.com'),(3,'Damian','Marquez','1985-07-15','damianm@gmail.com');
 /*!40000 ALTER TABLE `compradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_proveedor` (`proveedor`),
   CONSTRAINT `fk_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `deposito` (
 
 LOCK TABLES `deposito` WRITE;
 /*!40000 ALTER TABLE `deposito` DISABLE KEYS */;
-INSERT INTO `deposito` VALUES (87,'cinta',50,400,544,'baja',17,'aaa-001','2024-11-23 21:58:04',20,31,'se ingresa por corralon','rollo','20000'),(88,'arena',200,250,318,'alta',16,'aaa-002','2024-11-23 22:01:00',15,21,'tambien por bolsa','m3','50000');
+INSERT INTO `deposito` VALUES (87,'cinta',50,400,544,'baja',17,'aaa-001','2024-11-23 21:58:04',20,31,'se ingresa por corralon','rollo','20000'),(88,'arena',200,250,318,'alta',16,'aaa-002','2024-11-23 22:01:00',15,21,'tambien por bolsa','m3','50000'),(89,'cal',200,250,300,'alta',16,'aaa-003','2024-11-26 16:34:25',20,NULL,'tambien por bolsa','unidad','50000'),(90,'tornillos',200,50,100,'alta',17,'aaa-004','2024-11-26 16:35:04',100,NULL,'en cajas','unidad','10000'),(91,'clavos',550,27,54,'alta',17,'aaa-005','2024-11-26 16:35:42',100,NULL,'sueltos','unidad','15000'),(92,'manguera',1000,30,60,'alta',17,'aaa-006','2024-11-26 16:36:02',100,NULL,'sueltos','metro','30000'),(93,'caño pvc',1000,50,100,'alta',16,'aaa-007','2024-11-26 16:36:54',100,NULL,'6 metros','metro','50000'),(94,'piedra',2500,28,56,'alta',16,'aaa-008','2024-11-26 16:38:52',100,NULL,'6 camiones','metro3','70000');
 /*!40000 ALTER TABLE `deposito` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -612,7 +612,7 @@ CREATE TABLE `stock` (
   PRIMARY KEY (`id`),
   KEY `stock_ibfk_1` (`material_id`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `deposito` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -621,7 +621,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (51,87,-630),(52,88,200);
+INSERT INTO `stock` VALUES (51,87,-630),(52,88,200),(53,89,200),(54,90,200),(55,91,550),(56,92,1000),(57,93,1000),(58,94,2500);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -818,4 +818,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25 17:46:08
+-- Dump completed on 2024-11-26 16:39:30

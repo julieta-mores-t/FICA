@@ -31,13 +31,17 @@ from controlador.controlador_ventas import mostrar_ventas_endpoint
 from controlador.controlador_ventas import mostrar_ventas_empleado_endpoint
 from controlador.controlador_ventas import editar_venta_endpoint
 from controlador.controlador_ventas import agregar_venta_endpoint
+from controlador.controlador_compradores import mostrar_compradores_endpoint
+from controlador.controlador_compradores import mostrar_un_comprador_endpoint
 
 
 
-
+#crea una instancia de flask en la cual podemos definir las rutas, las configuraciones y logicas
 aplicacion = Flask(__name__)
 
+#se activan los mecanismos de seguridad
 CORS(aplicacion)
+#biblioteca que usamos para hashear la contraseña 
 bcrypt = Bcrypt(aplicacion)
 
 # --------------------------------------------------------------------
@@ -256,6 +260,20 @@ def editar_venta(id):
 @aplicacion.route("/api/agregar_venta", methods = ["POST"])
 def agregar_venta():
     return agregar_venta_endpoint()
+
+
+# --------------------------------------------------------------------
+#---------------------------------compradores-------------------------
+# --------------------------------------------------------------------
+
+@aplicacion.route("/api/mostrar_compradores", methods = ["GET"])
+def mostrar_comprador():
+    return mostrar_compradores_endpoint()
+
+
+@aplicacion.route("/api/mostrar_un_comprador/<int:id>",methods = ["GET"])
+def mostrar_un_comprador(id):
+    return mostrar_un_comprador_endpoint(id)
 
 
 

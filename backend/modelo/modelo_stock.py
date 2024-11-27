@@ -9,8 +9,8 @@ def mostrar_stock():
     cursor.execute("""SELECT 
     deposito.codigo AS "Codigo",
     deposito.material AS "Nombre",
-    deposito.unidad_medida AS "Unidad de Medida",
-    deposito.precio_venta AS "Precio de Venta",
+    deposito.unidad_medida,
+    deposito.precio_venta,
     stock.cantidad,
     proveedores.nombre AS "Proveedor"
 FROM 
